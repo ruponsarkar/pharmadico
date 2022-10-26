@@ -2,7 +2,7 @@
 
 @section('title', 'Journals')
 
-
+<!-- this is journal page -->
 
 @section('content')
 <div class="container">
