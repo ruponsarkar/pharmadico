@@ -1340,6 +1340,15 @@ border: 1px solid rgba(179, 16, 16, 0.3);
     border: 0;
     padding: 15px;
   }
+  #specials .specials-title p {
+    font-size: 20px;
+  }
+  .specials .nav-link {
+    padding: 8px 10px;
+    border-right: 2px solid #ffc451;
+    font-weight: 600;
+    font: 1rem sans-serif;
+  }
 }
 .editorial-img {
   object-fit: cover;
@@ -1359,3 +1368,5 @@ border: 1px solid rgba(179, 16, 16, 0.3);
 .details .btn{
   width: auto;
 }
+
+

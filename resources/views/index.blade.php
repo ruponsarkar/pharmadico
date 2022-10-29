@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-xl-8 pt-2">
-        <section id="hero" data-aos="fade-left" data-aos-delay="100">
+        <section id="hero" data-aos="fade-down" data-aos-delay="100">
             <div class="hero-container">
                 <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
@@ -86,7 +86,7 @@
                 <div class="section-title">
                     <h2>Indexing</h2>
                 </div>
-                <div class="container" data-aos="zoom-in">
+                <div class="container" data-aos="fade-left">
                     <div class="indexing-slider swiper">
                         <div class="swiper-wrapper align-items-center">
                             <div class="swiper-slide"><img src="assets/img/indexing/1.jpeg" class="img-fluid" alt=""></div>
@@ -144,7 +144,7 @@
     </div>
 
 
-    <div class="container-fluid" data-aos="fade-up">
+    <div class="container-fluid" data-aos="fade-left">
         <div class="row">
 
             <div class="article-slider swiper">

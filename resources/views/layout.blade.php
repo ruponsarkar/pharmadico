@@ -215,7 +215,7 @@
         </footer>
 
 
-        <div class="manus">
+        <div class="manus" id="manus" data-aos="flip-down">
             <div class="submit-container">
                 <div class="submit-item">
                     <a href="{{ url('manuscript') }}" class="btn effect02" target="_blank"><span>
@@ -227,7 +227,6 @@
 
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     </div>
-
 
     <!-- Optional JavaScript; choose one of the two! -->
 

@@ -14,7 +14,7 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="specials-title">
-                    <p>Research Journal of Education , linguistic and Islamic Culture</p>
+                    <p>Research Journal of Education, linguistic and Islamic Culture</p>
                 </div>
 
                 <div class="row" data-aos="fade-up" data-aos-delay="100">
