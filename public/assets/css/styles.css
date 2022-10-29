@@ -349,10 +349,10 @@ background-size: 11.31px 11.31px;
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
-section {
+/* section {
   padding: 60px 0;
   overflow: hidden;
-}
+} */
 
 .section-title {
   /*padding-bottom: 40px;*/
@@ -1262,4 +1262,100 @@ border: 1px solid rgba(179, 16, 16, 0.3);
   .journal-list .card-text {
     font-size: 14px;
   }
+}
+
+/*--------------------------------------------------------------
+# Specials
+--------------------------------------------------------------*/
+#specials .specials {
+  overflow: hidden;
+  padding: 0;
+}
+#specials .specials-title p {
+  margin: 0;
+  font-size: 35px;
+  padding: 5px;
+  /* font-family: 'Tangerine', serif; */
+  /* font-size: 48px; */
+  text-shadow: 2px 2px 9px #aaa;
+  font-weight: 700;
+
+}
+.specials .nav-tabs {
+  border: 0;
+}
+.specials .nav-link {
+  border: 0;
+  padding: 12px 15px;
+  transition: 0.3s;
+  color: #000;
+  border-radius: 0;
+  border-right: 2px solid #ffc451;
+  font-weight: 600;
+  font-size: 19px;
+  /* font-family: 'Dancing Script', cursive; */
+  letter-spacing: 0.1em;
+}
+.specials .nav-link:hover {
+  color: #e96b56;
+}
+.specials .nav-link.active {
+  color: #1a1814;
+  background: #ffc451;
+  border-color: #ffc451;
+}
+.specials .nav-link:hover {
+  border-color: #ffc451;
+}
+.specials .tab-pane.active {
+  -webkit-animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 0.5s ease-out;
+}
+.specials .details h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #000;
+  /* font-family: 'Dancing Script', cursive; */
+  
+}
+.specials .details p {
+  color: #000;
+  /* font-size: 18px; */
+  /* font-family: 'Dancing Script', cursive; */
+}
+.specials .details p:last-child {
+  margin-bottom: 0;
+}
+.specials p {
+  font-size: 1rem;
+}
+.specials hr {
+  margin: 0;
+  color: red;
+  height: 2px;
+}
+@media (max-width: 992px) {
+  .specials .nav-link {
+    border: 0;
+    padding: 15px;
+  }
+}
+.editorial-img {
+  object-fit: cover;
+  height: 150px;
+  width: 150px;
+  background-image: url(../../assets/img/logo/No_image_available.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.rounded-circle {
+  border-radius: 50% !important;
+}
+.editorial-style .card-title {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+}
+.details .btn{
+  width: auto;
 }

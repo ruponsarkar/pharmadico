@@ -33,7 +33,7 @@
                             </div>
                             <br>
                             <div class="row justify-content-end">
-                                <a href="#" class="col-2 btn btn-primary effect01">Read more</a>
+                                <a href="{{ url('/journal-details') }}" class="col-2 btn btn-primary effect01">Read more</a>
                             </div>
                         </div>
                     </div>
@@ -76,5 +76,8 @@
         </div>
     </div>
 </div>
+
+<br>
+<br>
 
 @endsection

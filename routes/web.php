@@ -19,3 +19,15 @@ Route::get('/', function () {
 Route::get('/journals', function () {
     return view('journals');
 });
+Route::get('/journal-details', function () {
+    return view('journal-details');
+});
+Route::get('/manuscript', function () {
+    return view('manuscript');
+});
+Route::get('/Join_editor', function () {
+    return view('Join_editor');
+});
+Route::get('/join_reviewer', function () {
+    return view('join_reviewer');
+});

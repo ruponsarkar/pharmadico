@@ -19,6 +19,12 @@
 
     <meta name="description" content="" />
     <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -113,13 +119,13 @@
                         <li class="dropdown"><a href="#"><span>For Editors</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
                                 <li><a href="#">Editors Guidlines</a></li>
-                                <li><a href="#">Join as Editors</a></li>
+                                <li><a href="{{ url('Join_editor')}}">Join as Editors</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="#"><span>For Reviewers</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
                                 <li><a href="#">Reviewers Guidlines</a></li>
-                                <li><a href="#">Join as Reviewers</a></li>
+                                <li><a href="{{ url('join_reviewer')}}">Join as Reviewers</a></li>
                             </ul>
                         </li>
                         <li><a class="nav-link scrollto" href="#services">Books</a></li>
@@ -137,11 +143,82 @@
         </div>
         <!-- navbar -->
         @yield('content')
+        <footer id="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-info">
+                                <h3>About Us </h3>
+                                <p>
+                                    Emabr Publishers is an independent, open-access, international research based
+                                    publishing house committed to providing a 'peer reviewed' platform to outstanding
+                                    researchers and
+                                    ...<a href="#"> Read more</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-links">
+                            <h4>Open Access Licence</h4>
+                            <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"> <img alt="Creative Commons License" style="border-width:0;float:left" src="assets/img/li.png"></a><br>
+                            <p class="about-us" style="text-align:left">
+                                <br>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0
+                                International License.
+                            </p>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-info">
+                            <h4>Contact Information</h4>
+
+                            <h6 style="color:red; font-weight:bold;">Principal Contact</h6>
+                            <p><i class="bi bi-people"></i>
+                                Kawsar Ahmed- Director <br>
+                            <p><i class="bi bi-geo-alt-fill"></i>
+                                017 Uttar Nowabil, Ambari Hojai, Assam- &nbsp; &nbsp; &nbsp; &nbsp; India 782445<br>
+                                <i class="bi bi-envelope"></i>
+                                <strong>Email:</strong> director@embarpublishers.com<br><br>
+
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-info">
+                            <h4>.</h4>
+
+
+                            <h6 style="color:red; font-weight:bold;">Registered Office</h6>
+                            <p><i class="bi bi-geo-alt-fill"></i>
+                                112 Iraga, Solana, Cagayan Valley- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                &nbsp; &nbsp; &nbsp; Philippines 3500<br>
+                                <i class="bi bi-envelope"></i>
+                                <strong>Email:</strong> contact@embarpublishers.com<br><br>
+                            </p>
+
+                            <a href="#">
+                                <h6 style="color:yellow; font-weight:bold;">Country wise Office locations...</h6>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>EMBAR Publishers</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    Developed by <a href="https://pageuptechnologies.com"><b> PageUpTechnologies </b></a>
+                </div>
+            </div>
+        </footer>
+
 
         <div class="manus">
             <div class="submit-container">
                 <div class="submit-item">
-                    <a href="#" class="btn effect02" target="_blank"><span>
+                    <a href="{{ url('manuscript') }}" class="btn effect02" target="_blank"><span>
                             <i class="bi bi-telegram"></i>
                             Submit Manuscript </span></a>
                 </div>
