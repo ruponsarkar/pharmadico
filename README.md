@@ -1,0 +1,2 @@
+# pharmadico
+Laravel publisher project
