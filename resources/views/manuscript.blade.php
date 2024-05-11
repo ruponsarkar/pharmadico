@@ -15,7 +15,7 @@
 
 
 
-            <form method="POST" action="submit_manuscript" enctype="multipart/form-data">
+            <form method="POST" action="{{url('submit_manuscript')}}" enctype="multipart/form-data">
               @csrf
               <div class="row mb-3">
                 <label for="Select Mode" class="col-sm-4 col-form-label">Select Mode</label>
@@ -47,11 +47,9 @@
                 <div class="col-sm-8">
                   <select class="form-select" id="specificSizeSelect" name="journal">      
                     <option value="">Select</option>
-                    <option value="Research article">Research article</option>
-                    <option value="Review article">Review article</option>
-                    <option value="Short Communication">Short Communication</option>
-                    <option value="Case Report">Case Report</option>
-                    <option value="Letter to editor">Letter to editor</option>
+                    @foreach($journals as $data)
+                    <option value="{{$data->j_id}}"> {{$data->j_name}}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>

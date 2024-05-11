@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-
+use App\Models\home_asset;
+use DB;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // $HomeAssets = DB::table('home_assets')->where('active', 1)->first();
+        $HomeAssets = DB::table('home_assets')->where('active', 1)->first();
+
+        View::share(['logo'=> $HomeAssets->logo, 'banner'=> $HomeAssets->banner]);
+        // View::share();
     }
 }

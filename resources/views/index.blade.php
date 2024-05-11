@@ -11,6 +11,57 @@
 
 
 <div class="row">
+    <div class="col-xl-4">
+
+        <div class="row pt-3">
+            <!-- ======= indexing Section ======= -->
+            <section id="indexing" class="indexing">
+                <div class="section-title">
+                    <h2>Indexing</h2>
+                </div>
+                <div class="container" data-aos="fade-left">
+                    <div class="indexing-slider swiper">
+                        <div class="swiper-wrapper align-items-center">
+
+                            @foreach($indexings as $data)
+                            <div class="swiper-slide"><img src="{{url('assets/img/indexing/'.$data->img)}}" class="img-fluid" alt=""></div>
+                            @endforeach
+                        </div>
+                        <!-- <div class="swiper-pagination"></div> -->
+                    </div>
+
+                </div>
+            </section><!-- End indexing Section -->
+        </div>
+
+        <div class="row " data-aos="zoom-in" data-aos-delay="100">
+            <!-- <section id="submit">
+<div class="submit-container">
+    <div class="submit-item">
+      <a href="https://twitter.com/masuwa1018" class="btn effect01" target="_blank"><span> Submit Manuscript </span></a>
+    </div>
+</div>
+</section> -->
+            <div class="col-sm-12 text-center p-1">
+                <div class="btn effect01">Publication Ethics and Malpractice Statement</div>
+            </div>
+            <div class="col-sm-12 text-center p-1">
+                <div class="btn effect01">Manuscript Preparation Guidelines</div>
+            </div>
+            <div class="col-sm-12 text-center p-1">
+                <div class="btn effect01">Research Guidelines</div>
+            </div>
+            <div class="col-sm-12 text-center p-1">
+                <div class="btn effect01">APA Style (6th Edition)</div>
+            </div>
+            <div class="col-sm-12 text-center p-1">
+                <div class="btn effect01">Writing a good research paper</div>
+            </div>
+            <div class="col-sm-12 text-center p-1">
+                <div class="btn effect01">Google Language Translator</div>
+            </div>
+        </div>
+    </div>
     <div class="col-xl-8 pt-2">
         <section id="hero" data-aos="fade-down" data-aos-delay="100">
             <div class="hero-container">
@@ -19,14 +70,13 @@
                     <div class="carousel-inner" role="listbox">
 
                         <!-- Slide 1 -->
-                        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
+                        <div class="carousel-item active" style="background-image: url(assets/img/slide/3.jpg)">
                             <div class="carousel-container">
                                 <div class="carousel-content">
                                     <h2 class="animate__animated animate__fadeInDown">Welcome to
-                                        <span>Eterna</span>
+                                        <span>Pharmedico Publishers</span>
                                     </h2>
-                                    <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a
-                                        aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam.
+                                    <p class="animate__animated animate__fadeInUp">Writing is a solitary endeavor, being an author is not
                                     </p>
                                     <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read
                                         More</a>
@@ -35,13 +85,11 @@
                         </div>
 
                         <!-- Slide 2 -->
-                        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+                        <div class="carousel-item" style="background-image: url(assets/img/slide/1.jpg)">
                             <div class="carousel-container">
                                 <div class="carousel-content">
-                                    <h2 class="animate__animated fanimate__adeInDown">Lorem <span>Ipsum
-                                            Dolor</span></h2>
-                                    <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a
-                                        aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam.
+                                    <h2 class="animate__animated fanimate__adeInDown">Pharmedico <span>Publishers</span></h2>
+                                    <p class="animate__animated animate__fadeInUp">Silence is the death of a story
                                     </p>
                                     <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read
                                         More</a>
@@ -50,13 +98,11 @@
                         </div>
 
                         <!-- Slide 3 -->
-                        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
+                        <div class="carousel-item" style="background-image: url(assets/img/slide/4.jpg)">
                             <div class="carousel-container">
                                 <div class="carousel-content">
-                                    <h2 class="animate__animated animate__fadeInDown">Sequi ea <span>Dime
-                                            Lara</span></h2>
-                                    <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a
-                                        aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam.
+                                    <h2 class="animate__animated animate__fadeInDown">Pharmedico <span>Publishers </span></h2>
+                                    <p class="animate__animated animate__fadeInUp">lets you feed your inner control freak
                                     </p>
                                     <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read
                                         More</a>
@@ -78,61 +124,7 @@
             </div>
         </section>
     </div>
-    <div class="col-xl-4">
 
-        <div class="row pt-3">
-            <!-- ======= indexing Section ======= -->
-            <section id="indexing" class="indexing">
-                <div class="section-title">
-                    <h2>Indexing</h2>
-                </div>
-                <div class="container" data-aos="fade-left">
-                    <div class="indexing-slider swiper">
-                        <div class="swiper-wrapper align-items-center">
-                            <div class="swiper-slide"><img src="assets/img/indexing/1.jpeg" class="img-fluid" alt=""></div>
-                            <div class="swiper-slide"><img src="assets/img/indexing/2.jpeg" class="img-fluid" alt=""></div>
-                            <div class="swiper-slide"><img src="assets/img/indexing/3.jpeg" class="img-fluid" alt=""></div>
-                            <div class="swiper-slide"><img src="assets/img/indexing/4.jpeg" class="img-fluid" alt=""></div>
-                            <div class="swiper-slide"><img src="assets/img/indexing/5.jpeg" class="img-fluid" alt=""></div>
-                            <div class="swiper-slide"><img src="assets/img/indexing/6.jpeg" class="img-fluid" alt=""></div>
-                            <div class="swiper-slide"><img src="assets/img/indexing/7.jpeg" class="img-fluid" alt=""></div>
-                            <div class="swiper-slide"><img src="assets/img/indexing/8.jpeg" class="img-fluid" alt=""></div>
-                        </div>
-                        <!-- <div class="swiper-pagination"></div> -->
-                    </div>
-
-                </div>
-            </section><!-- End indexing Section -->
-        </div>
-
-        <div class="row " data-aos="zoom-in" data-aos-delay="100">
-            <!-- <section id="submit">
-        <div class="submit-container">
-            <div class="submit-item">
-              <a href="https://twitter.com/masuwa1018" class="btn effect01" target="_blank"><span> Submit Manuscript </span></a>
-            </div>
-        </div>
-      </section> -->
-            <div class="col-sm-6 text-center p-1">
-                <div class="btn effect01">Publication Ethics and Malpractice Statement</div>
-            </div>
-            <div class="col-sm-6 text-center p-1">
-                <div class="btn effect01">Manuscript Preparation Guidelines</div>
-            </div>
-            <div class="col-sm-6 text-center p-1">
-                <div class="btn effect01">Research Guidelines</div>
-            </div>
-            <div class="col-sm-6 text-center p-1">
-                <div class="btn effect01">APA Style (6th Edition)</div>
-            </div>
-            <div class="col-sm-6 text-center p-1">
-                <div class="btn effect01">Writing a good research paper</div>
-            </div>
-            <div class="col-sm-6 text-center p-1">
-                <div class="btn effect01">Google Language Translator</div>
-            </div>
-        </div>
-    </div>
 </div>
 
 
@@ -149,27 +141,14 @@
 
             <div class="article-slider swiper">
                 <div class="swiper-wrapper align-items-center text-center">
+
+                    @foreach($journals as $data)
                     <div class="swiper-slide">
-                        <img class="img-fluid" src="assets/img/journals/1.jpg">
+                        <img class="img-fluid" src="{{url('assets/journals/img/'.$data->photo)}}">
                     </div>
-                    <div class="swiper-slide">
-                        <img class="img-fluid" src="assets/img/journals/2.jpg">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-fluid" src="assets/img/journals/3.png">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-fluid" src="assets/img/journals/4.png">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-fluid" src="assets/img/journals/5.png">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-fluid" src="assets/img/journals/6.png">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-fluid" src="assets/img/journals/7.png">
-                    </div>
+                    @endforeach
+
+
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -208,87 +187,53 @@
 
             <div class="container-fluid" data-aos="fade-up">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-xl-3 p-2">
-                        <div class="swiper-slide">
-                            <div class='card'>
-                                <div class='info'>
-                                    <div class='title'>Traditional Sanctions for the Performers of the Theft of
-                                        Pratima...</div>
 
-                                    <p class="card-icon">
-                                        <i class="bi bi-person-circle"></i>
-                                        Kharisma Nanda Sattwika, Ketut...
-                                        <br>
-                                        <i class="bi bi-tag-fill"></i>
-                                        Kharisma Nanda Sattwika
-                                    </p>
-                                    <p class='description' style="font-size: 2rem;">
-                                        <i class="bi bi-download"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-xl-3 p-2">
+                    @foreach($latestArticle as $data)
+                    <div class="col-lg-4 col-md-6 col-xl-3 p-2 d-lg-none d-xl-block">
                         <div class="swiper-slide">
                             <div class='card'>
-                                <div class='info'>
-                                    <div class='title'>Research Journal of Education, linguistic and Islamic
-                                        Culture</div>
-                                    <p class="card-icon">
-                                        <i class="bi bi-person-circle"></i>
-                                        Razzakov, S.J., & Qosbergenov,
-                                        <br>
-                                        <i class="bi bi-tag-fill"></i>
-                                        Razzakov, S.J.
-                                    </p>
-                                    <p class='description' style="font-size: 2rem;">
-                                        <i class="bi bi-download"></i>
-                                    </p>
-                                </div>
+                                <div class='title'>{{ Str::limit($data->name, 65) }}</div>
+
+                                <p class="card-icon">
+                                    <i class="bi bi-person-circle text-info"></i>
+                                    {{ Str::limit($data->aname, 30) }}
+                                    <br>
+                                    <i class="bi bi-tag-fill text-warning"></i>
+                                    {{$data->designation}}
+                                </p>
+                                <p class='description' style="font-size: 2rem;">
+                                    <i class="bi bi-download text-primary"></i>
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-xl-3 p-2">
+
+                    @endforeach
+
+                    @foreach($latestArticleThree as $data)
+                    <div class="col-lg-4 col-md-6 col-xl-3 p-2 d-none d-lg-block d-xl-none">
                         <div class="swiper-slide">
                             <div class='card'>
-                                <div class='info'>
-                                    <div class='title'>The Impact of Globalization and the Role of Universities
-                                        in the F...</div>
-                                    <p class="card-icon">
-                                        <i class="bi bi-person-circle"></i>
-                                        Sultaniyazov Madiyar Baxtiyaro...
-                                        <br>
-                                        <i class="bi bi-tag-fill"></i>
-                                        Sultaniyazov Madiyar Baxtiyarovich
-                                    </p>
-                                    <p class='description' style="font-size: 2rem;">
-                                        <i class="bi bi-download"></i>
-                                    </p>
-                                </div>
+                                <div class='title'>{{ Str::limit($data->name, 65) }}</div>
+
+                                <p class="card-icon">
+                                    <i class="bi bi-person-circle text-info"></i>
+                                    {{ Str::limit($data->aname, 30) }}
+                                    <br>
+                                    <i class="bi bi-tag-fill text-warning"></i>
+                                    {{$data->designation}}
+                                </p>
+                                <p class='description' style="font-size: 2rem;">
+                                    <i class="bi bi-download text-primary"></i>
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-xl-3 d-lg-none d-xl-block p-2">
-                        <div class="swiper-slide">
-                            <div class='card'>
-                                <div class='info'>
-                                    <div class='title'>Research Journal of Education, linguistic and Islamic
-                                        Culture</div>
-                                    <p class="card-icon">
-                                        <i class="bi bi-person-circle"></i>
-                                        Razzakov, S.J., & Qosbergenov,
-                                        <br>
-                                        <i class="bi bi-tag-fill"></i>
-                                        Razzakov, S.J.
-                                    </p>
-                                    <p class='description' style="font-size: 2rem;">
-                                        <i class="bi bi-download"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    @endforeach
+
+
+
                     <div class="text-center p-2"><strong><a href="#"> SHOW MORE</a></strong></div>
                     <!-- <div class="swiper-pagination"></div> -->
                 </div>
