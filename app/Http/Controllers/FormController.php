@@ -78,7 +78,7 @@ class FormController extends Controller
             'affiliation'=>'required|regex:/^([A-Za-z0-9]\s?)+([,]\s?([A-Za-z0-9]\s?)+)*$/',
             'mail'=>'required|email',
             'mobile'=>'required|numeric',
-            'manuscript' =>'required|regex:/^([A-Za-z0-9]\s?)+([,]\s?([A-Za-z0-9]\s?)+)*$/',
+            'manuscript' =>'required',
             'file'=>'required|mimes:pdf,docx',
            ]);
 

@@ -198,19 +198,19 @@
         spaceBetween: 20
       },
       600: {
-        slidesPerView: 2,
+        slidesPerView: 1,
         spaceBetween: 20
       },
       800: {
-        slidesPerView: 3,
+        slidesPerView: 1,
         spaceBetween: 20
       },
       1000: {
-        slidesPerView: 4,
+        slidesPerView: 1,
         spaceBetween: 20
       },
       1200: {
-        slidesPerView: 5,
+        slidesPerView: 1,
         spaceBetween: 20
       }
     }

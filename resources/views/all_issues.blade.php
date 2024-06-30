@@ -21,19 +21,19 @@
                     <div class="col-lg-3">
                         <ul class="nav nav-tabs flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Aims And Scope</a>
+                                <a class="nav-link" href="/journal-details/1">Aims And Scope</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Editorial board</a>
+                                <a class="nav-link" href="/journal-details/1">Editorial board</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Archives</a>
+                                <a class="nav-link active" href="/journal-details/1">Archives</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Indexing</a>
+                                <a class="nav-link" href="/journal-details/1">Indexing</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Impact Factor</a>
+                                <a class="nav-link" href="/journal-details/1">Impact Factor</a>
                             </li>
                         </ul>
                     </div>

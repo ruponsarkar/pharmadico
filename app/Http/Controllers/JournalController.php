@@ -160,7 +160,7 @@ class JournalController extends Controller
         ->where('j_id', $j_id->j_id)
         ->first();
 
-        $article = articles::select('id','name','aname','designation','doi','page','file','count')
+        $article = articles::select('id','name','aname','designation','doi','page','file','count', 'abstract', 'fileOriginalName')
         ->where('i_id','=', $v_id->id)
         ->where('v_id','=', $j_id->id)
         ->where('status','=', 1)
