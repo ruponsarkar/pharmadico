@@ -30,7 +30,7 @@ tr:nth-child(1) {
 <table>
   <tr>
     <th>Name</th>
-    <th>Abbr. title</th>
+    <th>Abbr. titles</th>
     <th>ISSN</th>
     <th>Frequency</th>
     <th>Language</th>
