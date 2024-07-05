@@ -188,6 +188,30 @@
                 </div>
             </div>
 
+            <div class="row pt-3">
+                <section id="indexing" class="indexing">
+                    <div class="section-title">
+                        <h2>Indexing</h2>
+                    </div>
+                    <div class="container" data-aos="fade-left">
+                        <div class="indexing-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+
+                                @foreach ($indexings as $data)
+                                    <div class="swiper-slide">
+                                        <img
+                                            src="{{ url('assets/img/indexing/' . $data->img) }}" class="img-fluid"
+                                            alt="">
+                                            {{$data->img}}
+                                        </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
 
             <div class="row">
                 <div class="col-md-12">
@@ -220,26 +244,29 @@
                                                     <div>
                                                         <button class="btn btn-sm btn-success px-2 text-capitalize"
                                                             type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#collapseExample-{{$data->id}}" aria-expanded="false"
-                                                            aria-controls="collapseExample-{{$data->id}}">Abstract</button>
+                                                            data-bs-target="#collapseExample-{{ $data->id }}"
+                                                            aria-expanded="false"
+                                                            aria-controls="collapseExample-{{ $data->id }}">Abstract</button>
                                                     </div>
                                                     {{-- <div>
                                                         <button class="btn btn-sm btn-success px-2 text-capitalize">HTML Full Text</button>
                                                     </div> --}}
                                                     <div>
                                                         {{-- <button class="btn btn-sm btn-success px-2 text-capitalize">PDF</button> --}}
-                                                        <a class="btn btn-sm btn-success px-2 text-capitalize" role="button" href="{{ URL('assets/articles/' . $data->file) }}"
-                                                            download="{{ $data->fileOriginalName ? $data->fileOriginalName : $data->name  }}">
-                                                            PDF 
+                                                        <a class="btn btn-sm btn-success px-2 text-capitalize"
+                                                            role="button"
+                                                            href="{{ URL('assets/articles/' . $data->file) }}"
+                                                            download="{{ $data->fileOriginalName ? $data->fileOriginalName : $data->name }}">
+                                                            PDF
                                                         </a>
                                                     </div>
 
 
 
                                                 </div>
-                                                <div class="collapse" id="collapseExample-{{$data->id}}">
+                                                <div class="collapse" id="collapseExample-{{ $data->id }}">
                                                     <div class="card card-body">
-                                                        {{$data->abstract}}
+                                                        {{ $data->abstract }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -251,6 +278,8 @@
                     </div>
                 </div>
             </div>
+
+
 
 
 
@@ -417,7 +446,8 @@
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
         function countFun(id) {
             console.log(id);
