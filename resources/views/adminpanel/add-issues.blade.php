@@ -30,8 +30,6 @@
   }
 </style>
 
-
-
 <div class="container-form">
   <div class="col-md-6 m-auto">
     <h1>Add ISSUES</h1>
@@ -55,8 +53,6 @@
             <option value="Issue 10">Issue 10</option>
             <option value="Issue 11">Issue 11</option>
             <option value="Issue 12">Issue 12</option>
-
-
           </select>
         </div>
 
@@ -67,8 +63,6 @@
     </div>
   </div>
 </div>
-
-
 
 <div class="volume-list">
 
