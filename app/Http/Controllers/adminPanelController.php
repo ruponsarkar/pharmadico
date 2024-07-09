@@ -45,6 +45,22 @@ class adminPanelController extends Controller
         return view('adminpanel.all-manuscript', ['manuscript' => $manuscript]);
     }
 
+    function updateManuscript(Request $request){
+
+        // dd($request->all());
+        // $manuscript = manuscripts::find($id);
+        // $manuscript->status = $request->input('status');
+        // $manuscript->save();
+    
+        // return redirect()->back()->with('success', 'Manuscript status updated successfully');
+        
+        // $data = $request->all();
+        $updaetValue = manuscripts::where('m_id', $request->mid)->update([
+            'status' => $request->status
+        ]);
+        return redirect()->back()->with('message', 'Deleted');
+    }
+
     function allEditorsRequest()
     {
 

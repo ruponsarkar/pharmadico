@@ -32,7 +32,7 @@
                   <th>Affiliation</th>
                   <th>publication</th>
                   <th>Photo</th>
-                  <th>Date</th>
+                  <th>action</th>
                 </tr>
               </thead>
               <tbody>
@@ -56,11 +56,11 @@
                     <center> <img src="{{URL('assets/editors/img/'.$data->photo)}}" alt="" width='100'> <br>Photo </center>
                   </td>
                   <td>{{$data->date}}</td>
+                  <td class="text-center"><a href="{{URL('update-journals/'.$data->j_id)}}"><i class="far fa-edit"></i></a>
+                  <a class="confirmation" href="{{URL('delete-journals/'.$data->j_id)}}"><i class="fas fa-trash-alt text-danger"></i></a>
+                </td>
                 </tr>
-
-
-
-                @endforeach
+            ]@endforeach
               </tbody>
             </table>
           </div>

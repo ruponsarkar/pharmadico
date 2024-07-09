@@ -63,6 +63,7 @@ Route::get('/dashboard', function () {
     return view('admin/dashboard');
 });
 Route::get('all-manuscripts', [adminPanelController::class, 'allManuscript']);
+Route::post('update-manuscripts/{mid}', [adminPanelController::class, 'updateManuscript']);
 
 
 
