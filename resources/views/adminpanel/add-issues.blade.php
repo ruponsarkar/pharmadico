@@ -40,7 +40,8 @@
 
         <div class="one" class="form-group">
           <label class="form-label" for="language">ISSUES</label>
-          <select name="name" id="" class="form-select">
+          <input name="name" id="" class="form-control" />
+          <!-- <select name="name" id="" class="form-select">
             <option value="Issue 1">Issue 1</option>
             <option value="Issue 2">Issue 2</option>
             <option value="Issue 3">Issue 3</option>
@@ -53,7 +54,7 @@
             <option value="Issue 10">Issue 10</option>
             <option value="Issue 11">Issue 11</option>
             <option value="Issue 12">Issue 12</option>
-          </select>
+          </select> -->
         </div>
 
         <div class="one w-100 text-center m-2">

@@ -9,6 +9,8 @@ use App\Models\journal;
 use App\Models\visitor;
 use App\Models\indexings;
 use App\Models\home_asset;
+use App\Models\manuscripts;
+
 
 class IndexController extends Controller
 {
@@ -39,6 +41,13 @@ class IndexController extends Controller
         'countJournal'=>$countJournal, 'countArticle'=>$countArticle, 'countDownload'=>$countDownload, 'countVisitor'=>$countVisitor]);
     }
 
+    public function searchManuscript(Request $request)
+    {
+            return manuscripts::count();
+        // $query = $request->input('query');
+        // $results = User::where('name', 'LIKE', "%{$query}%")->get();
+        // return response()->json($results);
+    }
    
 
    function manuscript(){

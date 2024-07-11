@@ -19,6 +19,7 @@
               <thead>
                 <tr>
                   <th>Id</th>
+                  <th>Unique ID </th>
                   <th>File</th>
                   <th>Mode</th>
                   <th>Author</th>
@@ -36,6 +37,7 @@
                 @foreach($manuscript as $data)
                 <tr class="manuscript-row" data-id="{{$data->m_id}}" data-status="{{$data->status}}">
                   <td>{{$data->m_id}}</td>
+                  <td>{{$data->muuid}}</td>
                   <td><a href="viewer/{{$data->m_id}}"> {{$data->file}} </a></td>
                   <td>{{$data->mode}}</td>
                   <td>{{$data->author}}</td>

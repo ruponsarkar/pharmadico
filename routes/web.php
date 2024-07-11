@@ -34,6 +34,9 @@ Route::get('countDownload/{id}', [JournalController::class, 'countDownload']);
 
 Route::get('manuscript', [IndexController::class, 'manuscript']);
 
+Route::post('search', [IndexController::class, 'searchManuscript']);
+
+
 Route::post('submit_manuscript', [FormController::class, 'submit_manuscript']);
 
 Route::get('about', function(){
