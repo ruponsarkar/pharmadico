@@ -22,6 +22,7 @@ class IndexController extends Controller
 
         $indexings = indexings::where('active', 1)->get();
         
+
         //for counter section
         
         
@@ -40,13 +41,19 @@ class IndexController extends Controller
         'indexings'=>$indexings,
         'countJournal'=>$countJournal, 'countArticle'=>$countArticle, 'countDownload'=>$countDownload, 'countVisitor'=>$countVisitor]);
     }
-
-    public function searchManuscript(Request $request)
+   
+    function search(Request $request)
     {
-            return manuscripts::count();
-        // $query = $request->input('query');
-        // $results = User::where('name', 'LIKE', "%{$query}%")->get();
-        // return response()->json($results);
+        return $request->all();
+        $query = $request->input('query');
+
+        if (!$query) {
+            return response()->json(['error' => 'Query parameter is required'], 400);
+        }
+
+        $results = manuscripts::where('muuid', 'LIKE', "%{$query}%")->get(); // Adjust the field 'name' based on your model
+
+        return response()->json($results);
     }
    
 

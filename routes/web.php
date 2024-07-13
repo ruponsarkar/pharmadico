@@ -32,10 +32,13 @@ Route::get('issues/{id}', [journalController::class, 'allIssues']);
 
 Route::get('countDownload/{id}', [JournalController::class, 'countDownload']);
 
+Route::get('/search', [IndexController::class, 'search']);
+
 Route::get('manuscript', [IndexController::class, 'manuscript']);
 
-Route::post('search', [IndexController::class, 'searchManuscript']);
+Route::get('searchManuscript', [IndexController::class, 'searchManuscript']);
 
+Route::get('getIndexing', [IndexController::class,'index']);
 
 Route::post('submit_manuscript', [FormController::class, 'submit_manuscript']);
 

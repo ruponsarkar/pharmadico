@@ -169,7 +169,7 @@ class adminPanelController extends Controller
 
         $indexing->save();
 
-        $request->photo->move(base_path('public_html/assets/indexing/img'), $photo);
+        $request->photo->move(base_path('public/assets/indexing/img'), $photo);
 
         return redirect('indexing')->with('message', 'Your request Submitted successfully');
     }
@@ -614,7 +614,7 @@ class adminPanelController extends Controller
                 'img' => $photo
             ]);
 
-            $request->photo->move(base_path('public_html/assets/indexing/img'), $photo);
+            $request->photo->move(base_path('public/assets/indexing/img'), $photo);
 
             return redirect()->back()->with('message', 'Updated');
 
