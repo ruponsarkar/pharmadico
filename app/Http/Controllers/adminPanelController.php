@@ -15,7 +15,7 @@ use App\Models\articles;
 use App\Models\book;
 use App\Models\editor;
 use App\Models\home_asset;
-
+use App\Models\manuscript_status;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -45,20 +45,18 @@ class adminPanelController extends Controller
         return view('adminpanel.all-manuscript', ['manuscript' => $manuscript]);
     }
 
-    function updateManuscript(Request $request){
+    function updateManuscript(Request $request)
+    {
+        $getRowValue = manuscripts::where('m_id',$request->selectedID)->first();
 
-        return $request->all();
-        // $manuscript = manuscripts::find($id);
-        // $manuscript->status = $request->input('status');
-        // $manuscript->save();
-        
-        // return redirect()->back()->with('success', 'Manuscript status updated successfully');
-        
-        // $data = $request->all();
-        $updaetValue = manuscripts::where('m_id', $request->mid)->update([
-            'status' => $request->status
-        ]);
-        return redirect()->back()->with('message', 'Deleted');
+        return $getRowValue;
+        // $updaetValue = manuscripts::where('m_id', $request->selectedID)->update([
+        //     'status' => $request->selectedStatus
+        // ]);
+        // $insertStatus = manuscript_status::where()
+
+        // return response()->json(['success' => $updaetValue]);
+
     }
 
     function allEditorsRequest()
@@ -133,7 +131,6 @@ class adminPanelController extends Controller
 
 
         return redirect()->back()->with('message', 'Deleted');
-
     }
 
 
@@ -195,8 +192,6 @@ class adminPanelController extends Controller
         } else {
             return back()->with('message', 'error');
         }
-
-
     }
 
 
@@ -215,12 +210,10 @@ class adminPanelController extends Controller
             if (Hash::check($request->pass, $userInfo->pass)) {
                 $request->session()->put('LoggedUser', $userInfo->id);
                 return redirect('admin_index');
-
             } else {
                 return back()->with('message', 'Wrong password');
             }
         }
-
     }
 
 
@@ -289,10 +282,6 @@ class adminPanelController extends Controller
 
 
         return redirect('addEditors')->with('message', 'Your request Submitted successfully');
-
-
-
-
     }
 
     function edit_editor(Request $request, $id)
@@ -337,8 +326,6 @@ class adminPanelController extends Controller
 
 
         return redirect('addEditors')->with('message', 'Your request Submitted successfully');
-
-
     }
 
 
@@ -350,8 +337,6 @@ class adminPanelController extends Controller
         $editor_data->update();
 
         return redirect()->back()->with('message', 'Deleted');
-
-
     }
 
     function addVolume()
@@ -362,7 +347,6 @@ class adminPanelController extends Controller
 
 
         return view('adminpanel.add-volume', ['journal' => $journal, 'volume' => $volume]);
-
     }
 
 
@@ -386,9 +370,6 @@ class adminPanelController extends Controller
 
 
         return redirect('add-volume')->with('message', 'Added');
-
-
-
     }
 
     function addIssues(Request $request, $id)
@@ -397,7 +378,6 @@ class adminPanelController extends Controller
         $issues = issue::get()->where('v_id', $id);
 
         return view('adminpanel.add-issues', ['id' => $id, 'issues' => $issues]);
-
     }
 
 
@@ -413,7 +393,6 @@ class adminPanelController extends Controller
         $issues = issue::get()->where('v_id', $id);
 
         return view('adminpanel.add-issues', ['id' => $id, 'issues' => $issues]);
-
     }
 
     function addArticle(Request $request, $id)
@@ -426,7 +405,6 @@ class adminPanelController extends Controller
             ->where('status', '=', 1);
 
         return view('adminpanel.add-article', ['v_id' => $v_id, 'article' => $article, 'id' => $id]);
-
     }
 
 
@@ -471,8 +449,6 @@ class adminPanelController extends Controller
 
 
         return back()->with('message', 'Added');
-
-
     }
 
 
@@ -517,8 +493,6 @@ class adminPanelController extends Controller
 
         ]);
         return redirect('Checkjournals');
-
-
     }
 
     function book()
@@ -553,7 +527,6 @@ class adminPanelController extends Controller
 
 
         return back()->with('message', 'Added');
-
     }
 
     function updateJournalPhoto(Request $request)
@@ -617,7 +590,6 @@ class adminPanelController extends Controller
             $request->photo->move(base_path('public/assets/indexing/img'), $photo);
 
             return redirect()->back()->with('message', 'Updated');
-
         }
     }
 
@@ -630,7 +602,6 @@ class adminPanelController extends Controller
             'active' => 0
         ]);
         return redirect()->back()->with('message', 'Deleted');
-
     }
 
 
@@ -659,9 +630,5 @@ class adminPanelController extends Controller
             $request->banner->move(base_path('public_html/assets/homeAssets'), $photo);
             return redirect()->back()->with('message', 'Updated');
         }
-
     }
-
-
-
 }

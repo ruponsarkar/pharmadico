@@ -88,7 +88,7 @@
         <form id="updateStatusForm">
           @csrf
           <input type="hidden" name="status" id="selectedStatus">
-          <input type="hidden" name="mid" id="mid" value="12345"> <!-- Example MID value -->
+          <input type="hidden" name="mid" id="mid" value="12345">
           <select class="form-select" aria-label="Default select example" id="statusSelect" required>
             <option selected disabled>Select status</option>
             <option value="0">Accepted</option>
@@ -103,70 +103,42 @@
 </div>
 
 <script>
-    document.querySelectorAll('.update-status-btn').forEach(button => {
-      button.addEventListener('click', function() {
-        const row = this.closest('.manuscript-row');
-        mid = row.getAttribute('data-id');
-        midStatua = row.getAttribute('data-status');
-        alert(midStatua)
-      });
-    });
-    return;
-    async function submitForm() {
-        const selectedStatus = document.getElementById('statusSelect').value;
-        const mid = document.getElementById('mid').value;
-        
-        const response = await fetch('/api/update-status', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
-            },
-            body: JSON.stringify({ status: selectedStatus, mid: mid })
-        });
-        
-        const result = await response.json();
-        
-        if (response.ok) {
-            alert(result.message);
-        } else {
-            alert('Failed to update status: ' + result.message);
-        }
+  let selectedRow ,status;
+  document.getElementById('example2').addEventListener('click', function(event) {
+    if (event.target && event.target.classList.contains('update-status-btn')) {
+      const row = event.target.closest('.manuscript-row');
+      selectedRow = row.getAttribute('data-id');
     }
-</script>
-<script>
-  // document.getElementById('updateStatusForm').addEventListener('submit', function(event) {
-  //   event.preventDefault(); // Prevent the default form submission
-  //   const selectedStatus = document.getElementById('statusSelect').value;
-  //   document.getElementById('selectedStatus').value = selectedStatus;
+  });
+  async function submitForm() {
+    // console.log('ID:', selectedRow);
+    document.querySelectorAll('.update-status-btn').forEach(button => {
+      button.addEventListener('click', function() {});
+    });
+    const selectedStatus = document.getElementById('statusSelect').value;
+    const mid = document.getElementById('mid').value;
 
-  //   this.submit(); // Submit the form
-  // });
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   const updateStatusModal = new bootstrap.Modal(document.getElementById('updateStatusModal'));
-  //   const updateStatusForm = document.getElementById('updateStatusForm');
-  //   const selectedStatusInput = document.getElementById('selectedStatus');
-  //   const manuid = document.getElementById('mid');
-  //   const statusSelect = document.getElementById('statusSelect');
+    const response = await fetch('/api/update-status', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+      },
+      body: JSON.stringify({
+        selectedID: selectedRow,
+        selectedStatus: selectedStatus
+      })
+    });
 
-  //   document.querySelectorAll('.update-status-btn').forEach(button => {
-  //     button.addEventListener('click', function() {
-  //       const row = this.closest('.manuscript-row');
-  //       mid = row.getAttribute('data-id');
-  //       midStatua = row.getAttribute('data-status');
-  //       const status = row.getAttribute('data-status');
-  //       updateStatusForm.action = `/update-manuscripts/${mid}/${midStatua}`;
-  //       // Optionally, set the status in the select field
-  //       statusSelect.value = status;
-  //     });
-  //   });
+    const result = await response.json();
 
-  //   statusSelect.addEventListener('change', function() {
-  //     selectedStatusInput.value = statusSelect.value;
-  //     manuid.value = mid;
-  //   });
-  //   // Update hidden input when select changes
-  // });
+    if (response.ok) {
+      // alert(result.message,'dashduisab');
+      // location.reload();
+    } else {
+      alert('Failed to update status: ' + result.message);
+    }
+  }
 </script>
 
 @endsection
