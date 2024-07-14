@@ -47,11 +47,11 @@ class adminPanelController extends Controller
 
     function updateManuscript(Request $request){
 
-        // dd($request->all());
+        return $request->all();
         // $manuscript = manuscripts::find($id);
         // $manuscript->status = $request->input('status');
         // $manuscript->save();
-    
+        
         // return redirect()->back()->with('success', 'Manuscript status updated successfully');
         
         // $data = $request->all();

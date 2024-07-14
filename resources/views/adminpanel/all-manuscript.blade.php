@@ -84,18 +84,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="" id="updateStatusForm" enctype="multipart/form-data">
+        <!-- <a class="confirmation" href="{{URL('delete-journals/'.$data->j_id)}}"> -->
+        <form id="updateStatusForm">
           @csrf
           <input type="hidden" name="status" id="selectedStatus">
-          <input type="hidden" name="mid" id="mid" value="">
-          <select class="form-select" aria-label="Default select example" id="statusSelect">
+          <input type="hidden" name="mid" id="mid" value="12345"> <!-- Example MID value -->
+          <select class="form-select" aria-label="Default select example" id="statusSelect" required>
             <option selected disabled>Select status</option>
             <option value="0">Accepted</option>
-            <!-- <option value="Draft">Draft</option> -->
             <option value="2">Published</option>
             <option value="3">Rejected</option>
           </select>
-          <button type="submit" class="btn btn-primary mt-3">Submit</button>
+          <button type="button" class="btn btn-primary mt-3" onclick="submitForm()">Submit</button>
         </form>
       </div>
     </div>
@@ -103,32 +103,70 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const updateStatusModal = new bootstrap.Modal(document.getElementById('updateStatusModal'));
-    const updateStatusForm = document.getElementById('updateStatusForm');
-    const selectedStatusInput = document.getElementById('selectedStatus');
-    const manuid = document.getElementById('mid');
-    const statusSelect = document.getElementById('statusSelect');
-    
-    // alert(manuid.value);
-    let mid;
     document.querySelectorAll('.update-status-btn').forEach(button => {
       button.addEventListener('click', function() {
         const row = this.closest('.manuscript-row');
         mid = row.getAttribute('data-id');
-        const status = row.getAttribute('data-status');
-        updateStatusForm.action = `/update-manuscripts/${mid}/${manuid}`;
-        // Optionally, set the status in the select field
-        statusSelect.value = status;
+        midStatua = row.getAttribute('data-status');
+        alert(midStatua)
       });
     });
+    return;
+    async function submitForm() {
+        const selectedStatus = document.getElementById('statusSelect').value;
+        const mid = document.getElementById('mid').value;
+        
+        const response = await fetch('/api/update-status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+            },
+            body: JSON.stringify({ status: selectedStatus, mid: mid })
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            alert(result.message);
+        } else {
+            alert('Failed to update status: ' + result.message);
+        }
+    }
+</script>
+<script>
+  // document.getElementById('updateStatusForm').addEventListener('submit', function(event) {
+  //   event.preventDefault(); // Prevent the default form submission
+  //   const selectedStatus = document.getElementById('statusSelect').value;
+  //   document.getElementById('selectedStatus').value = selectedStatus;
 
-    // Update hidden input when select changes
-    statusSelect.addEventListener('change', function() {
-      selectedStatusInput.value = statusSelect.value;
-      manuid.value = mid;
-    });
-  });
+  //   this.submit(); // Submit the form
+  // });
+  // document.addEventListener('DOMContentLoaded', function() {
+  //   const updateStatusModal = new bootstrap.Modal(document.getElementById('updateStatusModal'));
+  //   const updateStatusForm = document.getElementById('updateStatusForm');
+  //   const selectedStatusInput = document.getElementById('selectedStatus');
+  //   const manuid = document.getElementById('mid');
+  //   const statusSelect = document.getElementById('statusSelect');
+
+  //   document.querySelectorAll('.update-status-btn').forEach(button => {
+  //     button.addEventListener('click', function() {
+  //       const row = this.closest('.manuscript-row');
+  //       mid = row.getAttribute('data-id');
+  //       midStatua = row.getAttribute('data-status');
+  //       const status = row.getAttribute('data-status');
+  //       updateStatusForm.action = `/update-manuscripts/${mid}/${midStatua}`;
+  //       // Optionally, set the status in the select field
+  //       statusSelect.value = status;
+  //     });
+  //   });
+
+  //   statusSelect.addEventListener('change', function() {
+  //     selectedStatusInput.value = statusSelect.value;
+  //     manuid.value = mid;
+  //   });
+  //   // Update hidden input when select changes
+  // });
 </script>
 
 @endsection
