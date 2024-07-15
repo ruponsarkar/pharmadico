@@ -32,7 +32,13 @@ Route::get('issues/{id}', [journalController::class, 'allIssues']);
 
 Route::get('countDownload/{id}', [JournalController::class, 'countDownload']);
 
+Route::get('/search', [IndexController::class, 'search']);
+
 Route::get('manuscript', [IndexController::class, 'manuscript']);
+
+Route::get('searchManuscript', [IndexController::class, 'searchManuscript']);
+
+Route::get('getIndexing', [IndexController::class,'index']);
 
 Route::post('submit_manuscript', [FormController::class, 'submit_manuscript']);
 
@@ -63,10 +69,7 @@ Route::get('/dashboard', function () {
     return view('admin/dashboard');
 });
 Route::get('all-manuscripts', [adminPanelController::class, 'allManuscript']);
-
-
-
-
+// Route::get('update-manuscripts/{mid}/{status}', [adminPanelController::class, 'updateManuscript']);
 
 // admin panel 
 

@@ -9,6 +9,8 @@ use App\Models\journal;
 use App\Models\visitor;
 use App\Models\indexings;
 use App\Models\home_asset;
+use App\Models\manuscripts;
+
 
 class IndexController extends Controller
 {
@@ -20,6 +22,7 @@ class IndexController extends Controller
 
         $indexings = indexings::where('active', 1)->get();
         
+
         //for counter section
         
         
@@ -38,7 +41,20 @@ class IndexController extends Controller
         'indexings'=>$indexings,
         'countJournal'=>$countJournal, 'countArticle'=>$countArticle, 'countDownload'=>$countDownload, 'countVisitor'=>$countVisitor]);
     }
+   
+    function search(Request $request)
+    {
+        return $request->all();
+        $query = $request->input('query');
 
+        if (!$query) {
+            return response()->json(['error' => 'Query parameter is required'], 400);
+        }
+
+        $results = manuscripts::where('muuid', 'LIKE', "%{$query}%")->get(); // Adjust the field 'name' based on your model
+
+        return response()->json($results);
+    }
    
 
    function manuscript(){
