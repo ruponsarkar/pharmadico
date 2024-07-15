@@ -462,6 +462,10 @@ class adminPanelController extends Controller
         return view('adminpanel.update-article', ['articles' => $article]);
     }
 
+    function updateArticleData(Request $request, $id){
+        dd($request->all());
+    }
+
     function Checkjournals()
     {
         $journal = journal::get();

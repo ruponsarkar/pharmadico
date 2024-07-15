@@ -112,6 +112,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::post('addArticleData/{id}', [adminPanelController::class, 'addArticleData']);
 
     Route::get('update-article/{id}', [adminPanelController::class, 'updateArticle']);
+    Route::get('update-article-data/{id}', [adminPanelController::class, 'updateArticleData']);
 
     Route::get('Checkjournals', [adminPanelController::class, 'Checkjournals']);
     Route::get('update-journals/{id}', [adminPanelController::class, 'updateJournals']);

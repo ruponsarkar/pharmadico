@@ -44,14 +44,14 @@ class IndexController extends Controller
    
     function search(Request $request)
     {
-        return $request->all();
+        // return $request->all();
         $query = $request->input('query');
 
         if (!$query) {
             return response()->json(['error' => 'Query parameter is required'], 400);
         }
 
-        $results = manuscripts::where('muuid', 'LIKE', "%{$query}%")->get(); // Adjust the field 'name' based on your model
+        $results = manuscripts::where('muuid', 'LIKE', "%{$query}%")->where('status' , 0)->get(); // Adjust the field 'name' based on your model
 
         return response()->json($results);
     }
