@@ -71,7 +71,9 @@
 
 
 <div class="container">
-  <form method="POST" action="{{url('update-article-data')}}">
+
+  <form  action="update-article-data/{{$articles->id}}"  method="post" enctype="multipart/form-data">
+  @csrf
     <ul class="flex-outer">
       <li>
         <label for="first-name">Name</label>
@@ -96,7 +98,12 @@
         <input type="text" id="page" name="page" value="{{$articles->page}}">
       </li>
 
-
+      <li>
+        <label for="phone">Change File</label>
+        <input type="file" name="file">
+        <!-- <input type="hidden" name="id" value="{{$articles->id}}"> -->
+        <!-- <button type="submit" name="img-file">Change Image</button> -->
+      </li>
 
       <li>
 
@@ -108,16 +115,11 @@
     </ul>
   </form>
 
-  <br><br><br><br><br><br><br><br>
+  <br><br><br><br><br>
 
   <form action="update-article-data.php" method="post" enctype="multipart/form-data">
     <ul class="flex-outer">
-      <li>
-        <label for="phone">Change File</label>
-        <input type="file" name="file">
-        <input type="hidden" name="id" value="{{$articles->id}}">
-        <button type="submit" name="img-file">Change Image</button>
-      </li>
+     
     </ul>
   </form>
 

@@ -27,7 +27,6 @@ class adminPanelController extends Controller
         return view('adminpanel.login');
     }
 
-
     function adminIndex()
     {
         $HomeAssets = home_asset::where('active', 1)->first();
@@ -45,18 +44,19 @@ class adminPanelController extends Controller
         return view('adminpanel.all-manuscript', ['manuscript' => $manuscript]);
     }
 
+    // status change of manuscript
     function updateManuscript(Request $request)
     {
-        $getRowValue = manuscripts::where('m_id',$request->selectedID)->first();
+        $getRowValue = manuscripts::where('m_id',$request->selectedID)->get();
 
-        return $getRowValue;
-        // $updaetValue = manuscripts::where('m_id', $request->selectedID)->update([
-        //     'status' => $request->selectedStatus
-        // ]);
+        // return response()->json(['success' => $getRowValue]);;
+        // $updateManuStatus = manuscript_status::update($request->selectedID,$getRowValue);
+        $updaetValue = manuscripts::where('m_id', $request->selectedID)->update([
+            'status' => $request->selectedStatus
+        ]);
         // $insertStatus = manuscript_status::where()
 
-        // return response()->json(['success' => $updaetValue]);
-
+        return response()->json(['success' => $updaetValue]);
     }
 
     function allEditorsRequest()
@@ -66,9 +66,6 @@ class adminPanelController extends Controller
 
         return view('adminpanel.all-editors-request', ['editors' => $editors]);
     }
-
-
-
 
     function journalForm()
     {
@@ -120,7 +117,6 @@ class adminPanelController extends Controller
         return redirect('journalForm')->with('message', 'Your request Submitted successfully');
     }
 
-
     function deleteJournals(Request $request, $id)
     {
 
@@ -132,10 +128,6 @@ class adminPanelController extends Controller
 
         return redirect()->back()->with('message', 'Deleted');
     }
-
-
-
-
 
     function indexing()
     {
@@ -171,7 +163,6 @@ class adminPanelController extends Controller
         return redirect('indexing')->with('message', 'Your request Submitted successfully');
     }
 
-
     function regis()
     {
         return view('adminpanel.register');
@@ -194,7 +185,6 @@ class adminPanelController extends Controller
         }
     }
 
-
     function check(Request $request)
     {
         $request->validate([
@@ -216,8 +206,6 @@ class adminPanelController extends Controller
         }
     }
 
-
-
     function logout()
     {
         if (session()->has('LoggedUser')) {
@@ -233,9 +221,6 @@ class adminPanelController extends Controller
         $manuscript = manuscripts::get()->where('m_id', $id);
         return view('adminpanel.viewer', ['manuscript' => $manuscript]);
     }
-
-
-
 
     function addEditors()
     {
@@ -317,6 +302,7 @@ class adminPanelController extends Controller
         $editor->type = strip_tags($request->type);
         $editor->j_id = strip_tags($request->journal);
         $editor->profile = strip_tags($request->profile);
+
         //    $editor->image=strip_tags($photo);
 
         $editor->ip_address = \Request::ip();
@@ -417,16 +403,13 @@ class adminPanelController extends Controller
             'doi' => 'max:50',
             'page' => 'max:100',
             'file' => 'required|mimes:pdf,docx',
-
         ]);
 
         $namewithextension = $request->file->getClientOriginalName();
 
         $fileOriginalName = explode('.', $namewithextension)[0];
 
-
         $v_id = issue::get()->where('id', $id)->first();
-
 
         $file = time() . '.' . $request->file->extension();
 
@@ -462,8 +445,46 @@ class adminPanelController extends Controller
         return view('adminpanel.update-article', ['articles' => $article]);
     }
 
-    function updateArticleData(Request $request, $id){
-        dd($request->all());
+    function updateArticleData(Request $request, $id)
+    {
+
+        $request->validate([
+            'name' => 'required|max:500',
+            'aname' => 'required|max:500',
+            'designation' => 'max:500',
+            'doi' => 'max:50',
+            'page' => 'max:100',
+            'file' => 'mimes:pdf,docx',
+        ]);
+        if ($request->file) {
+
+            $namewithextension = $request->file->getClientOriginalName();
+
+            $fileOriginalName = explode('.', $namewithextension)[0];
+
+            $v_id = issue::get()->where('id', $id)->first();
+
+            $file = time() . '.' . $request->file->extension();
+        }
+
+        $updateArticle = articles::find($id);
+        $updateArticle->name = strip_tags($request->name);
+        $updateArticle->aname = strip_tags($request->aname);
+        $updateArticle->designation = strip_tags($request->designation);
+        $updateArticle->doi = strip_tags($request->doi);
+        $updateArticle->page = strip_tags($request->page);
+        if ($request->file) {
+            $updateArticle->file = strip_tags($file);
+        }
+
+        $updateArticle->ip_address = \Request::ip();
+
+        $updateArticle->update();
+        if ($request->file) {
+        $request->file->move(base_path('public_html/assets/articles/'), $file);
+        }
+        return back()->with('message', 'Your request Submitted successfully');
+        // return dd($request->all());
     }
 
     function Checkjournals()

@@ -24,9 +24,12 @@
   .volume-list {
     display: flex;
     justify-content: center;
-    flex-direction: column;
     align-content: center;
     flex-wrap: wrap;
+  }
+
+  .volume-list a {
+    width: 33%;
   }
 </style>
 
@@ -64,19 +67,21 @@
     </div>
   </div>
 </div>
+<div class="col-md-8 m-auto">
 
-<div class="volume-list">
+  <h4>Issue List</h4>
+  <div class="volume-list">
+    @foreach($issues as $data)
 
-  @foreach($issues as $data)
+    <a class="list-v" href="{{ URL('add-article/'.$data->id)}}">
+      <div>
+        {{$data->name}} <br>
+      </div>
+    </a>
 
-  <a href="{{ URL('add-article/'.$data->id)}}">
-    <div class="list-v">
-      {{$data->name}} <br>
-    </div>
-  </a>
+    @endforeach
 
-  @endforeach
-
+  </div>
 </div>
 
 

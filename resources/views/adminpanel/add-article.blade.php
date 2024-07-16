@@ -87,6 +87,12 @@
                 <tr>
                     <th>sl no</th>
                     <th>Name</th>
+                    <th>Corresponding Author</th>
+                    <th>Author Designation</th>
+                    <th>DOI</th>
+                    <th>Page No</th>
+                    <th>Abstract</th>
+                    <th>Document</th>
                     <th>action</th>
                 </tr>
             </thead>
@@ -95,12 +101,24 @@
                 // dd($article)
                 ?>
                 @foreach ($article as $data)
+                <?php  
+    // dd($data)
+                ?>
                 <tr>
                     <td scope="row"> {{ $loop->index + 1 }}</td>
                     <td>{{ $data->name }}</td>
+                    <td>{{ $data->aname }}</td>
+                    <td>{{ $data->designation }}</td>
+                    <td>{{ $data->doi }}</td>
+                    <td>{{ $data->page }}</td>
+                    <td>{{ $data->abstract }}</td>
+                    <!-- <td><a href="../assets/all-editors/{{$data->image}}">{{$data->image}}</a></td> -->
                     <td>
-                        <a href="{{ URL('update-article/' . $data->id) }}" class="btn btn- btn-success w-100 ms-auto">Edit</a>
-                        <a href="{{ URL('delete-article/' . $data->id) }}" class="btn btn- btn-danger w-100 ms-auto">
+                        <a href="../assets/editors/cv/{{$data->file}}">
+                    {{ $data->file }}</a></td>
+                    <td>
+                        <a href="{{ URL('update-article/' . $data->id) }}" class="btn btn-sm btn-success w-100 ms-auto">Edit</a>
+                        <a href="{{ URL('delete-article/' . $data->id) }}" class="btn btn-sm btn-danger w-100 ms-auto">
                                 Delete
                         </a>
                     </td>
