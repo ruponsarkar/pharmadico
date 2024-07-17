@@ -112,7 +112,7 @@
                                     <button type="submit" class="btn  btn-info">Search</button>
                                 </form>
 
-                                <ul id="results">
+                                <ul  id="resultsTable">
                                 </ul>
                             </div>
                         </section>
@@ -440,18 +440,29 @@
         axios.get(`http://127.0.0.1:8000/api/search?query=${query}`)
             .then(response => {
                 const results = response.data;
-                const resultsContainer = document.getElementById('results');
-                resultsContainer.innerHTML = '';
+                    const resultsTableBody = document.querySelector('#resultsTable');
+                    resultsTableBody.innerHTML = '';
 
-                if (results.length) {
-                    results.forEach(result => {
-                        const li = document.createElement('li');
-                        li.textContent = result.muuid;
-                        resultsContainer.appendChild(li);
-                    });
-                } else {
-                    resultsContainer.innerHTML = '<li>No results found.</li>';
-                }
+                    if (results.length) {
+                        results.forEach(result => {
+                            const row = document.createElement('div');
+
+                            Object.keys(result).forEach(key => {
+                                const cell = document.createElement('p');
+                                cell.textContent = result[key];
+                                row.appendChild(cell);
+                            });
+
+                            resultsTableBody.appendChild(row);
+                        });
+                    } else {
+                        const row = document.createElement('div');
+                        const cell = document.createElement('div');
+                        cell.colSpan = 16; // Adjust this number to match the number of columns
+                        cell.textContent = 'No results found.';
+                        row.appendChild(cell);
+                        resultsTableBody.appendChild(row);
+                    }
             })
             .catch(error => {
                 console.error('Error fetching search results:', error);

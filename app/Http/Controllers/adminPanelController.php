@@ -47,10 +47,23 @@ class adminPanelController extends Controller
     // status change of manuscript
     function updateManuscript(Request $request)
     {
-        $getRowValue = manuscripts::where('m_id',$request->selectedID)->get();
+
+        // return $request->selectedID;
+        $getRowValue = manuscripts::where('m_id', $request->selectedID)->first();
+
+        $manuscriptStatus = new manuscript_status;
+        $manuscriptStatus->muuid = $request->selectedID;
+        $manuscriptStatus->status = $request->selectedStatus;
+        $manuscriptStatus->date = $request->selectedStatus;
+        
+        $manuscriptStatus->save();
 
         // return response()->json(['success' => $getRowValue]);;
-        // $updateManuStatus = manuscript_status::update($request->selectedID,$getRowValue);
+        // $updateManuStatus = manuscript_status::insert($request->selectedID,$getRowValue);
+        return response()->json(['success' => 'done']);
+
+        return $updateManuStatus;
+
         $updaetValue = manuscripts::where('m_id', $request->selectedID)->update([
             'status' => $request->selectedStatus
         ]);

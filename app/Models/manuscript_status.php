@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class manuscript_status extends Model
 {
     use HasFactory;
+    protected $table = 'manuscript_status';
 }
