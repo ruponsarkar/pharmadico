@@ -35,7 +35,7 @@
               </thead>
               <tbody>
                 @foreach($manuscript as $data)
-                <tr class="manuscript-row" data-id="{{$data->m_id}}" data-status="{{$data->status}}">
+                <tr class="manuscript-row" data-id="{{$data->m_id}}" data-status="{{$data->status}}" data-muuid="{{$data->muuid}}">
                   <td>{{$data->m_id}}</td>
                   <td>{{$data->muuid}}</td>
                   <td><a href="viewer/{{$data->m_id}}"> {{$data->file}} </a></td>
@@ -103,11 +103,12 @@
 </div>
 
 <script>
-  let selectedRow ,status;
+  let selectedRow ,status,selectedRowID;
   document.getElementById('example2').addEventListener('click', function(event) {
     if (event.target && event.target.classList.contains('update-status-btn')) {
       const row = event.target.closest('.manuscript-row');
-      selectedRow = row.getAttribute('data-id');
+      selectedRow = row.getAttribute('data-muuid');
+      selectedRowID = row.getAttribute('data-id');
     }
   });
   async function submitForm() {
@@ -126,7 +127,8 @@
       },
       body: JSON.stringify({
         selectedID: selectedRow,
-        selectedStatus: selectedStatus
+        selectedStatus: selectedStatus,
+        selectedRowID : selectedRowID
       })
     });
 
@@ -134,7 +136,7 @@
 
     if (response.ok) {
       // alert(result.message,'dashduisab');
-      // location.reload();
+      location.reload();
     } else {
       alert('Failed to update status: ' + result.message);
     }

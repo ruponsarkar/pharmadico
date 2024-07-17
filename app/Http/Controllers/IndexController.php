@@ -10,6 +10,7 @@ use App\Models\visitor;
 use App\Models\indexings;
 use App\Models\home_asset;
 use App\Models\manuscripts;
+use App\Models\manuscript_status;
 
 
 class IndexController extends Controller
@@ -51,7 +52,7 @@ class IndexController extends Controller
             return response()->json(['error' => 'Query parameter is required'], 400);
         }
 
-        $results = manuscripts::where('muuid', 'LIKE', "%{$query}%")->where('status' , 0)->get(); // Adjust the field 'name' based on your model
+        $results = manuscript_status::where('muuid', 'LIKE', "%{$query}%")->where('status' , 0)->get(); // Adjust the field 'name' based on your model
 
         return response()->json($results);
     }

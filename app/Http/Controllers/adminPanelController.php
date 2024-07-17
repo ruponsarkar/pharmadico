@@ -51,25 +51,41 @@ class adminPanelController extends Controller
         // return $request->selectedID;
         // $getRowValue = manuscripts::where('m_id', $request->selectedID)->first();
 
-        $manuscriptStatus = new manuscript_status;
-        $manuscriptStatus->muuid = $request->selectedID;
-        $manuscriptStatus->status = $request->selectedStatus;
-        $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
-        
-        $manuscriptStatus->save();
+        // here selectedID is muuid
+        $exists = manuscript_status::where('muuid', $request->selectedID)->exists();
 
+        if ($exists) {
+            // $manuscriptStatus = new manuscript_status;
+            // $manuscriptStatus->muuid = $request->selectedID;
+            // $manuscriptStatus->status = $request->selectedStatus;
+            // $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
+
+            // $manuscriptStatus->update();
+            $updateISExist = manuscript_status::where('muuid', $request->selectedID)->update([
+                'muuid' => $request->selectedID,
+                'status' => $request->selectedStatus,
+                'date' => date('d-m-Y', strtotime(Carbon\Carbon::now()))
+            ]);
+        } else {
+            $manuscriptStatus = new manuscript_status;
+            $manuscriptStatus->muuid = $request->selectedID;
+            $manuscriptStatus->status = $request->selectedStatus;
+            $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
+
+            $manuscriptStatus->save();
+        }
         // return response()->json(['success' => $getRowValue]);;
         // $updateManuStatus = manuscript_status::insert($request->selectedID,$getRowValue);
-        return response()->json(['success' => 'done']);
 
-        return $updateManuStatus;
+        // return $updateManuStatus;
 
-        $updaetValue = manuscripts::where('m_id', $request->selectedID)->update([
+        $updaetValue = manuscripts::where('m_id', $request->selectedRowID)->update([
             'status' => $request->selectedStatus
         ]);
         // $insertStatus = manuscript_status::where()
 
         return response()->json(['success' => $updaetValue]);
+        // return response()->json(['success' => 'done']);
     }
 
     function allEditorsRequest()
@@ -494,7 +510,7 @@ class adminPanelController extends Controller
 
         $updateArticle->update();
         if ($request->file) {
-        $request->file->move(base_path('public_html/assets/articles/'), $file);
+            $request->file->move(base_path('public_html/assets/articles/'), $file);
         }
         return back()->with('message', 'Your request Submitted successfully');
         // return dd($request->all());
