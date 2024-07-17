@@ -16,7 +16,7 @@ use App\Models\book;
 use App\Models\editor;
 use App\Models\home_asset;
 use App\Models\manuscript_status;
-
+use Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class adminPanelController extends Controller
@@ -49,12 +49,12 @@ class adminPanelController extends Controller
     {
 
         // return $request->selectedID;
-        $getRowValue = manuscripts::where('m_id', $request->selectedID)->first();
+        // $getRowValue = manuscripts::where('m_id', $request->selectedID)->first();
 
         $manuscriptStatus = new manuscript_status;
         $manuscriptStatus->muuid = $request->selectedID;
         $manuscriptStatus->status = $request->selectedStatus;
-        $manuscriptStatus->date = $request->selectedStatus;
+        $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
         
         $manuscriptStatus->save();
 
