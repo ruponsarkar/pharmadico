@@ -16,6 +16,7 @@ use App\Models\book;
 use App\Models\editor;
 use App\Models\home_asset;
 use App\Models\manuscript_status;
+use App\Models\conference;
 use Carbon;
 use Illuminate\Support\Facades\Hash;
 
@@ -145,7 +146,25 @@ class adminPanelController extends Controller
 
         return redirect('journalForm')->with('message', 'Your request Submitted successfully');
     }
+    function conference(){
+        $confrence = conference::orderBy('id', 'DESC')->get();
 
+        return view('adminpanel.add-conference', ['confrence' => $confrence]);
+    }
+    function addConferenceinsert(Request $request){
+        $request->validate([
+            'title' => 'required|max:1000',
+            'file' => 'required|mimes:pdf,docx',
+        ]);
+        $save = conference::insert([
+            'title'=> $request->title,
+            'file'=> $request->file
+        ]);
+        return redirect('add-conference')->with('message', 'Your request Submitted successfully');
+    }
+    function addconference() {
+        return view('adminpanel.add-conference');
+    }
     function deleteJournals(Request $request, $id)
     {
 

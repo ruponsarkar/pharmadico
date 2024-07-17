@@ -69,17 +69,18 @@ Route::get('/dashboard', function () {
     return view('admin/dashboard');
 });
 Route::get('all-manuscripts', [adminPanelController::class, 'allManuscript']);
+Route::get('add-conference', [adminPanelController::class,'addconference']);
 // Route::get('update-manuscripts/{mid}/{status}', [adminPanelController::class, 'updateManuscript']);
 
 // admin panel 
 
 Route::group(['middleware'=>['AuthCheck']], function(){
-
+    
     Route::get('login', [adminPanelController::class, 'login']);
     Route::get('admin_index', [adminPanelController::class, 'adminIndex']);
     Route::get('all-manuscript', [adminPanelController::class, 'allManuscript']);
-      Route::get('receive-editors', [adminPanelController::class, 'allEditorsRequest']);
-
+    Route::get('receive-editors', [adminPanelController::class, 'allEditorsRequest']);
+    
     Route::get('journalForm', [adminPanelController::class, 'journalForm']);
     Route::post('addJournal', [adminPanelController::class, 'addJournal']);
     Route::get('indexing', [adminPanelController::class, 'indexing']);
@@ -87,9 +88,9 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('indexingList/{id}', [adminPanelController::class, 'indexingList']);
     Route::post('UpdateIndexing', [adminPanelController::class, 'UpdateIndexing']);
     Route::get('DeleteIndexing/{id}', [adminPanelController::class, 'DeleteIndexing']);
-
-
     
+    Route::view('conference' , [adminPanelController::class,'conference']);
+    Route::post('addConferences' , [adminPanelController::class,'addConferenceinsert']);
     
 
     Route::get('viewer/{id}', [adminPanelController::class, 'viewer']);
