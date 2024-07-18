@@ -111,6 +111,15 @@
                 </p>
               </a>
             </li>
+            
+            <li class="nav-item">
+              <a href="{{URL('add-conference')}}" class="nav-link {{ request()->is('receive-reviewers') ? 'active' : ''}}">
+                <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                <p>
+                Conference Proceedings
+                </p>
+              </a>
+            </li>
             <li class="nav-item has-treeview {{ request()->is('journalForm') ? 'menu-is-opening menu-open' : ''}}">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book-reader"></i>

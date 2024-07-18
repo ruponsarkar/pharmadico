@@ -89,7 +89,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::post('UpdateIndexing', [adminPanelController::class, 'UpdateIndexing']);
     Route::get('DeleteIndexing/{id}', [adminPanelController::class, 'DeleteIndexing']);
     
-    Route::view('conference' , [adminPanelController::class,'conference']);
+    Route::get('conference' , [adminPanelController::class,'conference']);
     Route::post('addConferences' , [adminPanelController::class,'addConferenceinsert']);
     
 

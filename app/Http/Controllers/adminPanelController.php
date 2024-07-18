@@ -149,16 +149,23 @@ class adminPanelController extends Controller
     function conference(){
         $confrence = conference::orderBy('id', 'DESC')->get();
 
-        return view('adminpanel.add-conference', ['confrence' => $confrence]);
+        return view('conference', ['confrence' => $confrence]);
     }
     function addConferenceinsert(Request $request){
         $request->validate([
             'title' => 'required|max:1000',
             'file' => 'required|mimes:pdf,docx',
         ]);
+
+        $namewithextension = $request->file->getClientOriginalName();
+
+        $fileOriginalName = explode('.', $namewithextension)[0];
+
+        $file = time() . '.' . $request->file->extension();
+
         $save = conference::insert([
             'title'=> $request->title,
-            'file'=> $request->file
+            'file'=>  $file
         ]);
         return redirect('add-conference')->with('message', 'Your request Submitted successfully');
     }
