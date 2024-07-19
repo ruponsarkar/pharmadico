@@ -2,7 +2,9 @@
 @section('title', 'Dashboard')
 @section('content')
 
-
+<?php
+// dd($confrence)
+?>
 <div class="container-form card p-1 p-md-3 p-lg-4">
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="p-3">Add Conference Proceedings</h1>
@@ -47,9 +49,17 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                // dd($confrence);
-                ?>
+                @foreach ($confrence as $item )
+                <tr>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->title}}</td>
+                    <td> <a href="../assets/conference/{{$item->file}}">View file</a> </td>
+                    <td>
+                        <a href="{{ URL('update-conference/' . $item->id) }}" class="btn btn-sm btn-success">edit</a>
+                        <a href="#" class="btn btn-sm btn-danger">delete</a>
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -91,7 +91,8 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     
     Route::get('conference' , [adminPanelController::class,'conference']);
     Route::post('addConferences' , [adminPanelController::class,'addConferenceinsert']);
-    
+    Route::get('update-conference/{id}', [adminPanelController::class,'updateconference']);
+    Route::post('update-conference/update-conference-data/{id}', [adminPanelController::class,'updateconferenceData']);
 
     Route::get('viewer/{id}', [adminPanelController::class, 'viewer']);
     Route::get('addEditors', [adminPanelController::class, 'addEditors']);

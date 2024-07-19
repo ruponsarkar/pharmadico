@@ -149,8 +149,9 @@ class adminPanelController extends Controller
     function conference(){
         $confrence = conference::orderBy('id', 'DESC')->get();
 
-        return view('conference', ['confrence' => $confrence]);
+        return view('conference',['confrence' => $confrence]);
     }
+   
     function addConferenceinsert(Request $request){
         $request->validate([
             'title' => 'required|max:1000',
@@ -167,10 +168,35 @@ class adminPanelController extends Controller
             'title'=> $request->title,
             'file'=>  $file
         ]);
+        $request->file->move(base_path('public_html/assets/conference'), $file);
         return redirect('add-conference')->with('message', 'Your request Submitted successfully');
     }
+    function updateconference(Request $request , $id){
+        $conference = conference::find($id);
+        return view('adminpanel.update-conference', ['conference' => $conference]);
+    }
+    function updateconferenceData(Request $request , $id){
+        $request->validate([
+            'title' => 'required|max:200',
+            'file' => 'required|mimes:pdf,docx',
+
+        ]);
+        $namewithextension = $request->file->getClientOriginalName();
+
+        $fileOriginalName = explode('.', $namewithextension)[0];
+
+        $file = time() . '.' . $request->file->extension();
+
+        $conference = conference::find($id);
+        $conference->title = strip_tags($request->title);
+        $conference->file = $file;
+        $conference->update();
+        return redirect('add-conference')->with('message', 'Your request Submitted successfully');
+
+    }
     function addconference() {
-        return view('adminpanel.add-conference');
+        $confrence = conference::orderBy('id', 'DESC')->get();
+        return view('adminpanel.add-conference',['confrence' => $confrence]);
     }
     function deleteJournals(Request $request, $id)
     {
