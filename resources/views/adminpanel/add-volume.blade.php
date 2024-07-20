@@ -43,21 +43,21 @@
                                     @csrf
                                     <div class="one">
                                         <label for="name">Volume Name</label>
-                                        <input type="text" name="name" id="">
+                                        <input type="text" name="name" id="" class="form-control">
                                     </div>
 
                                     <div class="one">
                                         <label for="language">For journal</label>
-                                        <select name="journal" id="">
+                                        <select name="journal" id="" class="form-select">
                                             @foreach($journal as $data)
                                             <option value="{{$data->j_id}}">{{$data->j_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
 
-                                    <div class="one">
+                                    <div class="one" style="padding : 20px">
 
-                                        <input type="submit" name="submit-volume" value="Save" id="">
+                                        <input class="btn btn-block btn-primary" type="submit" name="submit-volume" value="Save" id="">
                                     </div>
                                 </form>
 

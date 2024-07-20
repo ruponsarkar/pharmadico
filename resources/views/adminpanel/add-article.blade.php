@@ -1,181 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Journals</title>
-    @include('adminpanel.admin_partial.dash-link')
-
-    <style>
-        .list-v {
-            width: 90%;
-            height: auto;
-            border: 1px solid;
-            margin: 10px;
-            display: flex;
-            align-items: center;
-            background-color: burlywood;
-            color: black;
-            padding: 5px;
-            border-radius: 3px;
-
-        }
-
-        .list-link {
-            width: auto;
-            height: 30px;
-            border: 1px solid;
-            margin: 10px;
-            display: flex;
-            align-items: center;
-            background-color: red;
-            color: black;
-            padding: 5px;
-            border-radius: 3px;
-            color: white;
-        }
-
-        .list-link:hover {
-            background-color: blue;
-
-        }
-
-        .volume-list {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-content: center;
-            flex-wrap: wrap;
-        }
-
-        .whole-list {
-            width: 100%;
-            margin: 0px;
-            display: flex;
-        }
-    </style>
+@extends('adminpanel/layout')
+@section('title', 'Dashboard')
+@section('content')
 
 
-</head>
+<div class="container-form card p-1 p-md-3 p-lg-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="p-3">Add Article</h1>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add Article
+        </button>
+    </div>
+    <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content ">
+                <div class="modal-body">
+                    <form action="{{ URL('addArticleData/' . $id) }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="one form-group pt-4">
+                            <label for="name" class="form-label">Article Name</label>
+                            <input type="text" name="name" id="" class="form-control">
+                        </div>
 
-<body>
+
+                        <div class="one pt-4">
+                            <label class="form-label" for="name">Corresponding Author</label>
+                            <input type="text" name="aname" id="" class="form-control">
+                        </div>
 
 
-    @include('adminpanel.admin_partial.dash-sidebar')
+                        <div class="one pt-4">
+                            <label class="form-label" for="name">Author Designation</label>
+                            <input type="text" name="designation" id="" class="form-control">
+                        </div>
 
 
+                        <div class="one pt-4">
+                            <label class="form-label" for="name">DOI</label>
+                            <input type="text" name="doi" id="doi" class="form-control">
+                        </div>
 
-    <div class="container-form">
-        <h1>Add Article</h1>
+                        <div class="one pt-4">
+                            <label class="form-label" for="name">Page No</label>
+                            <input type="text" name="page" id="page" class="form-control">
+                        </div>
 
-        @if (session()->has('message'))
-            <div class="alert alert-success">
-                {{ session()->get('message') }}
+                        <div class="one pt-4">
+                            <label class="form-label" for="name">Abstract</label>
+                            <textarea name="abstract" id="" cols="30" rows="10" class="form-control"></textarea>
+                            {{-- <input type="text" name="designation" id=""> --}}
+                        </div>
+                        <div class="one pt-4">
+                            <label class="form-label" for="name">Keywords</label>
+                            <input type="text" name="keywords" id="" class="form-control">
+                        </div>
+                        
+
+                        <div class="one pt-4 form-group d-block ">
+                            <label class="form-label" for="name">File</label>
+                            <input type="file" name="file" id="" class="form-control">
+                        </div>
+                        <div class="one mt-lg-3 text-center">
+                            <input class="btn btn-block btn-primary w-50 m-auto" type="submit" name="submit-article" value="Save" id="">
+                        </div>
+                    </form>
+                </div>
             </div>
-        @endif
-
-        <div class="error_msg">
-            <ul>
-                @foreach ($errors->all() as $e)
-                    <li>{{ $e }}</li>
-                @endforeach
-            </ul>
         </div>
 
-
-        <form action="{{ URL('addArticleData/' . $id) }}" method="post" enctype="multipart/form-data">
-            @csrf
-            <div class="one">
-                <label for="name">Article Name</label>
-                <input type="text" name="name" id="">
-            </div>
-
-
-            <div class="one">
-                <label for="name">Corresponding Author</label>
-                <input type="text" name="aname" id="">
-            </div>
-
-
-            <div class="one">
-                <label for="name">Author Designation</label>
-                <input type="text" name="designation" id="">
-            </div>
-
-
-            <div class="one">
-                <label for="name">DOI</label>
-                <input type="text" name="doi" id="doi">
-            </div>
-
-            <div class="one">
-                <label for="name">Page No</label>
-                <input type="text" name="page" id="page">
-            </div>
-
-            <div class="one">
-                <label for="name">Abstract</label>
-                <textarea name="abstract" id="" cols="30" rows="10"></textarea>
-                {{-- <input type="text" name="designation" id=""> --}}
-            </div>
-
-            <div class="one">
-                <label for="name">File</label>
-                <input type="file" name="file" id="">
-            </div>
-
-
-
-            <div class="one">
-
-                <input type="submit" name="submit-article" value="Save" id="">
-            </div>
-        </form>
-
     </div>
-
-
-
-    <div class="volume-list">
-
-        @foreach ($article as $data)
-            <div class="whole-list">
-
-                <div class="list-v">
-                    {{ $data->name }}
-                </div>
-
-                <!-- <a href="{{ URL('update-article/' . $data->id) }}">-->
-                <!--<div class="list-link">-->
-                <!--Edit (Not working)-->
-                <!--</div>-->
-                <!--</a>-->
-
-                <a href="{{ URL('delete-article/' . $data->id) }}">
-                    <div class="list-link">
-                        Delete
-                    </div>
-                </a>
-
-
-
-            </div>
-            <br>
-        @endforeach
-
-
+    <!-- @if (session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
     </div>
+    @endif -->
+
+    <!-- <div class="error_msg">
+        <ul>
+            @foreach ($errors->all() as $e)
+            <li class="alert alert-success">{{ $e }}</li>
+            @endforeach
+        </ul>
+    </div> -->
+
+
+
+
+    <div class="volume-list col-md-12 col-md-8 col-11 m-auto">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>sl no</th>
+                    <th>Name</th>
+                    <th>Corresponding Author</th>
+                    <th>Author Designation</th>
+                    <th>DOI</th>
+                    <th>Page No</th>
+                    <th>Abstract</th>
+                    <th>Document</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // dd($article)
+                ?>
+                @foreach ($article as $data)
+                <?php  
+    // dd($data)
+                ?>
+                <tr>
+                    <td scope="row"> {{ $loop->index + 1 }}</td>
+                    <td>{{ $data->name }}</td>
+                    <td>{{ $data->aname }}</td>
+                    <td>{{ $data->designation }}</td>
+                    <td>{{ $data->doi }}</td>
+                    <td>{{ $data->page }}</td>
+                    <td>{{ $data->abstract }}</td>
+                    <!-- <td><a href="../assets/all-editors/{{$data->image}}">{{$data->image}}</a></td> -->
+                    <td>
+                        <a href="../assets/editors/cv/{{$data->file}}">
+                    {{ $data->file }}</a></td>
+                    <td>
+                        <a href="{{ URL('update-article/' . $data->id) }}" class="btn btn-sm btn-success w-100 ms-auto">Edit</a>
+                        <a href="{{ URL('delete-article/' . $data->id) }}" class="btn btn-sm btn-danger w-100 ms-auto">
+                                Delete
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
 
 
 
-    @include('adminpanel.admin_partial.dash-bottom')
 
-
-
-</body>
-
-</html>
+@endsection

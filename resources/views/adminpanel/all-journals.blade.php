@@ -1,36 +1,35 @@
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Journals</title>
-    @include('adminpanel.admin_partial.dash-link')
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+@extends('adminpanel/layout')
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+@section('title', 'Home')
+@section('breadcrumb', 'Add Journals')
 
-tr:nth-child(1) {
-  background-color: #dddddd;
-}
-</style>
-</head>
-<body>
-@include('adminpanel.admin_partial.dash-sidebar')
+
+@section('content')
+  <style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(1) {
+    background-color: #dddddd;
+  }
+  </style>
 
 <center><h2>Edit Journals</h2></center>
 
 <table>
   <tr>
     <th>Name</th>
-    <th>Abbr. title</th>
+    <th>Abbr. titles</th>
     <th>ISSN</th>
     <th>Frequency</th>
     <th>Language</th>
@@ -63,6 +62,4 @@ tr:nth-child(1) {
 @endforeach
 </table>
 @include('adminpanel.admin_partial.dash-bottom')
-</body>
-</html>
-
+@endsection
