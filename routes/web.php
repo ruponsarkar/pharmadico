@@ -69,17 +69,18 @@ Route::get('/dashboard', function () {
     return view('admin/dashboard');
 });
 Route::get('all-manuscripts', [adminPanelController::class, 'allManuscript']);
+Route::get('add-conference', [adminPanelController::class,'addconference']);
 // Route::get('update-manuscripts/{mid}/{status}', [adminPanelController::class, 'updateManuscript']);
 
 // admin panel 
 
 Route::group(['middleware'=>['AuthCheck']], function(){
-
+    
     Route::get('login', [adminPanelController::class, 'login']);
     Route::get('admin_index', [adminPanelController::class, 'adminIndex']);
     Route::get('all-manuscript', [adminPanelController::class, 'allManuscript']);
-      Route::get('receive-editors', [adminPanelController::class, 'allEditorsRequest']);
-
+    Route::get('receive-editors', [adminPanelController::class, 'allEditorsRequest']);
+    
     Route::get('journalForm', [adminPanelController::class, 'journalForm']);
     Route::post('addJournal', [adminPanelController::class, 'addJournal']);
     Route::get('indexing', [adminPanelController::class, 'indexing']);
@@ -87,10 +88,11 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('indexingList/{id}', [adminPanelController::class, 'indexingList']);
     Route::post('UpdateIndexing', [adminPanelController::class, 'UpdateIndexing']);
     Route::get('DeleteIndexing/{id}', [adminPanelController::class, 'DeleteIndexing']);
-
-
     
-    
+    Route::get('conference' , [adminPanelController::class,'conference']);
+    Route::post('addConferences' , [adminPanelController::class,'addConferenceinsert']);
+    Route::get('update-conference/{id}', [adminPanelController::class,'updateconference']);
+    Route::post('update-conference/update-conference-data/{id}', [adminPanelController::class,'updateconferenceData']);
 
     Route::get('viewer/{id}', [adminPanelController::class, 'viewer']);
     Route::get('addEditors', [adminPanelController::class, 'addEditors']);
@@ -112,6 +114,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::post('addArticleData/{id}', [adminPanelController::class, 'addArticleData']);
 
     Route::get('update-article/{id}', [adminPanelController::class, 'updateArticle']);
+    Route::post('update-article/update-article-data/{id}', [adminPanelController::class, 'updateArticleData']);
 
     Route::get('Checkjournals', [adminPanelController::class, 'Checkjournals']);
     Route::get('update-journals/{id}', [adminPanelController::class, 'updateJournals']);

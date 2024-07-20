@@ -106,12 +106,14 @@
                     </div>
                     <div class="row align-items-stretch">
                         <section>
-                            <div class="access-policy-container">
+                            <div class="access-policy-container p-md-2">
                                 <form id="searchForm">
-                                    <input type="text" id="query" placeholder="Search...">
-                                    <button type="submit">Search</button>
+                                    <input type="text" id="query" placeholder="Search..." class="form-control">
+                                    <button type="submit" class="btn  btn-info">Search</button>
                                 </form>
-                                <ul id="results"></ul>
+
+                                <ul  id="resultsTable">
+                                </ul>
                             </div>
                         </section>
                     </div>
@@ -285,43 +287,43 @@
 
                                 @foreach ($indexings as $data)
                                 <div class="swiper-slide"><img src="{{ url('assets/img/indexing/' . $data->img) }}" class="img-fluid" alt="">
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-            </div>
-
-            <div class="row">
-
-                <div class="col-sm-12 text-center p-1">
-                    <div class="btn effect01">Publication Ethics and Malpractice Statement</div>
-                </div>
-                <div class="col-sm-12 text-center p-1">
-                    <div class="btn effect01">Manuscript Preparation Guidelines</div>
-                </div>
-                <div class="col-sm-12 text-center p-1">
-                    <div class="btn effect01">Research Guidelines</div>
-                </div>
-                <div class="col-sm-12 text-center p-1">
-                    <div class="btn effect01">APA Style (6th Edition)</div>
-                </div>
-                <div class="col-sm-12 text-center p-1">
-                    <div class="btn effect01">Writing a good research paper</div>
-                </div>
-                <div class="col-sm-12 text-center p-1">
-                    <div class="btn effect01">Google Language Translator</div>
-                </div>
-            </div>
-        </div> --}}
-
     </div>
+    @endforeach
+</div>
+</div>
+
+</div>
+</section>
+</div>
+
+<div class="row">
+
+    <div class="col-sm-12 text-center p-1">
+        <div class="btn effect01">Publication Ethics and Malpractice Statement</div>
+    </div>
+    <div class="col-sm-12 text-center p-1">
+        <div class="btn effect01">Manuscript Preparation Guidelines</div>
+    </div>
+    <div class="col-sm-12 text-center p-1">
+        <div class="btn effect01">Research Guidelines</div>
+    </div>
+    <div class="col-sm-12 text-center p-1">
+        <div class="btn effect01">APA Style (6th Edition)</div>
+    </div>
+    <div class="col-sm-12 text-center p-1">
+        <div class="btn effect01">Writing a good research paper</div>
+    </div>
+    <div class="col-sm-12 text-center p-1">
+        <div class="btn effect01">Google Language Translator</div>
+    </div>
+</div>
+</div> --}}
+
+</div>
 
 
-    <!-- ======= Journal Section ======= -->
-    {{--
+<!-- ======= Journal Section ======= -->
+{{--
     <section id="article" class="article testimonials-bg p-1">
         <div class="section-title">
             <h2>Journals</h2>
@@ -338,23 +340,23 @@
                         @foreach ($journals as $data)
                         <div class="swiper-slide">
                             <img class="img-fluid" src="{{ url('assets/journals/img/' . $data->photo) }}">
-                        </div>
-                        @endforeach
+</div>
+@endforeach
 
 
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
+</div>
+<div class="swiper-pagination"></div>
+</div>
 
-            </div>
-
-
-    </section> --}}
-    <!-- End Testimonials Section -->
+</div>
 
 
+</section> --}}
+<!-- End Testimonials Section -->
 
-    {{--
+
+
+{{--
     <div class="row p-2">
         <div class="col-lg-3">
             <div class="row align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
@@ -384,84 +386,95 @@
                                 <div class='card'>
                                     <div class='title'>{{ Str::limit($data->name, 65) }}</div>
 
-                                    <p class="card-icon">
-                                        <i class="bi bi-person-circle text-info"></i> {{ Str::limit($data->aname, 30) }}
-                                        <br>
-                                        <i class="bi bi-tag-fill text-warning"></i> {{ $data->designation }}
-                                    </p>
-                                    <p class='description' style="font-size: 2rem;">
-                                        <i class="bi bi-download text-primary"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach @foreach ($latestArticleThree as $data)
-                        <div class="col-lg-4 col-md-6 col-xl-3 p-2 d-none d-lg-block d-xl-none">
-                            <div class="swiper-slide">
-                                <div class='card'>
-                                    <div class='title'>{{ Str::limit($data->name, 65) }}</div>
+<p class="card-icon">
+    <i class="bi bi-person-circle text-info"></i> {{ Str::limit($data->aname, 30) }}
+    <br>
+    <i class="bi bi-tag-fill text-warning"></i> {{ $data->designation }}
+</p>
+<p class='description' style="font-size: 2rem;">
+    <i class="bi bi-download text-primary"></i>
+</p>
+</div>
+</div>
+</div>
+@endforeach @foreach ($latestArticleThree as $data)
+<div class="col-lg-4 col-md-6 col-xl-3 p-2 d-none d-lg-block d-xl-none">
+    <div class="swiper-slide">
+        <div class='card'>
+            <div class='title'>{{ Str::limit($data->name, 65) }}</div>
 
-                                    <p class="card-icon">
-                                        <i class="bi bi-person-circle text-info"></i> {{ Str::limit($data->aname, 30) }}
-                                        <br>
-                                        <i class="bi bi-tag-fill text-warning"></i> {{ $data->designation }}
-                                    </p>
-                                    <p class='description' style="font-size: 2rem;">
-                                        <i class="bi bi-download text-primary"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-
-
-
-                        <div class="text-center p-2"><strong><a href="#"> SHOW MORE</a></strong></div>
-                    </div>
-
-                </div>
-
-
-            </section>
-            <!-- End Testimonials Section -->
+            <p class="card-icon">
+                <i class="bi bi-person-circle text-info"></i> {{ Str::limit($data->aname, 30) }}
+                <br>
+                <i class="bi bi-tag-fill text-warning"></i> {{ $data->designation }}
+            </p>
+            <p class='description' style="font-size: 2rem;">
+                <i class="bi bi-download text-primary"></i>
+            </p>
         </div>
-    </div> --}}
-
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script>
-        document.getElementById('searchForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+</div>
+@endforeach
 
-            const query = document.getElementById('query').value;
 
-            axios.get(`http://127.0.0.1:8000/api/search?query=${query}`)
-                .then(response => {
-                    const results = response.data;
-                    const resultsContainer = document.getElementById('results');
-                    resultsContainer.innerHTML = '';
+
+<div class="text-center p-2"><strong><a href="#"> SHOW MORE</a></strong></div>
+</div>
+
+</div>
+
+
+</section>
+<!-- End Testimonials Section -->
+</div>
+</div> --}}
+
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const query = document.getElementById('query').value;
+
+        axios.get(`http://127.0.0.1:8000/api/search?query=${query}`)
+            .then(response => {
+                const results = response.data;
+                    const resultsTableBody = document.querySelector('#resultsTable');
+                    resultsTableBody.innerHTML = '';
 
                     if (results.length) {
                         results.forEach(result => {
-                            const li = document.createElement('li');
-                            li.textContent = result.name; // Adjust based on your model's attributes
-                            resultsContainer.appendChild(li);
+                            const row = document.createElement('div');
+
+                            Object.keys(result).forEach(key => {
+                                const cell = document.createElement('p');
+                                cell.textContent = result[key];
+                                row.appendChild(cell);
+                            });
+
+                            resultsTableBody.appendChild(row);
                         });
                     } else {
-                        resultsContainer.innerHTML = '<li>No results found.</li>';
+                        const row = document.createElement('div');
+                        const cell = document.createElement('div');
+                        cell.colSpan = 16; // Adjust this number to match the number of columns
+                        cell.textContent = 'No results found.';
+                        row.appendChild(cell);
+                        resultsTableBody.appendChild(row);
                     }
-                })
-                .catch(error => {
-                    console.error('Error fetching search results:', error);
-                });
-        });
-    </script>
-    <script>
-        function countFun(id) {
-            console.log(id);
-            window.location.href = "{{ URL('countDownload') }}/" + id;
-        }
-    </script>
+            })
+            .catch(error => {
+                console.error('Error fetching search results:', error);
+            });
+    });
+</script>
+<script>
+    function countFun(id) {
+        console.log(id);
+        window.location.href = "{{ URL('countDownload') }}/" + id;
+    }
+</script>
 
 
-    @endsection
+@endsection

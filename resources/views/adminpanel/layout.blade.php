@@ -26,8 +26,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-
-
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light nav-clr">
       <!-- Left navbar links -->
@@ -108,6 +106,15 @@
                 <i class="nav-icon fas fa-chalkboard-teacher"></i>
                 <p>
                   Reviewer Request Receive
+                </p>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a href="{{URL('add-conference')}}" class="nav-link {{ request()->is('receive-reviewers') ? 'active' : ''}}">
+                <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                <p>
+                Conference Proceedings
                 </p>
               </a>
             </li>

@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class manuscript_status extends Model
+class conference extends Model
 {
     use HasFactory;
-    protected $table = 'manuscript_status';
+    protected $table = 'conference-proceeding';
 }
