@@ -648,7 +648,7 @@ padding-bottom: 0px;
 }
 
 .indexing .swiper-slide img {
-opacity: 0.5;
+/* opacity: 0.5; */
 transition: 0.3s;
 height: 100px;
 /*filter: grayscale(100);*/

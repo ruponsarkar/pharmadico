@@ -101,20 +101,20 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a href="{{URL('receive-reviewers')}}" class="nav-link {{ request()->is('receive-reviewers') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-chalkboard-teacher"></i>
                 <p>
                   Reviewer Request Receive
                 </p>
               </a>
-            </li>
+            </li> --}}
             
             <li class="nav-item">
               <a href="{{URL('add-conference')}}" class="nav-link {{ request()->is('receive-reviewers') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-chalkboard-teacher"></i>
                 <p>
-                Conference Proceedings
+                Conference Pro.
                 </p>
               </a>
             </li>
@@ -132,11 +132,11 @@
                     <p class="p-4"><i class="fas fa-arrow-right"></i> Add Journals</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                   <a href="#" class="nav-link">
                     <p class="p-4"><i class="fas fa-arrow-right"></i> Update Journals</p>
                   </a>
-                </li>
+                </li> --}}
               </ul>
             </li>
             <li class="nav-item has-treeview {{ request()->is('addEditors') ? 'menu-is-opening menu-open' : ''}}">
@@ -171,14 +171,14 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a href="{{URL('home-article')}}" class="nav-link {{ request()->is('home-article') ? 'active' : ''}}">
                 <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
                   Home page Article
                 </p>
               </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
               <a href="{{URL('indexing')}}" class="nav-link {{ request()->is('indexing') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-book"></i>
