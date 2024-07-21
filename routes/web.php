@@ -70,6 +70,7 @@ Route::get('/dashboard', function () {
 });
 Route::get('all-manuscripts', [adminPanelController::class, 'allManuscript']);
 Route::get('add-conference', [adminPanelController::class,'addconference']);
+Route::get('view-manuscript', [IndexController::class,'viewmanuscript']);
 // Route::get('update-manuscripts/{mid}/{status}', [adminPanelController::class, 'updateManuscript']);
 
 // admin panel 

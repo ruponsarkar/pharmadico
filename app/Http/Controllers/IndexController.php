@@ -62,6 +62,11 @@ class IndexController extends Controller
         $journals = journal::get();
         return view('manuscript', ['journals'=>$journals]);
     }
+
+    function viewmanuscript(){
+        $journals = journal::get();
+        return view('view-manuscript', ['journals'=>$journals]);
+    }
     
     
        function refund(){
