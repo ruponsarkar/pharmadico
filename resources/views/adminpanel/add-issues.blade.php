@@ -1,5 +1,9 @@
 @extends('adminpanel/layout')
 @section('title', 'Dashboard')
+@section('meta')
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 @section('content')
 
 <style>
@@ -159,10 +163,10 @@
 
             var formData = new FormData(this);
 
-            fetch('http://127.0.0.1:8000/update-issues', {
+            fetch('/update-issues', {
                 method: 'POST',
                 headers: {
-                    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 },
                 body: formData,
             })

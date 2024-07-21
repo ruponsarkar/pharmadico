@@ -451,17 +451,25 @@ class adminPanelController extends Controller
         return view('adminpanel.add-issues', ['id' => $id, 'issues' => $issues]);
     }
     function updateIssues(Request $request, $id){
-        return request->all();
+        // Validate the request data
         $request->validate([
             'id' => 'required|exists:issues,id',
             'name' => 'required|string|max:255',
         ]);
 
-        $issue = issue::find($request->id);
-        $issue->name = $request->name;
-        $issue->save();
+        try {
+            // Find the issue by ID and update the name
+            $issue = Issue::find($request->id);
+            $issue->name = $request->name;
+            $issue->save();
 
-        return response()->json(['success' => 'Issue updated successfully']);
+            return response()->json(['success' => true, 'message' => 'Issue updated successfully.']);
+        } catch (\Exception $e) {
+            // Log the error and return a response
+            \Log::error('Error updating issue: ' . $e->getMessage());
+
+            return response()->json(['success' => false, 'message' => 'Error updating issue.'], 500);
+        }
     }
 
     function addIssuesData(Request $request, $id)

@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/search', [IndexController::class, 'search']);
+// Route::post('/update-issues', [adminPanelController::class, 'updateIssues'])->name('update-issues');
 
 
 Route::post('/update-status', [adminPanelController::class, 'updateManuscript']);
