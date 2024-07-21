@@ -472,9 +472,8 @@ class adminPanelController extends Controller
 
         $v_id = issue::get()->where('id', $id)->first();
 
-        $article = articles::get()
-            ->where('i_id', $id)
-            ->where('status', '=', 1);
+        $article = articles::where('i_id', $id)
+            ->where('status', '=', 1)->orderBy('id', 'desc')->get();
 
         return view('adminpanel.add-article', ['v_id' => $v_id, 'article' => $article, 'id' => $id]);
     }
@@ -572,6 +571,9 @@ class adminPanelController extends Controller
         $updateArticle->name = strip_tags($request->name);
         $updateArticle->aname = strip_tags($request->aname);
         $updateArticle->designation = strip_tags($request->designation);
+        $updateArticle->published_date = $request->published_date;
+        $updateArticle->googleScholar = $request->googleScholar;
+        $updateArticle->keywords = $request->keywords;
         $updateArticle->doi = strip_tags($request->doi);
         $updateArticle->page = strip_tags($request->page);
         if ($request->file) {

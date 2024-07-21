@@ -1,6 +1,7 @@
 @extends('layout')
 @section('title', 'View Article')
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <section>
         <div class="container">
             <div class="row mt-2">
@@ -63,7 +64,7 @@
 
                         <div class="py-3">
 
-                            <a class="btn btn-sm btn-success px-2 text-capitalize" role="button"
+                            <a class="btn btn-sm btn-success px-2 text-capitalize" onclick="onDowload({{ $article->airticle_id }})" role="button"
                             href="{{ URL('assets/articles/' . $article->file) }}"
                             download="{{ $article->fileOriginalName ? $article->fileOriginalName : $article->name }}">
                             Download Full Article
@@ -108,5 +109,31 @@
 
 
     </section>
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script>
+        function onDowload(id) {
+            console.log("id : ", id);
+
+            axios.get(`/countDownload/${id}`)
+                .then(response => {
+                    console.log("response :", response);
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                });
+        };
+    </script>
+
 
 @endsection

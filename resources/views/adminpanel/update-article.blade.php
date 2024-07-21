@@ -87,6 +87,24 @@
         <label for="email">Designation</label>
         <input type="text" id="designation" name="designation" value="{{$articles->designation}}">
       </li>
+      
+      <li>
+        <label class="form-label" for="name">Published date</label>
+        <input type="text" name="published_date" id="published_date" value="{{$articles->published_date}}">
+      </li>
+      
+      <li>
+          <label class="form-label" for="name">GoogleScholar link</label>
+          <input type="text" name="googleScholar" id="googleScholar" value="{{$articles->googleScholar}}">
+      </li>
+      <li>
+        <label class="form-label" for="name">Keywords</label>
+        <input type="text" name="keywords" id="" value="{{$articles->keywords}}">
+      </li>
+
+
+
+      
 
       <li>
         <label for="email">DIO</label>

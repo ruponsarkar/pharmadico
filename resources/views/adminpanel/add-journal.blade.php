@@ -151,9 +151,9 @@
                 <tr>
                   <td class="text-center">{{$counter++}}</td>
                   <td>{{$data->j_name}}</td>
-                  <td>{{$data->abbr}}</td>
+                  <td>{{$data->abbr_title}}</td>
                   <td>{{$data->issn}}</td>
-                  <td>{{$data->chief}}</td>
+                  <td>{{$data->chief_editor}}</td>
 
                   <!-- <td><a href="update-editors/{{$data->id}}">Edit</a></td> -->
 

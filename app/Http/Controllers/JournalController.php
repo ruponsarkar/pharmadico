@@ -178,8 +178,8 @@ class JournalController extends Controller
         $article = articles::where('id','=', $request->id)->update([
             'count' => 1 + $preCount->count
             ]);
-            
-            return redirect()->back();
+            return "Counted";
+            // return redirect()->back();
     }
 
     function article($slug){

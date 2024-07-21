@@ -151,7 +151,7 @@
       </li>
 
       <li>
-        <label for="phone">Aim and Scope<br> <span style="font-size:10px; color:black; font-weight: bold; text-transform: none;">(For change a pragraph type <br> "< br>" and for bold type <br> "< b>" without space )</span></label>
+        <label for="phone">Aim and Scope</label>
 
         <textarea name="aim" id="aim" cols="30" rows="20">{{$journal->aim_and_scope}}</textarea>
 

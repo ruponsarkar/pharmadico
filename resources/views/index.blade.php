@@ -6,11 +6,12 @@
         display: flex;
         gap: 12px;
     }
-    #result .result-field{
+
+    #result .result-field {
         display: flex;
         flex-direction: column;
         width: 46%;
-    padding: 7px 14px;
+        padding: 7px 14px;
     }
 </style>
 <div class="container px-md-5 py-2">
@@ -34,7 +35,8 @@
                                         <p class="animate__animated animate__fadeInUp">Writing is a solitary endeavor,
                                             being an author is not
                                         </p>
-                                        <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read
+                                        <a href=""
+                                            class="btn-get-started animate__animated animate__fadeInUp">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -49,7 +51,8 @@
                                         </h2>
                                         <p class="animate__animated animate__fadeInUp">Silence is the death of a story
                                         </p>
-                                        <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read
+                                        <a href=""
+                                            class="btn-get-started animate__animated animate__fadeInUp">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -64,7 +67,8 @@
                                         <p class="animate__animated animate__fadeInUp">lets you feed your inner control
                                             freak
                                         </p>
-                                        <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read
+                                        <a href=""
+                                            class="btn-get-started animate__animated animate__fadeInUp">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -178,9 +182,10 @@
                         <div class="col-md-12 p-2 ">
 
                             @foreach ($journals as $data)
-                            <div class="d-flex justify-content-center">
-                                <img class="" src="{{ url('assets/journals/img/' . $data->photo) }}" alt="Image" style="height: 350px">
-                            </div>
+                                <div class="d-flex justify-content-center">
+                                    <img class="" src="{{ url('assets/journals/img/' . $data->photo) }}"
+                                        alt="Image" style="height: 350px">
+                                </div>
                             @endforeach
 
                         </div>
@@ -206,31 +211,34 @@
         </div>
     </div>
 </div> --}}
-</div>
+        </div>
 
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="card-c">
-            <div class="h-box">
-                <div class="h-box-text p-2">
-                    Latest Article
-                </div>
-            </div>
-            <div class="">
-                @foreach ($latestArticle as $data)
-                <div class="col-lg-12 p-2 d-lg-none d-xl-block">
-                    <div class="swiper-slide">
-                        <div class='card'>
-                            <div class='title'>{{ Str::limit($data->name, 85) }}</div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card-c">
+                    <div class="h-box">
+                        <div class="h-box-text p-2">
+                            Latest Article
+                        </div>
+                    </div>
+                    <div class="">
+                        @foreach ($latestArticle as $data)
+                            <div class="col-lg-12 p-2 d-lg-none d-xl-block">
+                                <div class="swiper-slide">
+                                    <div class='card'>
+                                        <div class="d-flex justify-content-between">
+                                            <div class='title'>{{ Str::limit($data->name, 70) }}</div>
+                                            <div class='small p-2'><i class="bi bi-download text-info"></i> {{ $data->count}}</div>
+                                        </div>
 
-                            <p class="card-icon">
-                                <i class="bi bi-person-circle text-info"></i>
-                                {{ Str::limit($data->aname, 30) }}
-                                <br>
-                                <i class="bi bi-tag-fill text-warning"></i> {{ $data->designation }}
-                            </p>
-                            {{--
+                                        <p class="card-icon">
+                                            <i class="bi bi-person-circle text-info"></i>
+                                            {{ Str::limit($data->aname, 30) }}
+                                            <br>
+                                            <i class="bi bi-tag-fill text-warning"></i> {{ $data->designation }}
+                                        </p>
+                                        {{--
                                     <p class='description' style="font-size: 2rem;">
                                         <i class="bi bi-download text-primary"></i>
                                     </p> --}}
@@ -244,15 +252,17 @@
                                                         aria-expanded="false"
                                                         aria-controls="collapseExample-{{ $data->id }}">Abstract</button>
                                                 </div>
-                                                
-                                            <div>
-                                                <a role="button" href="article/{{$data->slug}}" class="btn btn-sm btn-success px-2 text-capitalize">HTML Full
-                                                    Text</a>
-                                            </div>
+
+                                                <div>
+                                                    <a role="button" href="article/{{ $data->slug }}"
+                                                        class="btn btn-sm btn-success px-2 text-capitalize">HTML
+                                                        Text</a>
+                                                </div>
                                                 <div>
                                                     {{-- <button class="btn btn-sm btn-success px-2 text-capitalize">PDF</button> --}}
                                                     <a class="btn btn-sm btn-success px-2 text-capitalize"
                                                         role="button"
+                                                        onclick="onDowload({{ $data->id }})"
                                                         href="{{ URL('assets/articles/' . $data->file) }}"
                                                         download="{{ $data->fileOriginalName ? $data->fileOriginalName : $data->name }}">
                                                         PDF
@@ -261,84 +271,88 @@
 
 
 
-                                </div>
-                                <div class="collapse" id="collapseExample-{{ $data->id }}">
-                                    <div class="card card-body">
-                                        {{ $data->abstract }}
+                                            </div>
+                                            <div class="collapse" id="collapseExample-{{ $data->id }}">
+                                                <div class="card card-body">
+                                                    {{ $data->abstract }}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-                @endforeach
             </div>
-        </div>
-    </div>
 
 
-    {{-- tracking  --}}
-    <div class="col-md-4">
+            {{-- tracking  --}}
+            <div class="col-md-4">
 
-        <div>
-            <div class="card-c">
-                <section id="indexing" class="indexing">
-                    <div class="h-box">
-                        <div class="h-box-text p-2">
-                            Indexing
-                        </div>
-                    </div>
-                    <div class="container" data-aos="fade-left">
-                        <div class="indexing-slider swiper">
-                            <div class="swiper-wrapper align-items-center">
-
-                                @foreach ($indexings as $data)
-                                <div class="swiper-slide">
-                                    <img class="img-fluid" src="{{ url('assets/indexing/img/' . $data->img) }}" alt="Image" style="height: 140px; width: 140px; object-fit: contain;">
+                <div>
+                    <div class="card-c">
+                        <section id="indexing" class="indexing">
+                            <div class="h-box">
+                                <div class="h-box-text p-2">
+                                    Indexing
                                 </div>
-                                @endforeach
                             </div>
-                        </div>
+                            <div class="container" data-aos="fade-left">
+                                <div class="indexing-slider swiper">
+                                    <div class="swiper-wrapper align-items-center">
 
-                    </div>
-                </section>
-            </div>
-        </div>
+                                        @foreach ($indexings as $data)
+                                            <div class="swiper-slide">
+                                                <img class="img-fluid"
+                                                    src="{{ url('assets/indexing/img/' . $data->img) }}"
+                                                    alt="Image"
+                                                    style="height: 140px; width: 140px; object-fit: contain;">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
 
-        <div class="py-3">
-            <div class="card-c">
-                <div class="h-box">
-                    <div class="h-box-text p-2">
-                        Track Manuscript
+                            </div>
+                        </section>
                     </div>
                 </div>
-                <div class="row align-items-stretch">
-                    <section>
-                        <div class="access-policy-container p-md-2">
-                            <form id="searchForm">
-                                <input type="text" id="query" placeholder="Search..." class="form-control">
-                                <button type="submit" class="btn  btn-info">Search</button>
-                            </form>
 
-                            <div id="result">
+                <div class="py-3">
+                    <div class="card-c">
+                        <div class="h-box">
+                            <div class="h-box-text p-2">
+                                Track Manuscript
                             </div>
                         </div>
-                    </section>
+                        <div class="row align-items-stretch">
+                            <section>
+                                <div class="access-policy-container p-md-2">
+                                    <form id="searchForm">
+                                        <input type="text" id="query" placeholder="Search..."
+                                            class="form-control">
+                                        <button type="submit" class="btn  btn-info">Search</button>
+                                    </form>
+
+                                    <div id="result">
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
                 </div>
+
+
+
+
+
+
+
             </div>
-        </div>
 
+            {{-- indexing  --}}
 
-
-
-
-
-
-    </div>
-
-    {{-- indexing  --}}
-
-    {{-- <div class="col-md-4">
+            {{-- <div class="col-md-4">
                 <div class="row pt-3">
                     <section id="indexing" class="indexing">
                         <div class="section-title">
@@ -365,7 +379,7 @@
 
 
 
-{{--
+            {{--
         <div class="col-xl-4">
 
             <div class="row pt-3">
@@ -411,11 +425,11 @@
 </div>
 </div> --}}
 
-</div>
+        </div>
 
 
-<!-- ======= Journal Section ======= -->
-{{--
+        <!-- ======= Journal Section ======= -->
+        {{--
     <section id="article" class="article testimonials-bg p-1">
         <div class="section-title">
             <h2>Journals</h2>
@@ -444,11 +458,11 @@
 
 
 </section> --}}
-<!-- End Testimonials Section -->
+        <!-- End Testimonials Section -->
 
 
 
-{{--
+        {{--
     <div class="row p-2">
         <div class="col-lg-3">
             <div class="row align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
@@ -521,16 +535,17 @@
 </div>
 </div> --}}
 
-</div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
         document.getElementById('searchForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
             const query = document.getElementById('query').value;
             console.log("query : ", query);
 
-            axios.get(`http://127.0.0.1:8000/api/search?query=${query}`)
+            axios.get(`/api/search?query=${query}`)
                 .then(response => {
                     console.log("response :", response);
                     const result = response.data;
@@ -570,12 +585,30 @@
                 });
         });
     </script>
-<script>
-    function countFun(id) {
-        console.log(id);
-        window.location.href = "{{ URL('countDownload') }}/" + id;
-    }
-</script>
+
+
+    <script>
+        function onDowload(id) {
+            console.log("id : ", id);
+
+            axios.get(`/countDownload/${id}`)
+                .then(response => {
+                    console.log("response :", response);
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                });
+        };
+    </script>
+
+
+
+    {{-- <script>
+        function countFun(id) {
+            console.log(id);
+            window.location.href = "{{ URL('countDownload') }}/" + id;
+        }
+    </script> --}}
 
 
 @endsection
