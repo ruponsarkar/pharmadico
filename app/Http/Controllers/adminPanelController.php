@@ -698,6 +698,7 @@ class adminPanelController extends Controller
     function UpdateIndexing(Request $request)
     {
 
+        // return $request->id;
         if ($request->link) {
             $indexing = indexings::find($request->id)->update([
                 'link' => $request->link
