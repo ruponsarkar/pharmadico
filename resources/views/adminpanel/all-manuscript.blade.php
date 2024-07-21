@@ -2,7 +2,6 @@
 
 @section('title', 'All Manuscript')
 @section('breadcrumb', 'All Manuscript')
-
 @section('content')
 
 <section class="content">
@@ -142,5 +141,7 @@
     }
   }
 </script>
+
+
 
 @endsection

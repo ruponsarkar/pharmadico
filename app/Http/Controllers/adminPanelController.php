@@ -498,6 +498,7 @@ class adminPanelController extends Controller
         $articles->name = $request->name;
         $articles->aname = strip_tags($request->aname);
         $articles->abstract = $request->abstract;
+        $articles->keywords = $request->keywords;
         $articles->fileOriginalName = $fileOriginalName;
         $articles->designation = strip_tags($request->designation);
         $articles->doi = strip_tags($request->doi);

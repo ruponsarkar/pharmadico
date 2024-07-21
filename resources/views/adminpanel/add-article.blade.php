@@ -11,46 +11,51 @@
         </button>
     </div>
     <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content ">
                 <div class="modal-body">
                     <form action="{{ URL('addArticleData/' . $id) }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="one form-group">
+                        <div class="one form-group pt-4">
                             <label for="name" class="form-label">Article Name</label>
                             <input type="text" name="name" id="" class="form-control">
                         </div>
 
 
-                        <div class="one">
+                        <div class="one pt-4">
                             <label class="form-label" for="name">Corresponding Author</label>
                             <input type="text" name="aname" id="" class="form-control">
                         </div>
 
 
-                        <div class="one">
+                        <div class="one pt-4">
                             <label class="form-label" for="name">Author Designation</label>
                             <input type="text" name="designation" id="" class="form-control">
                         </div>
 
 
-                        <div class="one">
+                        <div class="one pt-4">
                             <label class="form-label" for="name">DOI</label>
                             <input type="text" name="doi" id="doi" class="form-control">
                         </div>
 
-                        <div class="one">
+                        <div class="one pt-4">
                             <label class="form-label" for="name">Page No</label>
                             <input type="text" name="page" id="page" class="form-control">
                         </div>
 
-                        <div class="one">
+                        <div class="one pt-4">
                             <label class="form-label" for="name">Abstract</label>
                             <textarea name="abstract" id="" cols="30" rows="10" class="form-control"></textarea>
                             {{-- <input type="text" name="designation" id=""> --}}
                         </div>
+                        <div class="one pt-4">
+                            <label class="form-label" for="name">Keywords</label>
+                            <input type="text" name="keywords" id="" class="form-control">
+                        </div>
+                        
 
-                        <div class="one form-group d-block ">
+                        <div class="one pt-4 form-group d-block ">
                             <label class="form-label" for="name">File</label>
                             <input type="file" name="file" id="" class="form-control">
                         </div>
