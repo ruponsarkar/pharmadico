@@ -71,16 +71,63 @@
 
   <h4>Issue List</h4>
   <div class="volume-list">
-    @foreach($issues as $data)
 
-    <a class="list-v" href="{{ URL('add-article/'.$data->id)}}">
-      <div>
-        {{$data->name}} <br>
+
+    <table class="table table-striped table-inverse table-responsive">
+      <thead class="thead-inverse">
+        <tr>
+          <th>sl</th>
+          <th>name</th>
+          <th></th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($issues as $data)
+        <tr>
+          <td scope="row">{{ $loop->index + 1 }}</td>
+          <td>{{ $data->name }}</td>
+          <td class="text-center">
+          <!-- <button type="button" class="btn btn-success btn-sm update-status-btn" data-bs-toggle="modal" data-bs-target="#updateStatusModal"> -->
+            
+            <a href="#" class="edit-button" data-bs-target="#editModal" data-id="{{ $data->id }}" data-name="{{ $data->name }}" data-bs-toggle="modal">
+              <i class="far fa-edit"></i>
+            </a>
+          </td>
+          <td class="text-center">
+            <a class="confirmation" href="{{ URL('delete-journals/'.$data->id) }}">
+              <i class="fas fa-trash-alt text-danger"></i>
+            </a>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+      
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Edit Issue</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="editForm">
+              @csrf
+              <input type="hidden" id="edit-id" name="id">
+              <div class="form-group">
+                <label for="edit-name">Name</label>
+                <input type="text" class="form-control" id="edit-name" name="name" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+          </div>
+        </div>
       </div>
-    </a>
-
-    @endforeach
-
+    </div>
   </div>
 </div>
 
@@ -88,6 +135,52 @@
 
 
 
-
+<!-- url: 'http://127.0.0.1:8000/update-issues', -->
 
 @endsection
+@section('script2')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle edit button click
+        document.querySelectorAll('.edit-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var id = this.getAttribute('data-id');
+                var name = this.getAttribute('data-name');
+
+                document.getElementById('edit-id').value = id;
+                document.getElementById('edit-name').value = name;
+
+                $('#editModal').modal('show');
+            });
+        });
+
+        document.getElementById('editForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            fetch('http://127.0.0.1:8000/update-issues', {
+                method: 'POST',
+                headers: {
+                    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    $('#editModal').modal('hide');
+                    location.reload(); 
+                } else {
+                    alert('Error updating issue');
+                }
+            })
+            .catch(error => {
+                console.error('Error updating issue:', error);
+                alert('Error updating issue');
+            });
+        });
+    });
+</script>
+
+  @endsection

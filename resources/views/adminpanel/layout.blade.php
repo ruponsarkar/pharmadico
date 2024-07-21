@@ -272,6 +272,7 @@
       elems[i].addEventListener('click', confirmIt, false);
     }
   </script>
+  @yield('script2')
 </body>
 
 </html>
