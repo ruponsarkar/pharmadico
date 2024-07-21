@@ -39,6 +39,7 @@ Route::get('manuscript', [IndexController::class, 'manuscript']);
 Route::get('searchManuscript', [IndexController::class, 'searchManuscript']);
 
 Route::get('getIndexing', [IndexController::class,'index']);
+Route::get('article/{slug}', [JournalController::class, 'article']);
 
 Route::post('submit_manuscript', [FormController::class, 'submit_manuscript']);
 
@@ -139,7 +140,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
  Route::post('check', [adminPanelController::class, 'check']);   
  Route::get('logout', [adminPanelController::class, 'logout']);
 
-
+Route::get('makeSlug', [adminPanelController::class, 'makeSlug']);
 
 
 

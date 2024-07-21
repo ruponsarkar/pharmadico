@@ -239,22 +239,29 @@
                                         <i class="bi bi-download text-primary"></i>
                                     </p> --}}
 
-                            <div class="m-3">
-                                <div class="d-flex gap-2">
-                                    <div>
-                                        <button class="btn btn-sm btn-success px-2 text-capitalize" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{ $data->id }}" aria-expanded="false" aria-controls="collapseExample-{{ $data->id }}">Abstract</button>
-                                    </div>
-
-                                    <div>
-                                        <button class="btn btn-sm btn-success px-2 text-capitalize">HTML Full
-                                            Text</button>
-                                    </div>
-                                    <div>
-                                        {{-- <button class="btn btn-sm btn-success px-2 text-capitalize">PDF</button> --}}
-                                        <a class="btn btn-sm btn-success px-2 text-capitalize" role="button" href="{{ URL('assets/articles/' . $data->file) }}" download="{{ $data->fileOriginalName ? $data->fileOriginalName : $data->name }}">
-                                            PDF
-                                        </a>
-                                    </div>
+                                        <div class="m-3">
+                                            <div class="d-flex gap-2">
+                                                <div>
+                                                    <button class="btn btn-sm btn-success px-2 text-capitalize"
+                                                        type="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseExample-{{ $data->id }}"
+                                                        aria-expanded="false"
+                                                        aria-controls="collapseExample-{{ $data->id }}">Abstract</button>
+                                                </div>
+                                                
+                                            <div>
+                                                <a role="button" href="article/{{$data->slug}}" class="btn btn-sm btn-success px-2 text-capitalize">HTML Full
+                                                    Text</a>
+                                            </div>
+                                                <div>
+                                                    {{-- <button class="btn btn-sm btn-success px-2 text-capitalize">PDF</button> --}}
+                                                    <a class="btn btn-sm btn-success px-2 text-capitalize"
+                                                        role="button"
+                                                        href="{{ URL('assets/articles/' . $data->file) }}"
+                                                        download="{{ $data->fileOriginalName ? $data->fileOriginalName : $data->name }}">
+                                                        PDF
+                                                    </a>
+                                                </div>
 
 
 
