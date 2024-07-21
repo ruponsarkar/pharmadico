@@ -189,7 +189,7 @@
                                 <li><a href="{{ url('join_reviewer') }}">Join as Reviewers</a></li>
                             </ul>
                         </li>
-                        <li><a class="nav-link " href="#">Conference Proceedings</a></li>
+                        <li><a class="nav-link " href="{{url('conference')}}">Conference Proceedings</a></li>
                         <li><a class="nav-link scrollto " href="#portfolio">Contact</a></li>
                         <li><a class="nav-link scrollto " href="{{ url('about') }}">About Us</a></li>
 

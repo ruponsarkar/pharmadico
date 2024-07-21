@@ -17,7 +17,7 @@
     
                 @foreach ( $confrence as $item )
                 
-                <div class="card">
+                <div class="card p-2">
                     <a href="">
                         <!-- 1st International Conference on ” New Horizons in Pharmaceutical Sciences and Biomedical Sciences” NHPBMS-2013, Dehradun (UK), Indi -->
                         {{ $loop->index + 1 }}  {{$item->title}}

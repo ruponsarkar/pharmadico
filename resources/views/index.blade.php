@@ -1,5 +1,18 @@
 @extends('layout') @section('title', 'Home') @section('content')
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<style>
+    #result {
+        display: flex;
+        gap: 12px;
+    }
+    #result .result-field{
+        display: flex;
+        flex-direction: column;
+        width: 46%;
+    padding: 7px 14px;
+    }
+</style>
 <div class="container px-md-5 py-2">
 
     <div class="">
@@ -21,8 +34,7 @@
                                         <p class="animate__animated animate__fadeInUp">Writing is a solitary endeavor,
                                             being an author is not
                                         </p>
-                                        <a href=""
-                                            class="btn-get-started animate__animated animate__fadeInUp">Read
+                                        <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -37,8 +49,7 @@
                                         </h2>
                                         <p class="animate__animated animate__fadeInUp">Silence is the death of a story
                                         </p>
-                                        <a href=""
-                                            class="btn-get-started animate__animated animate__fadeInUp">Read
+                                        <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -53,8 +64,7 @@
                                         <p class="animate__animated animate__fadeInUp">lets you feed your inner control
                                             freak
                                         </p>
-                                        <a href=""
-                                            class="btn-get-started animate__animated animate__fadeInUp">Read
+                                        <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -168,10 +178,9 @@
                         <div class="col-md-12 p-2 ">
 
                             @foreach ($journals as $data)
-                                <div class="d-flex justify-content-center">
-                                    <img class="" src="{{ url('assets/journals/img/' . $data->photo) }}"
-                                        alt="Image" style="height: 350px">
-                                </div>
+                            <div class="d-flex justify-content-center">
+                                <img class="" src="{{ url('assets/journals/img/' . $data->photo) }}" alt="Image" style="height: 350px">
+                            </div>
                             @endforeach
 
                         </div>
@@ -188,40 +197,40 @@
                     <div class="d-flex justify-content-center flex-wrap">
                         @foreach ($indexings as $data)
                             <img class="img-fluid" src="{{ url('assets/indexing/img/' . $data->img) }}" alt="Image"
-                                style="
-                        height: 140px;
-                        width: 140px;
-                        object-fit: contain;
-                    ">
-                        @endforeach
-                    </div>
-                </div>
-            </div> --}}
+            style="
+            height: 140px;
+            width: 140px;
+            object-fit: contain;
+            ">
+            @endforeach
         </div>
+    </div>
+</div> --}}
+</div>
 
 
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card-c">
-                    <div class="h-box">
-                        <div class="h-box-text p-2">
-                            Latest Article
-                        </div>
-                    </div>
-                    <div class="">
-                        @foreach ($latestArticle as $data)
-                            <div class="col-lg-12 p-2 d-lg-none d-xl-block">
-                                <div class="swiper-slide">
-                                    <div class='card'>
-                                        <div class='title'>{{ Str::limit($data->name, 85) }}</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card-c">
+            <div class="h-box">
+                <div class="h-box-text p-2">
+                    Latest Article
+                </div>
+            </div>
+            <div class="">
+                @foreach ($latestArticle as $data)
+                <div class="col-lg-12 p-2 d-lg-none d-xl-block">
+                    <div class="swiper-slide">
+                        <div class='card'>
+                            <div class='title'>{{ Str::limit($data->name, 85) }}</div>
 
-                                        <p class="card-icon">
-                                            <i class="bi bi-person-circle text-info"></i>
-                                            {{ Str::limit($data->aname, 30) }}
-                                            <br>
-                                            <i class="bi bi-tag-fill text-warning"></i> {{ $data->designation }}
-                                        </p>
-                                        {{--
+                            <p class="card-icon">
+                                <i class="bi bi-person-circle text-info"></i>
+                                {{ Str::limit($data->aname, 30) }}
+                                <br>
+                                <i class="bi bi-tag-fill text-warning"></i> {{ $data->designation }}
+                            </p>
+                            {{--
                                     <p class='description' style="font-size: 2rem;">
                                         <i class="bi bi-download text-primary"></i>
                                     </p> --}}
@@ -252,87 +261,84 @@
 
 
 
-                                            </div>
-                                            <div class="collapse" id="collapseExample-{{ $data->id }}">
-                                                <div class="card card-body">
-                                                    {{ $data->abstract }}
-                                                </div>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="collapse" id="collapseExample-{{ $data->id }}">
+                                    <div class="card card-body">
+                                        {{ $data->abstract }}
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
                     </div>
                 </div>
+                @endforeach
             </div>
+        </div>
+    </div>
 
 
-            {{-- tracking  --}}
-            <div class="col-md-4">
+    {{-- tracking  --}}
+    <div class="col-md-4">
 
-                <div>
-                <div class="card-c" >
-                    <section id="indexing" class="indexing">
-                        <div class="h-box">
-                            <div class="h-box-text p-2">
-                                Indexing
+        <div>
+            <div class="card-c">
+                <section id="indexing" class="indexing">
+                    <div class="h-box">
+                        <div class="h-box-text p-2">
+                            Indexing
+                        </div>
+                    </div>
+                    <div class="container" data-aos="fade-left">
+                        <div class="indexing-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+
+                                @foreach ($indexings as $data)
+                                <div class="swiper-slide">
+                                    <img class="img-fluid" src="{{ url('assets/indexing/img/' . $data->img) }}" alt="Image" style="height: 140px; width: 140px; object-fit: contain;">
+                                </div>
+                                @endforeach
                             </div>
                         </div>
-                        <div class="container" data-aos="fade-left">
-                            <div class="indexing-slider swiper">
-                                <div class="swiper-wrapper align-items-center">
 
-                                    @foreach ($indexings as $data)
-                                        <div class="swiper-slide">
-                                            <img class="img-fluid"
-                                                src="{{ url('assets/indexing/img/' . $data->img) }}" alt="Image"
-                                                style="height: 140px; width: 140px; object-fit: contain;">
-                                        </div>
-                                    @endforeach
-                                </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="py-3">
+            <div class="card-c">
+                <div class="h-box">
+                    <div class="h-box-text p-2">
+                        Track Manuscript
+                    </div>
+                </div>
+                <div class="row align-items-stretch">
+                    <section>
+                        <div class="access-policy-container p-md-2">
+                            <form id="searchForm">
+                                <input type="text" id="query" placeholder="Search..." class="form-control">
+                                <button type="submit" class="btn  btn-info">Search</button>
+                            </form>
+
+                            <div id="result">
                             </div>
-
                         </div>
                     </section>
                 </div>
             </div>
-
-                <div class="py-3">
-                    <div class="card-c">
-                        <div class="h-box">
-                            <div class="h-box-text p-2">
-                                Track Manuscript
-                            </div>
-                        </div>
-                        <div class="row align-items-stretch">
-                            <section>
-                                <div class="access-policy-container p-md-2">
-                                    <form id="searchForm">
-                                        <input type="text" id="query" placeholder="Search..."
-                                            class="form-control">
-                                        <button type="submit" class="btn  btn-info">Search</button>
-                                    </form>
-
-                                    <ul id="resultsTable">
-                                    </ul>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-
-                
+        </div>
 
 
 
 
 
-            </div>
 
-            {{-- indexing  --}}
 
-            {{-- <div class="col-md-4">
+    </div>
+
+    {{-- indexing  --}}
+
+    {{-- <div class="col-md-4">
                 <div class="row pt-3">
                     <section id="indexing" class="indexing">
                         <div class="section-title">
@@ -346,20 +352,20 @@
                                         <div class="swiper-slide">
                                             <img class="img-fluid"
                                                 src="{{ url('assets/indexing/img/' . $data->img) }}" alt="Image"
-                                                style="height: 140px; width: 140px; object-fit: contain;">
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
+    style="height: 140px; width: 140px; object-fit: contain;">
+</div>
+@endforeach
+</div>
+</div>
 
-                        </div>
-                    </section>
-                </div>
-            </div> --}}
+</div>
+</section>
+</div>
+</div> --}}
 
 
 
-            {{--
+{{--
         <div class="col-xl-4">
 
             <div class="row pt-3">
@@ -373,8 +379,8 @@
 
                                 @foreach ($indexings as $data)
                                 <div class="swiper-slide"><img src="{{ url('assets/img/indexing/' . $data->img) }}" class="img-fluid" alt="">
-    </div>
-    @endforeach
+</div>
+@endforeach
 </div>
 </div>
 
@@ -405,11 +411,11 @@
 </div>
 </div> --}}
 
-        </div>
+</div>
 
 
-        <!-- ======= Journal Section ======= -->
-        {{--
+<!-- ======= Journal Section ======= -->
+{{--
     <section id="article" class="article testimonials-bg p-1">
         <div class="section-title">
             <h2>Journals</h2>
@@ -438,11 +444,11 @@
 
 
 </section> --}}
-        <!-- End Testimonials Section -->
+<!-- End Testimonials Section -->
 
 
 
-        {{--
+{{--
     <div class="row p-2">
         <div class="col-lg-3">
             <div class="row align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
@@ -515,10 +521,9 @@
 </div>
 </div> --}}
 
-    </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
         document.getElementById('searchForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -528,29 +533,36 @@
             axios.get(`http://127.0.0.1:8000/api/search?query=${query}`)
                 .then(response => {
                     console.log("response :", response);
-                    const results = response.data;
-                    const resultsTableBody = document.querySelector('#resultsTable');
-                    resultsTableBody.innerHTML = '';
+                    const result = response.data;
+                    const resultContainer = document.querySelector('#result');
+                    resultContainer.innerHTML = '';
 
-                    if (results.length) {
-                        results.forEach(result => {
-                            const row = document.createElement('div');
+                    if (result && Object.keys(result).length) {
+                        const muuidField = document.createElement('div');
+                        muuidField.className = 'result-field';
+                        muuidField.innerHTML = `<strong>MUUUID:</strong> ${result.muuid}`;
+                        resultContainer.appendChild(muuidField);
 
-                            Object.keys(result).forEach(key => {
-                                const cell = document.createElement('p');
-                                cell.textContent = result[key];
-                                row.appendChild(cell);
-                            });
+                        const statusField = document.createElement('div');
+                        statusField.className = 'result-field';
+                        statusField.innerHTML = `<strong>Status:</strong> ${result.status}`;
+                        resultContainer.appendChild(statusField);
 
-                            resultsTableBody.appendChild(row);
-                        });
+                        const dateField = document.createElement('div');
+                        dateField.className = 'result-field';
+                        dateField.innerHTML = `<strong>Date:</strong> ${result.date}`;
+                        resultContainer.appendChild(dateField);
+
+                        const dateField2 = document.createElement('div');
+                        dateField2.className = 'result-field';
+
+                        dateField2.innerHTML = `<strong> <a href="${result.date}">View File</a></strong>`;
+                        resultContainer.appendChild(dateField2);
                     } else {
-                        const row = document.createElement('div');
-                        const cell = document.createElement('div');
-                        cell.colSpan = 16; // Adjust this number to match the number of columns
-                        cell.textContent = 'No results found.';
-                        row.appendChild(cell);
-                        resultsTableBody.appendChild(row);
+                        const field = document.createElement('div');
+                        field.className = 'result-field';
+                        field.textContent = 'No result found.';
+                        resultContainer.appendChild(field);
                     }
                 })
                 .catch(error => {
@@ -558,12 +570,12 @@
                 });
         });
     </script>
-    <script>
-        function countFun(id) {
-            console.log(id);
-            window.location.href = "{{ URL('countDownload') }}/" + id;
-        }
-    </script>
+<script>
+    function countFun(id) {
+        console.log(id);
+        window.location.href = "{{ URL('countDownload') }}/" + id;
+    }
+</script>
 
 
 @endsection

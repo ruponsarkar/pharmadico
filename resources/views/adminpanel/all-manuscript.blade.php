@@ -14,7 +14,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="example2" class="table table-bordered table-hover small">
+            <table id="tableManu" class="table table-bordered table-hover small table-responsive">
               <thead>
                 <tr>
                   <th>Id</th>
@@ -103,7 +103,7 @@
 
 <script>
   let selectedRow ,status,selectedRowID;
-  document.getElementById('example2').addEventListener('click', function(event) {
+  document.getElementById('tableManu').addEventListener('click', function(event) {
     if (event.target && event.target.classList.contains('update-status-btn')) {
       const row = event.target.closest('.manuscript-row');
       selectedRow = row.getAttribute('data-muuid');

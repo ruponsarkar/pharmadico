@@ -52,7 +52,7 @@ class IndexController extends Controller
             return response()->json(['error' => 'Query parameter is required'], 400);
         }
 
-        $results = manuscript_status::where('muuid', 'LIKE', "%{$query}%")->where('status' , 0)->get(); // Adjust the field 'name' based on your model
+        $results = manuscript_status::where('muuid', 'LIKE', "%{$query}%")->where('status' , 0)->first(); // Adjust the field 'name' based on your model
 
         return response()->json($results);
     }
