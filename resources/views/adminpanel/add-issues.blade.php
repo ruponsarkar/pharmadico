@@ -99,7 +99,7 @@
             </a>
           </td>
           <td class="text-center">
-            <a class="confirmation" href="{{ URL('delete-journals/'.$data->id) }}">
+            <a class="confirmation" href="{{ URL('delete-issues/'.$data->id) }}">
               <i class="fas fa-trash-alt text-danger"></i>
             </a>
           </td>
