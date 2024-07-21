@@ -237,8 +237,8 @@
                                                 </div>
                                                 
                                             <div>
-                                                <button class="btn btn-sm btn-success px-2 text-capitalize">HTML Full
-                                                    Text</button>
+                                                <a role="button" href="article/{{$data->slug}}" class="btn btn-sm btn-success px-2 text-capitalize">HTML Full
+                                                    Text</a>
                                             </div>
                                                 <div>
                                                     {{-- <button class="btn btn-sm btn-success px-2 text-capitalize">PDF</button> --}}

@@ -146,13 +146,15 @@ class adminPanelController extends Controller
 
         return redirect('journalForm')->with('message', 'Your request Submitted successfully');
     }
-    function conference(){
+    function conference()
+    {
         $confrence = conference::orderBy('id', 'DESC')->get();
 
-        return view('conference',['confrence' => $confrence]);
+        return view('conference', ['confrence' => $confrence]);
     }
-   
-    function addConferenceinsert(Request $request){
+
+    function addConferenceinsert(Request $request)
+    {
         $request->validate([
             'title' => 'required|max:1000',
             'file' => 'required|mimes:pdf,docx',
@@ -165,17 +167,19 @@ class adminPanelController extends Controller
         $file = time() . '.' . $request->file->extension();
 
         $save = conference::insert([
-            'title'=> $request->title,
-            'file'=>  $file
+            'title' => $request->title,
+            'file' => $file
         ]);
         $request->file->move(base_path('public_html/assets/conference'), $file);
         return redirect('add-conference')->with('message', 'Your request Submitted successfully');
     }
-    function updateconference(Request $request , $id){
+    function updateconference(Request $request, $id)
+    {
         $conference = conference::find($id);
         return view('adminpanel.update-conference', ['conference' => $conference]);
     }
-    function updateconferenceData(Request $request , $id){
+    function updateconferenceData(Request $request, $id)
+    {
         $request->validate([
             'title' => 'required|max:200',
             'file' => 'required|mimes:pdf,docx',
@@ -194,9 +198,10 @@ class adminPanelController extends Controller
         return redirect('add-conference')->with('message', 'Your request Submitted successfully');
 
     }
-    function addconference() {
+    function addconference()
+    {
         $confrence = conference::orderBy('id', 'DESC')->get();
-        return view('adminpanel.add-conference',['confrence' => $confrence]);
+        return view('adminpanel.add-conference', ['confrence' => $confrence]);
     }
     function deleteJournals(Request $request, $id)
     {
@@ -486,6 +491,7 @@ class adminPanelController extends Controller
             'file' => 'required|mimes:pdf,docx',
         ]);
 
+
         $namewithextension = $request->file->getClientOriginalName();
 
         $fileOriginalName = explode('.', $namewithextension)[0];
@@ -494,9 +500,22 @@ class adminPanelController extends Controller
 
         $file = time() . '.' . $request->file->extension();
 
+
+        $string = str_replace(' ', '-', $request->name);  //replace space
+        $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $string); //remove special char
+
+        // check slug 
+        $check = articles::where('slug', $slug)->first();
+        if ($check) {
+            $slug = $slug . '-' . time();
+        }
+
         $articles = new articles;
         $articles->name = $request->name;
+        $articles->slug = $slug;
         $articles->aname = strip_tags($request->aname);
+        $articles->published_date = $request->published_date;
+        $articles->googleScholar = $request->googleScholar;
         $articles->abstract = $request->abstract;
         $articles->keywords = $request->keywords;
         $articles->fileOriginalName = $fileOriginalName;
@@ -738,4 +757,44 @@ class adminPanelController extends Controller
             return redirect()->back()->with('message', 'Updated');
         }
     }
+
+    function makeSlug()
+    {
+
+        $all = articles::get();
+
+        $count = 0;
+        foreach ($all as $data) {
+            if (!$data->slug) {
+
+                $string = str_replace(' ', '-', $data->name);  //replace space
+                $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $string); //remove special char
+
+                // check slug 
+                $check = articles::where('slug', $slug)->first();
+                if ($check) {
+                    $slug = $slug . '-' . time();
+                }
+
+                $update = articles::where('id', $data->id)->update([
+                    'slug'=> $slug
+                ]);
+                $count = $count+1;
+            }
+        }
+
+        return $count .' data updated';
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 }

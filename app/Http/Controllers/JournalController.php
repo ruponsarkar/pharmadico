@@ -10,6 +10,7 @@ use App\Models\volumes;
 use App\Models\issue;
 use App\Models\articles;
 use App\Models\book;
+use DB;
 
 class JournalController extends Controller
 {
@@ -179,6 +180,20 @@ class JournalController extends Controller
             ]);
             
             return redirect()->back();
+    }
+
+    function article($slug){
+        // $article = articles::where('slug', $slug)->first();
+
+        $article = DB::table('article')
+        ->join('issues', 'issues.id', '=', 'article.i_id')
+        ->join('volume', 'volume.id', '=', 'issues.v_id')
+        ->join('journals', 'journals.j_id', '=', 'volume.j_id')
+        ->where('article.slug', $slug)
+        ->select('*', 'article.name as name', 'article.id as airticle_id')
+        ->first();
+
+        return view('viewArticle', ['article'=> $article]);
     }
     
 

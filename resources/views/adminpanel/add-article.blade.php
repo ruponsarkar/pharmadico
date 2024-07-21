@@ -33,6 +33,15 @@
                             <input type="text" name="designation" id="" class="form-control">
                         </div>
 
+                        <div class="one pt-4">
+                            <label class="form-label" for="name">Published date</label>
+                            <input type="date" name="published_date" id="published_date" class="form-control">
+                        </div>
+                        <div class="one pt-4">
+                            <label class="form-label" for="name">GoogleScholar link</label>
+                            <input type="text" name="googleScholar" id="googleScholar" class="form-control">
+                        </div>
+
 
                         <div class="one pt-4">
                             <label class="form-label" for="name">DOI</label>
