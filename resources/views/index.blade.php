@@ -560,7 +560,7 @@
                     const dateField2 = document.createElement('div');
                     dateField2.className = 'result-field';
 
-                    dateField2.innerHTML = `<strong> <a href="${result.date}">View File</a></strong>`;
+                    dateField2.innerHTML = `<strong> <a href="{{URL('view-manuscript/${result.muuid}')}}">View File</a></strong>`;
                     resultContainer.appendChild(dateField2);
                 } else {
                     const field = document.createElement('div');

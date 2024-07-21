@@ -8,14 +8,18 @@
 
 <style>
     thead {
-        background-color: pink;
-        color : #fff
+        background-color: crimson;
+        color: #fff
     }
 </style>
 
 <div class="container">
     <div class="row journal-list">
-        <div class="col-8">
+        <div class="col-10">
+            <?php
+
+            // dd($getManufullDetails)
+            ?>
             <div>
                 <h4>ManuScript Details</h4>
             </div>
@@ -24,18 +28,18 @@
 
                     <tr>
                         <td scope="row">Manuscript No</td>
-                        <td>84djsndj</td>
+                        <td>{{$getManufullDetails->muuid}}</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td scope="row">Manuscript Title</td>
-                        <td>backend Manuscript Title</td>
+                        <td>{{$getManufullDetails->journal}}</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td scope="row">Authors Name</td>
-                        <td>mriganka hazarika</td>
+                        <td>{{$getManufullDetails->author}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -49,13 +53,27 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($manudata as $item )
                     <tr>
-                        <td scope="row">Manuscript Title</td>
+                        <td scope="row">{{$item->date}}</td>
+                        @if ($item->status === 0)
+                        <td scope="row">Accepted</td>
+                        @elseif ($item->status === 1)
+                        <td scope="row">Draft</td>
+                        @elseif ($item->status === 2)
+                        <td scope="row">Published</td>
+                        @elseif ($item->status === 3)
+                        <td scope="row">Rejected</td>
+
+                        @endif
                     </tr>
-                    <tr>
-                        <td scope="row">Authors Name</td>
-                        <td>mriganka hazarika</td>
-                    </tr>
+                    @endforeach
+                    <td>
+                        <td class="text-primary">{{$getManufullDetails->author}}</td>
+                    </td>
+                    <td>
+                        <td class="text-primary">{{$getManufullDetails->file}}</td>
+                    </td>
                 </tbody>
             </table>
         </div>

@@ -55,26 +55,26 @@ class adminPanelController extends Controller
         // here selectedID is muuid
         $exists = manuscript_status::where('muuid', $request->selectedID)->exists();
 
-        if ($exists) {
+        // if ($exists) {
             // $manuscriptStatus = new manuscript_status;
             // $manuscriptStatus->muuid = $request->selectedID;
             // $manuscriptStatus->status = $request->selectedStatus;
             // $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
 
             // $manuscriptStatus->update();
-            $updateISExist = manuscript_status::where('muuid', $request->selectedID)->update([
-                'muuid' => $request->selectedID,
-                'status' => $request->selectedStatus,
-                'date' => date('d-m-Y', strtotime(Carbon\Carbon::now()))
-            ]);
-        } else {
+        //     $updateISExist = manuscript_status::where('muuid', $request->selectedID)->update([
+        //         'muuid' => $request->selectedID,
+        //         'status' => $request->selectedStatus,
+        //         'date' => date('d-m-Y', strtotime(Carbon\Carbon::now()))
+        //     ]);
+        // } else {
             $manuscriptStatus = new manuscript_status;
             $manuscriptStatus->muuid = $request->selectedID;
             $manuscriptStatus->status = $request->selectedStatus;
             $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
 
             $manuscriptStatus->save();
-        }
+        // }
         // return response()->json(['success' => $getRowValue]);;
         // $updateManuStatus = manuscript_status::insert($request->selectedID,$getRowValue);
 
