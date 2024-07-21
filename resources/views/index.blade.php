@@ -1,5 +1,18 @@
 @extends('layout') @section('title', 'Home') @section('content')
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<style>
+    #result {
+        display: flex;
+        gap: 12px;
+    }
+    #result .result-field{
+        display: flex;
+        flex-direction: column;
+        width: 46%;
+    padding: 7px 14px;
+    }
+</style>
 <div class="container px-md-5 py-2">
 
     <div class="">
@@ -300,8 +313,8 @@
                                 <button type="submit" class="btn  btn-info">Search</button>
                             </form>
 
-                            <ul id="result">
-                            </ul>
+                            <div id="result">
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -532,10 +545,12 @@
                         dateField.className = 'result-field';
                         dateField.innerHTML = `<strong>Date:</strong> ${result.date}`;
                         resultContainer.appendChild(dateField);
+
                         const dateField2 = document.createElement('div');
-                        dateField.className = 'result-field';
-                        dateField.innerHTML = `<a href="${result.date}">View File</a> ${result.date}`;
-                        resultContainer.appendChild(dateField);
+                        dateField2.className = 'result-field';
+
+                        dateField2.innerHTML = `<strong> <a href="${result.date}">View File</a></strong>`;
+                        resultContainer.appendChild(dateField2);
                     } else {
                         const field = document.createElement('div');
                         field.className = 'result-field';
