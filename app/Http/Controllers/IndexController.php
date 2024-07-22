@@ -62,6 +62,14 @@ class IndexController extends Controller
         $journals = journal::get();
         return view('manuscript', ['journals'=>$journals]);
     }
+
+    function viewmanuscript(Request $request , $id){ 
+        $manuStatus = manuscript_status::where('muuid' , $id)->get();
+
+        $getManufullDetails = manuscripts::where('muuid',   $manuStatus[0]->muuid)->first();
+        return view('view-manuscript', ['manudata'=>$manuStatus, 'getManufullDetails'=>$getManufullDetails]);
+        // return redirect()->back();
+    }
     
     
        function refund(){

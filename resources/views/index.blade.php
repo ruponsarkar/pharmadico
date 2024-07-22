@@ -5,6 +5,9 @@
     #result {
         display: flex;
         gap: 12px;
+        flex-direction: row;
+        width: 100%;
+        flex-wrap: wrap;
     }
 
     #result .result-field {
@@ -535,56 +538,61 @@
 </div>
 </div> --}}
 
-    </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script>
-        document.getElementById('searchForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            const query = document.getElementById('query').value;
-            console.log("query : ", query);
+        const query = document.getElementById('query').value;
+        console.log("query : ", query);
 
-            axios.get(`/api/search?query=${query}`)
-                .then(response => {
-                    console.log("response :", response);
-                    const result = response.data;
-                    const resultContainer = document.querySelector('#result');
-                    resultContainer.innerHTML = '';
+        axios.get(`/api/search?query=${query}`)
+            .then(response => {
+                console.log("response :", response);
+                const result = response.data;
+                const resultContainer = document.querySelector('#result');
+                resultContainer.innerHTML = '';
 
-                    if (result && Object.keys(result).length) {
-                        const muuidField = document.createElement('div');
-                        muuidField.className = 'result-field';
-                        muuidField.innerHTML = `<strong>MUUUID:</strong> ${result.muuid}`;
-                        resultContainer.appendChild(muuidField);
+                if (result && Object.keys(result).length) {
+                    const muuidField = document.createElement('div');
+                    muuidField.className = 'result-field';
+                    muuidField.innerHTML = `<strong>MUUUID:</strong> ${result.muuid}`;
+                    resultContainer.appendChild(muuidField);
 
-                        const statusField = document.createElement('div');
-                        statusField.className = 'result-field';
-                        statusField.innerHTML = `<strong>Status:</strong> ${result.status}`;
-                        resultContainer.appendChild(statusField);
+                    const statusField = document.createElement('div');
+                    statusField.className = 'result-field';
+                    statusField.innerHTML = `<strong>Status:</strong> ${result.status === 0 ? 'published' : 'none'}`;
+                    resultContainer.appendChild(statusField);
 
-                        const dateField = document.createElement('div');
-                        dateField.className = 'result-field';
-                        dateField.innerHTML = `<strong>Date:</strong> ${result.date}`;
-                        resultContainer.appendChild(dateField);
+                    const dateField = document.createElement('div');
+                    dateField.className = 'result-field';
+                    dateField.innerHTML = `<strong>Date:</strong> ${result.date}`;
+                    resultContainer.appendChild(dateField);
 
-                        const dateField2 = document.createElement('div');
-                        dateField2.className = 'result-field';
+                    const dateField2 = document.createElement('div');
+                    dateField2.className = 'result-field';
 
-                        dateField2.innerHTML = `<strong> <a href="${result.date}">View File</a></strong>`;
-                        resultContainer.appendChild(dateField2);
-                    } else {
-                        const field = document.createElement('div');
-                        field.className = 'result-field';
-                        field.textContent = 'No result found.';
-                        resultContainer.appendChild(field);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching search results:', error);
-                });
-        });
-    </script>
+                    dateField2.innerHTML = `<strong> <a href="{{URL('view-manuscript/${result.muuid}')}}">View File</a></strong>`;
+                    resultContainer.appendChild(dateField2);
+                } else {
+                    const field = document.createElement('div');
+                    field.className = 'result-field';
+                    field.textContent = 'No result found.';
+                    resultContainer.appendChild(field);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching search results:', error);
+            });
+    });
+</script>
+<script>
+    function countFun(id) {
+        console.log(id);
+        window.location.href = "{{ URL('countDownload') }}/" + id;
+    }
+</script>
 
 
     <script>
