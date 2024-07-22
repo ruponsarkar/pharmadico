@@ -51,12 +51,12 @@
             <tbody>
                 @foreach ($confrence as $item )
                 <tr>
-                    <td>{{$item->id}}</td>
+                    <td>  {{ $loop->index + 1 }} </td>
                     <td>{{$item->title}}</td>
                     <td> <a href="../assets/conference/{{$item->file}}">View file</a> </td>
                     <td>
                         <a href="{{ URL('update-conference/' . $item->id) }}" class="btn btn-sm btn-success">edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">delete</a>
+                        <a href="{{URL('delete-conference/' . $item->id)}}" class="btn btn-sm btn-danger">delete</a>
                     </td>
                 </tr>
                 @endforeach

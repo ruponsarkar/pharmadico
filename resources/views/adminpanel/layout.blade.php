@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  @yield('meta')
   <title>@yield('title')</title>
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{url('admin/assets/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Ionicons -->
@@ -103,18 +103,18 @@
             </li>
             {{-- <li class="nav-item">
               <a href="{{URL('receive-reviewers')}}" class="nav-link {{ request()->is('receive-reviewers') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                <p>
-                  Reviewer Request Receive
-                </p>
-              </a>
+            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+            <p>
+              Reviewer Request Receive
+            </p>
+            </a>
             </li> --}}
-            
+
             <li class="nav-item">
               <a href="{{URL('add-conference')}}" class="nav-link {{ request()->is('receive-reviewers') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-chalkboard-teacher"></i>
                 <p>
-                Conference Pro.
+                  Conference Pro.
                 </p>
               </a>
             </li>
@@ -173,11 +173,11 @@
             </li>
             {{-- <li class="nav-item">
               <a href="{{URL('home-article')}}" class="nav-link {{ request()->is('home-article') ? 'active' : ''}}">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                  Home page Article
-                </p>
-              </a>
+            <i class="nav-icon far fa-calendar-alt"></i>
+            <p>
+              Home page Article
+            </p>
+            </a>
             </li> --}}
             <li class="nav-item">
               <a href="{{URL('indexing')}}" class="nav-link {{ request()->is('indexing') ? 'active' : ''}}">
@@ -272,6 +272,7 @@
       elems[i].addEventListener('click', confirmIt, false);
     }
   </script>
+  @yield('script2')
 </body>
 
 </html>

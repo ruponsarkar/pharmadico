@@ -94,6 +94,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('conference' , [adminPanelController::class,'conference']);
     Route::post('addConferences' , [adminPanelController::class,'addConferenceinsert']);
     Route::get('update-conference/{id}', [adminPanelController::class,'updateconference']);
+    Route::get('delete-conference/{id}', [adminPanelController::class,'deleteconference']);
     Route::post('update-conference/update-conference-data/{id}', [adminPanelController::class,'updateconferenceData']);
 
     Route::get('viewer/{id}', [adminPanelController::class, 'viewer']);
@@ -108,6 +109,9 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('add-volume', [adminPanelController::class, 'addVolume']);
     Route::post('addVolume', [adminPanelController::class, 'addVolumeData']);
     Route::get('add-issues/{id}',  [adminPanelController::class, 'addIssues']);
+    Route::post('/update-issues',  [adminPanelController::class, 'updateIssues'])->name('update-issues');
+    Route::get('delete-issues/{id}', [adminPanelController::class,'deleteissues']);
+    
 
     Route::post('add-issues/{id}', [adminPanelController::class, 'addIssuesData']);
 

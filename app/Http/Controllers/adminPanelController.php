@@ -148,7 +148,7 @@ class adminPanelController extends Controller
     }
     function conference()
     {
-        $confrence = conference::orderBy('id', 'DESC')->get();
+        $confrence = conference::orderBy('id', 'DESC')->where('isActive' , 1)->get();
 
         return view('conference', ['confrence' => $confrence]);
     }
@@ -198,31 +198,30 @@ class adminPanelController extends Controller
         return redirect('add-conference')->with('message', 'Your request Submitted successfully');
 
     }
+    function deleteconference(Request $request, $id){
+          $journal = conference::where('id', $id)->update([
+            'isActive' => 0
+        ]);
+        return redirect()->back()->with('message', 'Deleted');
+    }
+
     function addconference()
     {
-        $confrence = conference::orderBy('id', 'DESC')->get();
+        $confrence = conference::orderBy('id', 'DESC')->where('isActive', 1)->get();
         return view('adminpanel.add-conference', ['confrence' => $confrence]);
     }
     function deleteJournals(Request $request, $id)
     {
-
-
         $journal = journal::where('j_id', $id)->update([
             'active' => 0
         ]);
-
-
         return redirect()->back()->with('message', 'Deleted');
     }
 
     function indexing()
     {
         $journals = journal::get();
-
         $indexing = indexings::join("journals", "journals.j_id", "=", "indexing.j_id")->get();
-
-
-
         return view('adminpanel.SelectIndexing', ['journals' => $journals, 'indexing' => $indexing]);
     }
 
@@ -447,9 +446,36 @@ class adminPanelController extends Controller
     function addIssues(Request $request, $id)
     {
 
-        $issues = issue::get()->where('v_id', $id);
+        $issues = issue::get()->where('active', 1)->where('v_id', $id);
 
         return view('adminpanel.add-issues', ['id' => $id, 'issues' => $issues]);
+    }
+    function updateIssues(Request $request, $id){
+        // Validate the request data
+        $request->validate([
+            'id' => 'required|exists:issues,id',
+            'name' => 'required|string|max:255',
+        ]);
+
+        // try {
+            // Find the issue by ID and update the name
+            $issue = issue::find($request->id);
+            $issue->name = $request->name;
+            $issue->save();
+
+            return response()->json(['success' => true, 'message' => 'Issue updated successfully.']);
+        // } catch (\Exception $e) {
+            // Log the error and return a response
+            // \Log::error('Error updating issue: ' . $e->getMessage());
+
+        //     return response()->json(['success' => false, 'message' => 'Error updating issue.'], 500);
+        // }
+    }
+    function deleteissues(Request $request, $id){
+        $indexing = issue::find($id)->update([
+            'active' => 0
+        ]);
+        return redirect()->back()->with('message', 'Deleted');
     }
 
 
@@ -457,6 +483,7 @@ class adminPanelController extends Controller
     {
 
         $issues = new issue;
+      
         $issues->name = $request->name;
         $issues->v_id = $id;
         $issues->ip_address = \Request::ip();
@@ -464,7 +491,8 @@ class adminPanelController extends Controller
 
         $issues = issue::get()->where('v_id', $id);
 
-        return view('adminpanel.add-issues', ['id' => $id, 'issues' => $issues]);
+        return back()->with('message', 'Your request Submitted successfully');
+        // return view('adminpanel.add-issues', ['id' => $id, 'issues' => $issues]);
     }
 
     function addArticle(Request $request, $id)
