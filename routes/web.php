@@ -134,6 +134,17 @@ Route::group(['middleware'=>['AuthCheck']], function(){
 
     // home assets 
     Route::post('changeHomeAsset', [adminPanelController::class,'changeHomeAsset']);
+
+
+    Route::get('setPages', function(){
+        return view('adminpanel.pages.setPages');
+    });
+    Route::get('addAboutUs', function(){
+        return view('adminpanel.pages.addAboutUs');
+    });
+
+    Route::get('addpages/{type}', [adminPanelController::class, 'addpages']);
+    Route::post('savePageData', [adminPanelController::class, 'savePageData']);
    
 
 });

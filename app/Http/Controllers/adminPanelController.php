@@ -19,6 +19,7 @@ use App\Models\manuscript_status;
 use App\Models\conference;
 use Carbon;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class adminPanelController extends Controller
 {
@@ -820,6 +821,22 @@ class adminPanelController extends Controller
 
     }
 
+    function savePageData(Request $request){
+        
+        $save = DB::table('pages')->insert([
+            'type'=> $request->type,
+            'data'=> $request->data
+
+        ]);
+        return redirect()->back()->with('message', 'Updated');
+
+    }
+
+    function addpages($type){
+
+        $data = DB::table('pages')->where('type', $type)->orderBy('id', 'desc')->first();
+        return view('adminpanel.pages.'.$type, ['type'=> $type, 'data'=> $data]);
+    }
 
 
 
