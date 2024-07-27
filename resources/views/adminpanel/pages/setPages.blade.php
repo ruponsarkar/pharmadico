@@ -19,6 +19,7 @@
         <a href="/addpages/author">Authors Guidelines</a>        
         <a href="/addpages/reviewer">Reviewers Guidelines</a>        
         <a href="/addpages/editor">Editors Guidelines</a>        
+        <a href="/addpages/contact">Contact Us Page</a>        
     </div>
 </div>
 <div class="container-form  p-1 p-md-3 p-lg-2">

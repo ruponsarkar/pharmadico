@@ -76,7 +76,7 @@
   @csrf
     <ul class="flex-outer">
       <li>
-        <label for="first-name">Name</label>
+        <label for="first-name">Corresponding Article </label>
         <input type="text" id="name" name="name" value="{{$articles->name}}">
       </li>
       <li>
@@ -84,7 +84,7 @@
         <input type="text" id="aname" name="aname" value="{{$articles->aname}}">
       </li>
       <li>
-        <label for="email">Designation</label>
+        <label for="email">Author Designation</label>
         <input type="text" id="designation" name="designation" value="{{$articles->designation}}">
       </li>
       
@@ -103,11 +103,8 @@
       </li>
 
 
-
-      
-
       <li>
-        <label for="email">DIO</label>
+        <label for="email">DOI</label>
         <input type="text" id="doi" name="doi" value="{{$articles->doi}}">
       </li>
 
@@ -115,6 +112,52 @@
         <label for="email">Page No</label>
         <input type="text" id="page" name="page" value="{{$articles->page}}">
       </li>
+      
+      {{-- ************************** --}}
+      
+      <li>
+        <label for="email">sr_no No</label>
+        <input type="text" id="sr_no" name="sr_no" value="{{$articles->sr_no}}">
+      </li>
+      <li>
+        <label for="email">cited_by</label>
+        <input type="text" id="cited_by" name="cited_by" value="{{$articles->cited_by}}">
+      </li>
+      <li>
+        <label for="email">language </label>
+        <input type="text" id="language" name="language" value="{{$articles->language}}">
+      </li>
+      <li>
+        <label for="email">licence </label>
+        <input type="text" id="licence" name="licence" value="{{$articles->licence}}">
+      </li>
+      <li>
+        <label for="email">received </label>
+        <input type="text" id="received" name="received" value="{{$articles->received}}">
+      </li>
+      <li>
+        <label for="email">revised </label>
+        <input type="text" id="revised" name="revised" value="{{$articles->revised}}">
+      </li>
+      <li>
+        <label for="email">accepted </label>
+        <input type="text" id="accepted" name="accepted" value="{{$articles->accepted}}">
+      </li>
+      <li>
+        <label for="email">keywords </label>
+        <input type="text" id="keywords" name="keywords" value="{{$articles->keywords}}">
+      </li>
+      <li>
+        <label for="email">abstract </label>
+        <textarea name="abstract" id="" cols="30" rows="10" class="form-control">{{$articles->abstract}}</textarea>
+      </li>
+      
+
+
+      {{-- ******************************** --}}
+
+
+
 
       <li>
         <label for="phone">Change File</label>

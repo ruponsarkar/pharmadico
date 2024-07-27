@@ -451,7 +451,8 @@ class adminPanelController extends Controller
 
         return view('adminpanel.add-issues', ['id' => $id, 'issues' => $issues]);
     }
-    function updateIssues(Request $request, $id){
+    function updateIssues(Request $request){
+        // return $request->all();
         // Validate the request data
         $request->validate([
             'id' => 'required|exists:issues,id',
@@ -464,7 +465,7 @@ class adminPanelController extends Controller
             $issue->name = $request->name;
             $issue->save();
 
-            return response()->json(['success' => true, 'message' => 'Issue updated successfully.']);
+            return redirect()->back()->with(['success' => true, 'message' => 'Issue updated successfully.']);
         // } catch (\Exception $e) {
             // Log the error and return a response
             // \Log::error('Error updating issue: ' . $e->getMessage());
@@ -540,6 +541,16 @@ class adminPanelController extends Controller
 
         $articles = new articles;
         $articles->name = $request->name;
+        
+        $articles->sr_no = $request->sr_no;
+        $articles->cited_by = $request->cited_by;
+        $articles->language = $request->language;
+        $articles->licence = $request->licence;
+        $articles->received = $request->received;
+        $articles->revised = $request->revised;
+        $articles->accepted = $request->accepted;
+
+
         $articles->slug = $slug;
         $articles->aname = strip_tags($request->aname);
         $articles->published_date = $request->published_date;
@@ -599,6 +610,20 @@ class adminPanelController extends Controller
         $updateArticle = articles::find($id);
         $updateArticle->name = strip_tags($request->name);
         $updateArticle->aname = strip_tags($request->aname);
+
+
+        $updateArticle->sr_no = $request->sr_no;
+        $updateArticle->cited_by = $request->cited_by;
+        $updateArticle->language = $request->language;
+        $updateArticle->licence = $request->licence;
+        $updateArticle->received = $request->received;
+        $updateArticle->revised = $request->revised;
+        $updateArticle->accepted = $request->accepted;
+        $updateArticle->abstract = $request->abstract;
+
+
+
+
         $updateArticle->designation = strip_tags($request->designation);
         $updateArticle->published_date = $request->published_date;
         $updateArticle->googleScholar = $request->googleScholar;

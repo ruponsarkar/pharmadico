@@ -100,6 +100,7 @@ class JournalController extends Controller
 
         $issues = issue::select(['name','id'])
         ->where('v_id','=', $id)
+        ->where('active', 1)
         ->get();
 
 

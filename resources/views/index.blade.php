@@ -562,7 +562,7 @@
 
                     const statusField = document.createElement('div');
                     statusField.className = 'result-field';
-                    statusField.innerHTML = `<strong>Status:</strong> ${result.status === 0 ? 'published' : 'none'}`;
+                    statusField.innerHTML = `<strong>Status:</strong> ${result.status === 0 ? 'Accecpted' : ''} ${result.status === 1 ? 'Draft' : ''} ${result.status === 2 ? 'Published' : ''} ${result.status === 3 ? 'Rejected': ''}  `;
                     resultContainer.appendChild(statusField);
 
                     const dateField = document.createElement('div');

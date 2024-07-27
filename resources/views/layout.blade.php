@@ -190,7 +190,7 @@
                             </ul>
                         </li>
                         <li><a class="nav-link " href="{{url('conference')}}">Conference Proceedings</a></li>
-                        <li><a class="nav-link scrollto " href="#portfolio">Contact</a></li>
+                        <li><a class="nav-link scrollto " href="{{ url('contactUs') }}">Contact</a></li>
                         <li><a class="nav-link scrollto " href="{{ url('about') }}">About Us</a></li>
 
 
@@ -285,11 +285,11 @@
                             <!--<p><i class="bi bi-geo-alt-fill"></i>-->
                             <!--    017 Uttar Nowabil, Ambari Hojai, Assam- &nbsp; &nbsp; &nbsp; &nbsp; India 782445<br>-->
 
-                            <strong>Principal Contact :</strong> : Dilip Kumar Chanchal
+                            <strong>Principal Contact :</strong> Dilip Kumar Chanchal <br/>
                             Director, Pharmedico
                             <br><br>
                             <i class="bi bi-envelope"></i>
-                            <strong>Mail:</strong> director@pharmedicopublishers.com<br><br>
+                            <strong>Email:</strong> director@pharmedicopublishers.com<br><br>
 
                     </div>
 

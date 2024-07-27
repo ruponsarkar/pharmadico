@@ -92,10 +92,11 @@ class FormController extends Controller
         $count = \DB::table('manuscript')->count();
         $dater = new Carbon(); 
         $year = date('Y', strtotime($dater));
+        $month = date('m', strtotime($dater));
         $file = time() . '.' . $request->file->extension();
 
         $manuscript = new manuscripts;
-        $manuscript->muuid = strip_tags('mmui-24' . $count . $year);
+        $manuscript->muuid = strip_tags('IJPSM/'.$year.'/'.$month.'/'.$count);
         $manuscript->mode = strip_tags($request->mode);
         $manuscript->type = strip_tags($request->type);
         $manuscript->journal = $j_name->j_name;

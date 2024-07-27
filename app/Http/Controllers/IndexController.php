@@ -11,6 +11,7 @@ use App\Models\indexings;
 use App\Models\home_asset;
 use App\Models\manuscripts;
 use App\Models\manuscript_status;
+use DB;
 
 
 class IndexController extends Controller
@@ -95,15 +96,31 @@ class IndexController extends Controller
         return view('contact');
     }
 
-    function authorsGuideline(){
-        return view('authorsGuideline');
-    }
+    function authorGuidlines(){
 
-    function editorsGuideline(){
-        return view('editorsGuideline');
+        $data = DB::table('pages')->where('type', 'author')->orderBy('id', 'desc')->first();
+        
+        return view('authorGuidlines', ['data'=>$data]);
     }
-    function reviewsGuideline(){
-        return view('reviewersGuideline');
+    
+    function editorsGuidlines(){
+        
+        $data = DB::table('pages')->where('type', 'editor')->orderBy('id', 'desc')->first();
+        return view('editorsGuidlines',  ['data'=>$data]);
+    }
+    function reviewersGuidlines(){
+        $data = DB::table('pages')->where('type', 'reviewer')->orderBy('id', 'desc')->first();
+        return view('reviewersGuidlines',  ['data'=>$data]);
+    }
+    
+    
+    function aboutUs(){
+        $data = DB::table('pages')->where('type', 'about')->orderBy('id', 'desc')->first();
+        return view('aboutUs',  ['data'=>$data]);
+    }
+    function contactUs(){
+        $data = DB::table('pages')->where('type', 'contact')->orderBy('id', 'desc')->first();
+        return view('contactUs',  ['data'=>$data]);
     }
     
     
