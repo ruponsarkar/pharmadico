@@ -49,7 +49,7 @@ Route::get('authorGuidlines', [IndexController::class, 'authorGuidlines']);
 Route::get('editorsGuidlines', [IndexController::class, 'editorsGuidlines']);
 Route::get('reviewersGuidlines', [IndexController::class, 'reviewersGuidlines']);
 Route::get('contactUs', [IndexController::class, 'contactUs']);
-
+Route::get('conference' , [adminPanelController::class,'conference']);
 
 
 Route::get('/Join_editor', function () {
@@ -85,7 +85,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::post('UpdateIndexing', [adminPanelController::class, 'UpdateIndexing']);
     Route::get('DeleteIndexing/{id}', [adminPanelController::class, 'DeleteIndexing']);
     
-    Route::get('conference' , [adminPanelController::class,'conference']);
+    
     Route::post('addConferences' , [adminPanelController::class,'addConferenceinsert']);
     Route::get('update-conference/{id}', [adminPanelController::class,'updateconference']);
     Route::get('delete-conference/{id}', [adminPanelController::class,'deleteconference']);
