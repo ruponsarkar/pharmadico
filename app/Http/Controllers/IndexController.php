@@ -122,6 +122,30 @@ class IndexController extends Controller
         $data = DB::table('pages')->where('type', 'contact')->orderBy('id', 'desc')->first();
         return view('contactUs',  ['data'=>$data]);
     }
+    function PublicationEthicsandMalpracticeStatement(){
+        $data = DB::table('pages')->where('type', 'PublicationEthicsandMalpracticeStatement')->orderBy('id', 'desc')->first();
+        return view('PublicationEthicsandMalpracticeStatement',  ['data'=>$data]);
+    }
+    function ManuscriptPreparationGuidelines(){
+        $data = DB::table('pages')->where('type', 'ManuscriptPreparationGuidelines')->orderBy('id', 'desc')->first();
+        return view('ManuscriptPreparationGuidelines',  ['data'=>$data]);
+    }
+    function ResearchGuidelines(){
+        $data = DB::table('pages')->where('type', 'ResearchGuidelines')->orderBy('id', 'desc')->first();
+        return view('ResearchGuidelines',  ['data'=>$data]);
+    }
+    function APAStyle(){
+        $data = DB::table('pages')->where('type', 'APAStyle')->orderBy('id', 'desc')->first();
+        return view('APAStyle',  ['data'=>$data]);
+    }
+    function Writingagoodresearchpaper(){
+        $data = DB::table('pages')->where('type', 'Writingagoodresearchpaper')->orderBy('id', 'desc')->first();
+        return view('Writingagoodresearchpaper',  ['data'=>$data]);
+    }
+    function GoogleLanguageTranslator(){
+        $data = DB::table('pages')->where('type', 'GoogleLanguageTranslator')->orderBy('id', 'desc')->first();
+        return view('GoogleLanguageTranslator',  ['data'=>$data]);
+    }
     
     
     

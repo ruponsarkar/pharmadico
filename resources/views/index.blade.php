@@ -153,22 +153,22 @@
                     <div>
                         <div class="p-3">
                             <div class="col-sm-12 text-center p-1">
-                                <div class="btn effect01">Publication Ethics and Malpractice Statement</div>
+                                <a role="button" href="PublicationEthicsandMalpracticeStatement" class="btn effect01">Publication Ethics and Malpractice Statement</a>
                             </div>
                             <div class="col-sm-12 text-center p-1">
-                                <div class="btn effect01">Manuscript Preparation Guidelines</div>
+                                <a role="button" href="ManuscriptPreparationGuidelines" class="btn effect01">Manuscript Preparation Guidelines</a>
                             </div>
                             <div class="col-sm-12 text-center p-1">
-                                <div class="btn effect01">Research Guidelines</div>
+                                <a role="button" href="ResearchGuidelines" class="btn effect01">Research Guidelines</a>
                             </div>
                             <div class="col-sm-12 text-center p-1">
-                                <div class="btn effect01">APA Style (6th Edition)</div>
+                                <a role="button" href="APAStyle" class="btn effect01">APA Style (6th Edition)</a>
                             </div>
                             <div class="col-sm-12 text-center p-1">
-                                <div class="btn effect01">Writing a good research paper</div>
+                                <a role="button" href="Writingagoodresearchpaper" class="btn effect01">Writing a good research paper</a>
                             </div>
                             <div class="col-sm-12 text-center p-1">
-                                <div class="btn effect01">Google Language Translator</div>
+                                <a role="button" href="GoogleLanguageTranslator" class="btn effect01">Google Language Translator</a>
                             </div>
                         </div>
                     </div>

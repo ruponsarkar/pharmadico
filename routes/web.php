@@ -50,6 +50,12 @@ Route::get('editorsGuidlines', [IndexController::class, 'editorsGuidlines']);
 Route::get('reviewersGuidlines', [IndexController::class, 'reviewersGuidlines']);
 Route::get('contactUs', [IndexController::class, 'contactUs']);
 Route::get('conference' , [adminPanelController::class,'conference']);
+Route::get('PublicationEthicsandMalpracticeStatement', [IndexController::class, 'PublicationEthicsandMalpracticeStatement']);
+Route::get('ManuscriptPreparationGuidelines', [IndexController::class, 'ManuscriptPreparationGuidelines']);
+Route::get('ResearchGuidelines', [IndexController::class, 'ResearchGuidelines']);
+Route::get('APAStyle', [IndexController::class, 'APAStyle']);
+Route::get('Writingagoodresearchpaper', [IndexController::class, 'Writingagoodresearchpaper']);
+Route::get('GoogleLanguageTranslator', [IndexController::class, 'GoogleLanguageTranslator']);
 
 
 Route::get('/Join_editor', function () {

@@ -244,7 +244,7 @@ class adminPanelController extends Controller
 
         $indexing->save();
 
-        $request->photo->move(base_path('public/assets/indexing/img'), $photo);
+        $request->photo->move(base_path('public_html/assets/indexing/img'), $photo);
 
         return redirect('indexing')->with('message', 'Your request Submitted successfully');
     }
@@ -394,7 +394,7 @@ class adminPanelController extends Controller
         $editor->ip_address = \Request::ip();
 
         $editor->update();
-        //    $request->photo->move(base_path('public/assets/img/editor-img'), $photo);
+        //    $request->photo->move(base_path('public_html/assets/img/editor-img'), $photo);
 
 
         return redirect('addEditors')->with('message', 'Your request Submitted successfully');
@@ -716,7 +716,7 @@ class adminPanelController extends Controller
 
         $photo = time() . '.' . $request->photo->extension();
 
-        $request->photo->move(base_path('public_html/assets/img/journals'), $photo);
+        $request->photo->move(base_path('public_html/assets/journals/img'), $photo);
 
         $journal = journal::where('j_id', '=', $request->id)->update([
             'photo' => $photo,
@@ -770,7 +770,7 @@ class adminPanelController extends Controller
                 'img' => $photo
             ]);
 
-            $request->photo->move(base_path('public/assets/indexing/img'), $photo);
+            $request->photo->move(base_path('public_html/assets/indexing/img'), $photo);
 
             return redirect()->back()->with('message', 'Updated');
         }
