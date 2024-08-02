@@ -19,6 +19,7 @@ use App\Models\manuscript_status;
 use App\Models\conference;
 use Carbon;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class adminPanelController extends Controller
 {
@@ -55,26 +56,26 @@ class adminPanelController extends Controller
         // here selectedID is muuid
         $exists = manuscript_status::where('muuid', $request->selectedID)->exists();
 
-        if ($exists) {
+        // if ($exists) {
             // $manuscriptStatus = new manuscript_status;
             // $manuscriptStatus->muuid = $request->selectedID;
             // $manuscriptStatus->status = $request->selectedStatus;
             // $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
 
             // $manuscriptStatus->update();
-            $updateISExist = manuscript_status::where('muuid', $request->selectedID)->update([
-                'muuid' => $request->selectedID,
-                'status' => $request->selectedStatus,
-                'date' => date('d-m-Y', strtotime(Carbon\Carbon::now()))
-            ]);
-        } else {
+        //     $updateISExist = manuscript_status::where('muuid', $request->selectedID)->update([
+        //         'muuid' => $request->selectedID,
+        //         'status' => $request->selectedStatus,
+        //         'date' => date('d-m-Y', strtotime(Carbon\Carbon::now()))
+        //     ]);
+        // } else {
             $manuscriptStatus = new manuscript_status;
             $manuscriptStatus->muuid = $request->selectedID;
             $manuscriptStatus->status = $request->selectedStatus;
             $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
 
             $manuscriptStatus->save();
-        }
+        // }
         // return response()->json(['success' => $getRowValue]);;
         // $updateManuStatus = manuscript_status::insert($request->selectedID,$getRowValue);
 
@@ -146,13 +147,15 @@ class adminPanelController extends Controller
 
         return redirect('journalForm')->with('message', 'Your request Submitted successfully');
     }
-    function conference(){
-        $confrence = conference::orderBy('id', 'DESC')->get();
+    function conference()
+    {
+        $confrence = conference::orderBy('id', 'DESC')->where('isActive' , 1)->get();
 
-        return view('conference',['confrence' => $confrence]);
+        return view('conference', ['confrence' => $confrence]);
     }
-   
-    function addConferenceinsert(Request $request){
+
+    function addConferenceinsert(Request $request)
+    {
         $request->validate([
             'title' => 'required|max:1000',
             'file' => 'required|mimes:pdf,docx',
@@ -165,17 +168,19 @@ class adminPanelController extends Controller
         $file = time() . '.' . $request->file->extension();
 
         $save = conference::insert([
-            'title'=> $request->title,
-            'file'=>  $file
+            'title' => $request->title,
+            'file' => $file
         ]);
         $request->file->move(base_path('public_html/assets/conference'), $file);
         return redirect('add-conference')->with('message', 'Your request Submitted successfully');
     }
-    function updateconference(Request $request , $id){
+    function updateconference(Request $request, $id)
+    {
         $conference = conference::find($id);
         return view('adminpanel.update-conference', ['conference' => $conference]);
     }
-    function updateconferenceData(Request $request , $id){
+    function updateconferenceData(Request $request, $id)
+    {
         $request->validate([
             'title' => 'required|max:200',
             'file' => 'required|mimes:pdf,docx',
@@ -194,30 +199,30 @@ class adminPanelController extends Controller
         return redirect('add-conference')->with('message', 'Your request Submitted successfully');
 
     }
-    function addconference() {
-        $confrence = conference::orderBy('id', 'DESC')->get();
-        return view('adminpanel.add-conference',['confrence' => $confrence]);
+    function deleteconference(Request $request, $id){
+          $journal = conference::where('id', $id)->update([
+            'isActive' => 0
+        ]);
+        return redirect()->back()->with('message', 'Deleted');
+    }
+
+    function addconference()
+    {
+        $confrence = conference::orderBy('id', 'DESC')->where('isActive', 1)->get();
+        return view('adminpanel.add-conference', ['confrence' => $confrence]);
     }
     function deleteJournals(Request $request, $id)
     {
-
-
         $journal = journal::where('j_id', $id)->update([
             'active' => 0
         ]);
-
-
         return redirect()->back()->with('message', 'Deleted');
     }
 
     function indexing()
     {
         $journals = journal::get();
-
         $indexing = indexings::join("journals", "journals.j_id", "=", "indexing.j_id")->get();
-
-
-
         return view('adminpanel.SelectIndexing', ['journals' => $journals, 'indexing' => $indexing]);
     }
 
@@ -239,7 +244,7 @@ class adminPanelController extends Controller
 
         $indexing->save();
 
-        $request->photo->move(base_path('public/assets/indexing/img'), $photo);
+        $request->photo->move(base_path('public_html/assets/indexing/img'), $photo);
 
         return redirect('indexing')->with('message', 'Your request Submitted successfully');
     }
@@ -389,7 +394,7 @@ class adminPanelController extends Controller
         $editor->ip_address = \Request::ip();
 
         $editor->update();
-        //    $request->photo->move(base_path('public/assets/img/editor-img'), $photo);
+        //    $request->photo->move(base_path('public_html/assets/img/editor-img'), $photo);
 
 
         return redirect('addEditors')->with('message', 'Your request Submitted successfully');
@@ -442,9 +447,37 @@ class adminPanelController extends Controller
     function addIssues(Request $request, $id)
     {
 
-        $issues = issue::get()->where('v_id', $id);
+        $issues = issue::get()->where('active', 1)->where('v_id', $id);
 
         return view('adminpanel.add-issues', ['id' => $id, 'issues' => $issues]);
+    }
+    function updateIssues(Request $request){
+        // return $request->all();
+        // Validate the request data
+        $request->validate([
+            'id' => 'required|exists:issues,id',
+            'name' => 'required|string|max:255',
+        ]);
+
+        // try {
+            // Find the issue by ID and update the name
+            $issue = issue::find($request->id);
+            $issue->name = $request->name;
+            $issue->save();
+
+            return redirect()->back()->with(['success' => true, 'message' => 'Issue updated successfully.']);
+        // } catch (\Exception $e) {
+            // Log the error and return a response
+            // \Log::error('Error updating issue: ' . $e->getMessage());
+
+        //     return response()->json(['success' => false, 'message' => 'Error updating issue.'], 500);
+        // }
+    }
+    function deleteissues(Request $request, $id){
+        $indexing = issue::find($id)->update([
+            'active' => 0
+        ]);
+        return redirect()->back()->with('message', 'Deleted');
     }
 
 
@@ -452,6 +485,7 @@ class adminPanelController extends Controller
     {
 
         $issues = new issue;
+      
         $issues->name = $request->name;
         $issues->v_id = $id;
         $issues->ip_address = \Request::ip();
@@ -459,7 +493,8 @@ class adminPanelController extends Controller
 
         $issues = issue::get()->where('v_id', $id);
 
-        return view('adminpanel.add-issues', ['id' => $id, 'issues' => $issues]);
+        return back()->with('message', 'Your request Submitted successfully');
+        // return view('adminpanel.add-issues', ['id' => $id, 'issues' => $issues]);
     }
 
     function addArticle(Request $request, $id)
@@ -467,9 +502,8 @@ class adminPanelController extends Controller
 
         $v_id = issue::get()->where('id', $id)->first();
 
-        $article = articles::get()
-            ->where('i_id', $id)
-            ->where('status', '=', 1);
+        $article = articles::where('i_id', $id)
+            ->where('status', '=', 1)->orderBy('id', 'desc')->get();
 
         return view('adminpanel.add-article', ['v_id' => $v_id, 'article' => $article, 'id' => $id]);
     }
@@ -486,6 +520,7 @@ class adminPanelController extends Controller
             'file' => 'required|mimes:pdf,docx',
         ]);
 
+
         $namewithextension = $request->file->getClientOriginalName();
 
         $fileOriginalName = explode('.', $namewithextension)[0];
@@ -494,9 +529,32 @@ class adminPanelController extends Controller
 
         $file = time() . '.' . $request->file->extension();
 
+
+        $string = str_replace(' ', '-', $request->name);  //replace space
+        $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $string); //remove special char
+
+        // check slug 
+        $check = articles::where('slug', $slug)->first();
+        if ($check) {
+            $slug = $slug . '-' . time();
+        }
+
         $articles = new articles;
         $articles->name = $request->name;
+        
+        $articles->sr_no = $request->sr_no;
+        $articles->cited_by = $request->cited_by;
+        $articles->language = $request->language;
+        $articles->licence = $request->licence;
+        $articles->received = $request->received;
+        $articles->revised = $request->revised;
+        $articles->accepted = $request->accepted;
+
+
+        $articles->slug = $slug;
         $articles->aname = strip_tags($request->aname);
+        $articles->published_date = $request->published_date;
+        $articles->googleScholar = $request->googleScholar;
         $articles->abstract = $request->abstract;
         $articles->keywords = $request->keywords;
         $articles->fileOriginalName = $fileOriginalName;
@@ -552,7 +610,24 @@ class adminPanelController extends Controller
         $updateArticle = articles::find($id);
         $updateArticle->name = strip_tags($request->name);
         $updateArticle->aname = strip_tags($request->aname);
+
+
+        $updateArticle->sr_no = $request->sr_no;
+        $updateArticle->cited_by = $request->cited_by;
+        $updateArticle->language = $request->language;
+        $updateArticle->licence = $request->licence;
+        $updateArticle->received = $request->received;
+        $updateArticle->revised = $request->revised;
+        $updateArticle->accepted = $request->accepted;
+        $updateArticle->abstract = $request->abstract;
+
+
+
+
         $updateArticle->designation = strip_tags($request->designation);
+        $updateArticle->published_date = $request->published_date;
+        $updateArticle->googleScholar = $request->googleScholar;
+        $updateArticle->keywords = $request->keywords;
         $updateArticle->doi = strip_tags($request->doi);
         $updateArticle->page = strip_tags($request->page);
         if ($request->file) {
@@ -641,7 +716,7 @@ class adminPanelController extends Controller
 
         $photo = time() . '.' . $request->photo->extension();
 
-        $request->photo->move(base_path('public_html/assets/img/journals'), $photo);
+        $request->photo->move(base_path('public_html/assets/journals/img'), $photo);
 
         $journal = journal::where('j_id', '=', $request->id)->update([
             'photo' => $photo,
@@ -679,6 +754,7 @@ class adminPanelController extends Controller
     function UpdateIndexing(Request $request)
     {
 
+        // return $request->id;
         if ($request->link) {
             $indexing = indexings::find($request->id)->update([
                 'link' => $request->link
@@ -694,7 +770,7 @@ class adminPanelController extends Controller
                 'img' => $photo
             ]);
 
-            $request->photo->move(base_path('public/assets/indexing/img'), $photo);
+            $request->photo->move(base_path('public_html/assets/indexing/img'), $photo);
 
             return redirect()->back()->with('message', 'Updated');
         }
@@ -738,4 +814,60 @@ class adminPanelController extends Controller
             return redirect()->back()->with('message', 'Updated');
         }
     }
+
+    function makeSlug()
+    {
+
+        $all = articles::get();
+
+        $count = 0;
+        foreach ($all as $data) {
+            if (!$data->slug) {
+
+                $string = str_replace(' ', '-', $data->name);  //replace space
+                $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $string); //remove special char
+
+                // check slug 
+                $check = articles::where('slug', $slug)->first();
+                if ($check) {
+                    $slug = $slug . '-' . time();
+                }
+
+                $update = articles::where('id', $data->id)->update([
+                    'slug'=> $slug
+                ]);
+                $count = $count+1;
+            }
+        }
+
+        return $count .' data updated';
+
+
+
+    }
+
+    function savePageData(Request $request){
+        
+        $save = DB::table('pages')->insert([
+            'type'=> $request->type,
+            'data'=> $request->data
+
+        ]);
+        return redirect()->back()->with('message', 'Updated');
+
+    }
+
+    function addpages($type){
+
+        $data = DB::table('pages')->where('type', $type)->orderBy('id', 'desc')->first();
+        return view('adminpanel.pages.'.$type, ['type'=> $type, 'data'=> $data]);
+    }
+
+
+
+
+
+
+
+
 }

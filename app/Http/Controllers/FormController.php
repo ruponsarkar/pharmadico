@@ -8,6 +8,7 @@ use App\Models\journal;
 use App\Models\manuscripts;
 use App\Models\reviewer;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 class FormController extends Controller
 {
     //for editor form
@@ -92,10 +93,11 @@ class FormController extends Controller
         $count = \DB::table('manuscript')->count();
         $dater = new Carbon(); 
         $year = date('Y', strtotime($dater));
+        $month = date('m', strtotime($dater));
         $file = time() . '.' . $request->file->extension();
 
         $manuscript = new manuscripts;
-        $manuscript->muuid = strip_tags('mmui-24' . $count . $year);
+        $manuscript->muuid = strip_tags('IJPSM/'.$year.'/'.$month.'/'.$count);
         $manuscript->mode = strip_tags($request->mode);
         $manuscript->type = strip_tags($request->type);
         $manuscript->journal = $j_name->j_name;
@@ -114,6 +116,33 @@ class FormController extends Controller
         $request->file->move(base_path('public_html/assets/manuscript'), $file);
 
 
+
+        $data = array(
+            'muuid' => $manuscript->muuid ,
+            'name' => $manuscript->author,
+            'email' => $manuscript->email,
+            'phone' => $manuscript->mobile,
+            'journal' => $manuscript->journal,
+            'mode' => $manuscript->mode,
+            'type'=>$manuscript->type,
+            'title'=>$manuscript->manuscript
+        );
+
+
+        // for user 
+        Mail::send('mails.acknowledge', $data, function ($message) use ($data) {
+            $message->from('submit@pharmedicopublishers.com');
+            $message->to($data['email']);
+            $message->subject('Submission Acknowledgement');
+        });
+
+        // for admin 
+        Mail::send('mails.admin', $data, function ($message) use ($data) {
+            $message->from('submit@pharmedicopublishers.com');
+            $message->to('ruponsarkar108@gmail.com');
+            $message->subject('New Manuscript Request');
+        });
+        
 
         return redirect('manuscript')->with('message', 'Your request Submitted successfully');
     }

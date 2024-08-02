@@ -1,9 +1,11 @@
 @extends('layout')
-@section('title', 'Editors Guidelines')
-@section('content')
 
+@section('title', 'Google Language Translator')
+
+@section('content')
     <section>
         {!! $data->data !!}
     </section>
+
 
 @endsection

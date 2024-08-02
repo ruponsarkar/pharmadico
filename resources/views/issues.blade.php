@@ -1,10 +1,10 @@
 @extends('layout')
-
 @section('title', 'Journal Details')
 
 <!-- this is journal page -->
 
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <div class="container p-2">
         <div class="row">
@@ -45,71 +45,64 @@
                                         <div class="col-lg-12 details order-2 order-lg-1">
                                             <h3>All Issues</h3>
                                             <p>
-                                                @foreach ($article as $data)
-                                                    <div class='card p-3'>
-                                                        <p>
-                                                            {{ $data->name }}
-                                                            <br>
-                                                            <br>
-                                                            <i class="bi bi-person-circle text-info"></i>
-                                                            {{ $data->aname }}
-                                                            <br>
-                                                            <i class="bi bi-tag-fill text-warning"></i>
-                                                            {{ $data->designation }}
-                                                            <br>
-                                                            <i class="bi bi-book text-primary"></i> {{ $data->page }}
-                                                            <br>
-                                                            <i class="bi bi-tag-fill "></i> {{ $data->doi }}
-                                                            <br>
-                                                            <br>
-                                                            {{-- <a href="{{ URL('assets/articles/' . $data->file) }}"
-                                                                onclick="countFun({{ $data->id }})"
-                                                                download="{{ $data->name }}">
-                                                                <i class="bi bi-download" style="font-size: 2rem;"></i>
-                                                            </a> --}}
-                                                            {{-- <a class="btn btn-sm btn-success px-2 text-capitalize"
-                                                                role="button"
-                                                                href="{{ URL('assets/articles/' . $data->file) }}"
-                                                                download="{{ $data->name }}">
-                                                                PDF
-                                                            </a>
-
-                                                            <button class="btn btn-sm btn-outline-warning float-end">Total
-                                                                Downloads: {{ $data->count }}</button> --}}
-
-                                                                <div class="m-3">
-                                                                    <div class="d-flex gap-2">
-                                                                        <div>
-                                                                            <button class="btn btn-sm btn-success px-2 text-capitalize"
-                                                                                type="button" data-bs-toggle="collapse"
-                                                                                data-bs-target="#collapseExample-{{$data->id}}" aria-expanded="false"
-                                                                                aria-controls="collapseExample-{{$data->id}}">Abstract</button>
-                                                                        </div>
-                                                                        {{-- <div>
-                                                                            <button class="btn btn-sm btn-success px-2 text-capitalize">HTML Full Text</button>
-                                                                        </div> --}}
-                                                                        <div>
-                                                                            {{-- <button class="btn btn-sm btn-success px-2 text-capitalize">PDF</button> --}}
-                                                                            <a class="btn btn-sm btn-success px-2 text-capitalize" role="button" href="{{ URL('assets/articles/' . $data->file) }}"
-                                                                                download="{{ $data->fileOriginalName ? $data->fileOriginalName : $data->name  }}">
-                                                                                PDF
-                                                                            </a>
-                                                                        </div>
+                                                @foreach ($article as $key=> $data)
+                                                <div class="col-lg-12 p-2 d-lg-none d-xl-block">
+                                                    <div class="swiper-slide">
+                                                        <div class='card'>
+                                                            <div class="d-flex justify-content-between">
+                                                                <div class='title'>{{$key+1}}. {{ Str::limit($data->name, 70) }}</div>
+                                                                <div class='small p-2'><i class="bi bi-download text-info"></i> {{ $data->count}}</div>
+                                                            </div>
                     
+                                                            <p class="card-icon">
+                                                                <i class="bi bi-person-circle text-info"></i>
+                                                                {{ Str::limit($data->aname, 30) }}
+                                                                <br>
+                                                                <i class="bi bi-tag-fill text-warning"></i> {{ $data->designation }}
+                                                            </p>
+                                                            {{--
+                                                        <p class='description' style="font-size: 2rem;">
+                                                            <i class="bi bi-download text-primary"></i>
+                                                        </p> --}}
                     
-                    
+                                                            <div class="m-3">
+                                                                <div class="d-flex gap-2">
+                                                                    <div>
+                                                                        <button class="btn btn-sm btn-success px-2 text-capitalize"
+                                                                            type="button" data-bs-toggle="collapse"
+                                                                            data-bs-target="#collapseExample-{{ $data->id }}"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="collapseExample-{{ $data->id }}">Abstract</button>
                                                                     </div>
-                                                                    <div class="collapse" id="collapseExample-{{$data->id}}">
-                                                                        <div class="card card-body">
-                                                                            {{$data->abstract}} 
-                                                                        </div>
+                    
+                                                                    <div>
+                                                                        <a role="button" href="/article/{{ $data->slug }}"
+                                                                            class="btn btn-sm btn-success px-2 text-capitalize">HTML
+                                                                            Text</a>
+                                                                    </div>
+                                                                    <div>
+                                                                        {{-- <button class="btn btn-sm btn-success px-2 text-capitalize">PDF</button> --}}
+                                                                        <a class="btn btn-sm btn-success px-2 text-capitalize"
+                                                                            role="button"
+                                                                            onclick="onDowload({{ $data->id }})"
+                                                                            href="{{ URL('/assets/articles/' . $data->file) }}"
+                                                                            download="{{ $data->fileOriginalName ? $data->fileOriginalName : $data->name }}">
+                                                                            PDF
+                                                                        </a>
+                                                                    </div>
+                    
+                    
+                    
+                                                                </div>
+                                                                <div class="collapse" id="collapseExample-{{ $data->id }}">
+                                                                    <div class="card card-body">
+                                                                        {{ $data->abstract }}
                                                                     </div>
                                                                 </div>
-
-                                                        </p>
-
+                                                            </div>
+                                                        </div>
                                                     </div>
-
+                                                </div>
                                                     <br>
                                                 @endforeach
 
@@ -172,5 +165,19 @@
             window.location.href = "{{ URL('countDownload') }}/" + id;
         }
     </script>
+
+<script>
+    function onDowload(id) {
+        console.log("id : ", id);
+
+        axios.get(`/countDownload/${id}`)
+            .then(response => {
+                console.log("response :", response);
+            })
+            .catch(error => {
+                console.error('Error fetching search results:', error);
+            });
+    };
+</script>
 
 @endsection

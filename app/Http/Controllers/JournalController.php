@@ -10,6 +10,7 @@ use App\Models\volumes;
 use App\Models\issue;
 use App\Models\articles;
 use App\Models\book;
+use DB;
 
 class JournalController extends Controller
 {
@@ -99,6 +100,7 @@ class JournalController extends Controller
 
         $issues = issue::select(['name','id'])
         ->where('v_id','=', $id)
+        ->where('active', 1)
         ->get();
 
 
@@ -160,7 +162,7 @@ class JournalController extends Controller
         ->where('j_id', $j_id->j_id)
         ->first();
 
-        $article = articles::select('id','name','aname','designation','doi','page','file','count', 'abstract', 'fileOriginalName')
+        $article = articles::select('id','name','aname','designation','doi','page','file','count', 'abstract', 'fileOriginalName', 'slug')
         ->where('i_id','=', $v_id->id)
         ->where('v_id','=', $j_id->id)
         ->where('status','=', 1)
@@ -177,8 +179,22 @@ class JournalController extends Controller
         $article = articles::where('id','=', $request->id)->update([
             'count' => 1 + $preCount->count
             ]);
-            
-            return redirect()->back();
+            return "Counted";
+            // return redirect()->back();
+    }
+
+    function article($slug){
+        // $article = articles::where('slug', $slug)->first();
+
+        $article = DB::table('article')
+        ->join('issues', 'issues.id', '=', 'article.i_id')
+        ->join('volume', 'volume.id', '=', 'issues.v_id')
+        ->join('journals', 'journals.j_id', '=', 'volume.j_id')
+        ->where('article.slug', $slug)
+        ->select('*', 'article.name as name', 'article.id as airticle_id')
+        ->first();
+
+        return view('viewArticle', ['article'=> $article]);
     }
     
 

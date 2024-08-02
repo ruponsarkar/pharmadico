@@ -173,8 +173,8 @@
 
                                             <div class="card-body text-center editorial-style">
                                                 <div class="card-title small">{{$data->name}}</div>
-                                                <p class="card-text fst-italic small">{{$data->university}} </p>
-                                                <p class="card-text fst-italic small">{{$data->details}}</p>
+                                                <div class="card-text fst-italic small">{{$data->university}} </div>
+                                                <div class="card-text fst-italic small">{{$data->details}}</div>
 
                                                 <!--<p class="card-text small"> <b>Profile link: <a class="card-text small"-->
                                                 <!--            href="{{$data->profile}}" target="_blank">{{$data->profile}}</a></b> </p>-->

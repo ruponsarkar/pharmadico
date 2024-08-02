@@ -1,9 +1,11 @@
 @extends('layout')
-@section('title', 'Editors Guidelines')
-@section('content')
 
+@section('title', 'Writing a good research paper')
+
+@section('content')
     <section>
         {!! $data->data !!}
     </section>
+
 
 @endsection

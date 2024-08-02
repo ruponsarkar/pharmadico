@@ -13,11 +13,11 @@
             <h3 class="card-title text-center">All Manuscript</h3>
           </div>
           <!-- /.card-header -->
-          <div class="card-body">
-            <table id="example2" class="table table-bordered table-hover small">
+          <div class="card-body" style="overflow-x: auto">
+            <table id="tableManu" class="table table-bordered table-hover small table-responsive">
               <thead>
                 <tr>
-                  <th>Id</th>
+                  <th>#</th>
                   <th>Unique ID </th>
                   <th>File</th>
                   <th>Mode</th>
@@ -33,9 +33,9 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($manuscript as $data)
+                @foreach($manuscript as $key=>$data)
                 <tr class="manuscript-row" data-id="{{$data->m_id}}" data-status="{{$data->status}}" data-muuid="{{$data->muuid}}">
-                  <td>{{$data->m_id}}</td>
+                  <td>{{$key+1}}</td>
                   <td>{{$data->muuid}}</td>
                   <td><a href="viewer/{{$data->m_id}}"> {{$data->file}} </a></td>
                   <td>{{$data->mode}}</td>
@@ -103,7 +103,7 @@
 
 <script>
   let selectedRow ,status,selectedRowID;
-  document.getElementById('example2').addEventListener('click', function(event) {
+  document.getElementById('tableManu').addEventListener('click', function(event) {
     if (event.target && event.target.classList.contains('update-status-btn')) {
       const row = event.target.closest('.manuscript-row');
       selectedRow = row.getAttribute('data-muuid');

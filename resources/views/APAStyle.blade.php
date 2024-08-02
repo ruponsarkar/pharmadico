@@ -1,9 +1,11 @@
 @extends('layout')
-@section('title', 'Editors Guidelines')
-@section('content')
 
+@section('title', 'APA Style (6th Edition)')
+
+@section('content')
     <section>
         {!! $data->data !!}
     </section>
+
 
 @endsection

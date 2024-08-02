@@ -20,19 +20,19 @@
                                 {{$data->j_name}}
                             </div>
                             <div class="card-text">
-                                <b>Abbr. Title:</b>{{$data->abbr_title}}
+                                <span>Abbr. Title:</span> <strong> {{$data->abbr_title}}</strong>
                                 <br>
-                                <b>ISSN(Online):</b> {{$data->issn}}
+                                <span>ISSN(Online):</span> <strong>  {{$data->issn}} </strong> 
                                 <br>
-                                <b>Publisher:</b> {{$data->publisher}}
+                                <span>Publisher:</span>  <strong>  {{$data->publisher}} </strong> 
                                 <br>
-                                <b>Frequency:</b> {{$data->frequency}}
+                                <span>Frequency:</span>  <strong>  {{$data->frequency}}  </strong> 
                                 <br>
-                                <b>Country of origin:</b> {{$data->country_of_origin}}
+                                <span>Country of origin:</span>  <strong> {{$data->country_of_origin}} </strong> 
                                 <br>
-                                <b>Chief Editor:</b> {{$data->chief_editor}}
+                                <span>Chief Editor:</span>  <strong>  {{$data->chief_editor}} </strong> 
                                 <br>
-                                <b>Language:</b> {{$data->language}}
+                                <span>Language:</span>  <strong> {{$data->language}} </strong> 
                             </div>
                             <br>
                             <div class="row justify-content-end">
