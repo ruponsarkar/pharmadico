@@ -45,12 +45,12 @@
                                         <div class="col-lg-12 details order-2 order-lg-1">
                                             <h3>All Issues</h3>
                                             <p>
-                                                @foreach ($article as $data)
+                                                @foreach ($article as $key=> $data)
                                                 <div class="col-lg-12 p-2 d-lg-none d-xl-block">
                                                     <div class="swiper-slide">
                                                         <div class='card'>
                                                             <div class="d-flex justify-content-between">
-                                                                <div class='title'>{{ Str::limit($data->name, 70) }}</div>
+                                                                <div class='title'>{{$key+1}}. {{ Str::limit($data->name, 70) }}</div>
                                                                 <div class='small p-2'><i class="bi bi-download text-info"></i> {{ $data->count}}</div>
                                                             </div>
                     

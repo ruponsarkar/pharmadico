@@ -15,71 +15,71 @@
                     <hr />
 
                     <div class="pb-2">
-                        <span>Sr No: </span>
-                        <strong>{{ $article->sr_no }}</strong>
+                        <strong>Sr No: </strong>
+                        <span>{{ $article->sr_no }}</span>
                     </div>
                     @if ($article->page)
                         <div class="pb-2">
-                            <span>Page No: </span>
-                            <strong>{{ $article->page }}</strong>
+                            <strong>Page No: </strong>
+                            <span>{{ $article->page }}</span>
                         </div>
                     @endif
 
 
                     @if ($article->language)
                         <div class="pb-2">
-                            <span>Language: </span>
-                            <strong>{{ $article->language }}</strong>
+                            <strong>Language: </strong>
+                            <span>{{ $article->language }}</span>
                         </div>
                     @endif
                     @if ($article->licence)
                         <div class="pb-2">
-                            <span>Licence: </span>
-                            <strong>{{ $article->licence }}</strong>
+                            <strong>Licence: </strong>
+                            <span>{{ $article->licence }}</span>
                         </div>
                     @endif
                     @if ($article->aname)
                         <div class="pb-2">
-                            <span>Authors: </span>
-                            <strong>{{ $article->aname }}</strong>
+                            <strong>Authors: </strong>
+                            <span>{{ $article->aname }}</span>
                         </div>
                     @endif
                     @if ($article->received)
                         <div class="pb-2">
-                            <span>Received: </span>
-                            <strong>{{ $article->received }}</strong>
+                            <strong>Received: </strong>
+                            <span>{{ $article->received }}</span>
                         </div>
                     @endif
                     @if ($article->revised)
                         <div class="pb-2">
-                            <span>Revised: </span>
-                            <strong>{{ $article->revised }}</strong>
+                            <strong>Revised: </strong>
+                            <span>{{ $article->revised }}</span>
                         </div>
                     @endif
                     @if ($article->accepted)
                         <div class="pb-2">
-                            <span>Accepted: </span>
-                            <strong>{{ $article->accepted }}</strong>
+                            <strong>Accepted: </strong>
+                            <span>{{ $article->accepted }}</span>
                         </div>
                     @endif
                     @if ($article->doi)
                         <div class="pb-2">
-                            <span>DOI: </span>
-                            <strong>{{ $article->doi }}</strong>
+                            <strong>DOI: </strong>
+                            <span>{{ $article->doi }}</span>
                         </div>
                     @endif
                     @if ($article->published_date)
                         <div class="pb-2">
-                            <span>Published Date: </span>
-                            <strong>{{ $article->published_date }}</strong>
+                            <strong>Published Date: </strong>
+                            <span>{{ $article->published_date }}</span>
                         </div>
                     @endif
                     @if ($article->googleScholar)
                         <div class="pb-2">
-                            <span>GoogleScholar: </span>
-                            <strong><a href="{{ $article->googleScholar }}">Click here
+                            <strong>GoogleScholar: </strong>
+                            <span><a href="{{ $article->googleScholar }}">Click here
                                 </a>
-                            </strong>
+                            </span>
                         </div>
                     @endif
 
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="pb-2">
-                        <span>Keywords: </span>
+                        <strong>Keywords: </strong>
                         <i>{{ $article->keywords }}
                         </i>
                     </div>
@@ -133,24 +133,24 @@
 
                         <div class="m-2">
                             <div>
-                                Journal: <strong> {{ $article->j_name }} </strong>
+                               <strong> Journal:</strong> <span> {{ $article->j_name }} </span>
                             </div>
                             <div>
-                                ISSN(Online): <i> {{ $article->issn }} </i>
+                                <strong> ISSN(Online): </strong> <i> {{ $article->issn }} </i>
                             </div>
                             <div>
-                                Publisher: <strong> {{ $article->publisher }} </strong>
+                                <strong> Publisher: </strong> <span> {{ $article->publisher }} </span>
                             </div>
                             <div>
-                                Frequency:
-                                <strong> {{ $article->frequency }} </strong>
+                                <strong> Frequency: </strong>
+                                <span> {{ $article->frequency }} </span>
                             </div>
                             <div>
-                                <!-- Chief Editor: <strong>  {{ $article->chief_editor }}  </strong> -->
+                                <!-- Chief Editor: <span>  {{ $article->chief_editor }}  </span> -->
                             </div>
                             <div>
-                                Language:
-                                <strong> {{ $article->language }} </strong>
+                                <strong> Language:</strong>
+                                <span> {{ $article->language }} </span>
                             </div>
                         </div>
 

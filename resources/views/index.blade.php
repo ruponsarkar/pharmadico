@@ -195,25 +195,7 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-md-4 d-flex align-items-center">
-                <div class="card-c">
-                    <div class="h-box">
-                        <div class="h-box-text p-2">
-                            Indexing
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center flex-wrap">
-                        @foreach ($indexings as $data)
-                            <img class="img-fluid" src="{{ url('assets/indexing/img/' . $data->img) }}" alt="Image"
-            style="
-            height: 140px;
-            width: 140px;
-            object-fit: contain;
-            ">
-            @endforeach
-        </div>
-    </div>
-</div> --}}
+    
         </div>
 
 
@@ -226,12 +208,12 @@
                         </div>
                     </div>
                     <div class="">
-                        @foreach ($latestArticle as $data)
+                        @foreach ($latestArticle as $key=> $data)
                             <div class="col-lg-12 p-2 d-lg-none d-xl-block">
                                 <div class="swiper-slide">
                                     <div class='card'>
                                         <div class="d-flex justify-content-between">
-                                            <div class='title'>{{ Str::limit($data->name, 70) }}</div>
+                                            <div class='title'> {{$key+1}}. {{ Str::limit($data->name, 70) }}</div>
                                             <div class='small p-2'><i class="bi bi-download text-info"></i> {{ $data->count}}</div>
                                         </div>
 
@@ -346,197 +328,14 @@
                 </div>
 
 
-
-
-
-
-
             </div>
 
-            {{-- indexing  --}}
 
-            {{-- <div class="col-md-4">
-                <div class="row pt-3">
-                    <section id="indexing" class="indexing">
-                        <div class="section-title">
-                            <h2>Indexing</h2>
-                        </div>
-                        <div class="container" data-aos="fade-left">
-                            <div class="indexing-slider swiper">
-                                <div class="swiper-wrapper align-items-center">
-
-                                    @foreach ($indexings as $data)
-                                        <div class="swiper-slide">
-                                            <img class="img-fluid"
-                                                src="{{ url('assets/indexing/img/' . $data->img) }}" alt="Image"
-    style="height: 140px; width: 140px; object-fit: contain;">
-</div>
-@endforeach
-</div>
-</div>
-
-</div>
-</section>
-</div>
-</div> --}}
-
-
-
-            {{--
-        <div class="col-xl-4">
-
-            <div class="row pt-3">
-                <section id="indexing" class="indexing">
-                    <div class="section-title">
-                        <h2>Indexing</h2>
-                    </div>
-                    <div class="container" data-aos="fade-left">
-                        <div class="indexing-slider swiper">
-                            <div class="swiper-wrapper align-items-center">
-
-                                @foreach ($indexings as $data)
-                                <div class="swiper-slide"><img src="{{ url('assets/img/indexing/' . $data->img) }}" class="img-fluid" alt="">
-</div>
-@endforeach
-</div>
-</div>
-
-</div>
-</section>
-</div>
-
-<div class="row">
-
-    <div class="col-sm-12 text-center p-1">
-        <div class="btn effect01">Publication Ethics and Malpractice Statement</div>
-    </div>
-    <div class="col-sm-12 text-center p-1">
-        <div class="btn effect01">Manuscript Preparation Guidelines</div>
-    </div>
-    <div class="col-sm-12 text-center p-1">
-        <div class="btn effect01">Research Guidelines</div>
-    </div>
-    <div class="col-sm-12 text-center p-1">
-        <div class="btn effect01">APA Style (6th Edition)</div>
-    </div>
-    <div class="col-sm-12 text-center p-1">
-        <div class="btn effect01">Writing a good research paper</div>
-    </div>
-    <div class="col-sm-12 text-center p-1">
-        <div class="btn effect01">Google Language Translator</div>
-    </div>
-</div>
-</div> --}}
 
         </div>
 
 
-        <!-- ======= Journal Section ======= -->
-        {{--
-    <section id="article" class="article testimonials-bg p-1">
-        <div class="section-title">
-            <h2>Journals</h2>
-            <!-- <p>Latest Posts</p> -->
-        </div>
-
-
-        <div class="container-fluid" data-aos="fade-left">
-            <div class="row">
-
-                <div class="article-slider swiper">
-                    <div class="swiper-wrapper align-items-center text-center">
-
-                        @foreach ($journals as $data)
-                        <div class="swiper-slide">
-                            <img class="img-fluid" src="{{ url('assets/journals/img/' . $data->photo) }}">
-</div>
-@endforeach
-
-
-</div>
-<div class="swiper-pagination"></div>
-</div>
-
-</div>
-
-
-</section> --}}
-        <!-- End Testimonials Section -->
-
-
-
-        {{--
-    <div class="row p-2">
-        <div class="col-lg-3">
-            <div class="row align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                <section id="access-policy">
-                    <div class="access-policy-container">
-                        <div class="access-policy-item">
-                            <h4>Open Access Policy</h4>
-                            <br> Copyright and Licensing: All articles published in journals our have Attribution- Share Alike CC BY- NC: Creative Commons Attribution-Share Alike 4.0 International License. License readers can share...
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="col-lg-9">
-            <section id="article" class="article testimonials-bg">
-                <div class="section-title">
-                    <h2>Latest Articles</h2>
-                </div>
-
-
-                <div class="container-fluid" data-aos="fade-up">
-                    <div class="row">
-
-                        @foreach ($latestArticle as $data)
-                        <div class="col-lg-4 col-md-6 col-xl-3 p-2 d-lg-none d-xl-block">
-                            <div class="swiper-slide">
-                                <div class='card'>
-                                    <div class='title'>{{ Str::limit($data->name, 65) }}</div>
-
-<p class="card-icon">
-    <i class="bi bi-person-circle text-info"></i> {{ Str::limit($data->aname, 30) }}
-    <br>
-    <i class="bi bi-tag-fill text-warning"></i> {{ $data->designation }}
-</p>
-<p class='description' style="font-size: 2rem;">
-    <i class="bi bi-download text-primary"></i>
-</p>
-</div>
-</div>
-</div>
-@endforeach @foreach ($latestArticleThree as $data)
-<div class="col-lg-4 col-md-6 col-xl-3 p-2 d-none d-lg-block d-xl-none">
-    <div class="swiper-slide">
-        <div class='card'>
-            <div class='title'>{{ Str::limit($data->name, 65) }}</div>
-
-            <p class="card-icon">
-                <i class="bi bi-person-circle text-info"></i> {{ Str::limit($data->aname, 30) }}
-                <br>
-                <i class="bi bi-tag-fill text-warning"></i> {{ $data->designation }}
-            </p>
-            <p class='description' style="font-size: 2rem;">
-                <i class="bi bi-download text-primary"></i>
-            </p>
-        </div>
-    </div>
-</div>
-@endforeach
-
-
-
-<div class="text-center p-2"><strong><a href="#"> SHOW MORE</a></strong></div>
-</div>
-
-</div>
-
-
-</section>
-<!-- End Testimonials Section -->
-</div>
-</div> --}}
+   
 
 </div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

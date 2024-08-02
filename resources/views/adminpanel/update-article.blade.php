@@ -89,7 +89,7 @@
       </li>
       
       <li>
-        <label class="form-label" for="name">Published date</label>
+        <label class="form-label" for="name">Published</label>
         <input type="text" name="published_date" id="published_date" value="{{$articles->published_date}}">
       </li>
       
@@ -116,11 +116,11 @@
       {{-- ************************** --}}
       
       <li>
-        <label for="email">sr_no No</label>
+        <label for="email">SL No</label>
         <input type="text" id="sr_no" name="sr_no" value="{{$articles->sr_no}}">
       </li>
       <li>
-        <label for="email">cited_by</label>
+        <label for="email">Cited by</label>
         <input type="text" id="cited_by" name="cited_by" value="{{$articles->cited_by}}">
       </li>
       <li>
