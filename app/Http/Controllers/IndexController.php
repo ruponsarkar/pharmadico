@@ -48,12 +48,12 @@ class IndexController extends Controller
     {
         // return $request->all();
         $query = $request->input('query');
-
+        // return $query;
         if (!$query) {
             return response()->json(['error' => 'Query parameter is required'], 400);
         }
 
-        $results = manuscript_status::where('muuid', 'LIKE', "%{$query}%")->where('status' , 0)->first(); // Adjust the field 'name' based on your model
+        $results = manuscript_status::where('muuid', 'LIKE', "%{$query}%")->first(); // Adjust the field 'name' based on your model
 
         return response()->json($results);
     }
@@ -65,7 +65,10 @@ class IndexController extends Controller
     }
 
     function viewmanuscript(Request $request , $id){ 
-        $manuStatus = manuscript_status::where('muuid' , $id)->get();
+        $parts = explode('-', $id);
+        $originalFormat = implode('/', $parts);
+        // return $originalFormat;
+        $manuStatus = manuscript_status::where('muuid' , $originalFormat)->get();
 
         $getManufullDetails = manuscripts::where('muuid',   $manuStatus[0]->muuid)->first();
         return view('view-manuscript', ['manudata'=>$manuStatus, 'getManufullDetails'=>$getManufullDetails]);

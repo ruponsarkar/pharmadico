@@ -71,7 +71,7 @@ Route::get('/dashboard', function () {
 });
 Route::get('all-manuscripts', [adminPanelController::class, 'allManuscript']);
 Route::get('add-conference', [adminPanelController::class,'addconference']);
-Route::get('view-manuscript/{id}', [IndexController::class,'viewmanuscript'])->where('id', '.+');;
+Route::get('view-manuscript/{id}', [IndexController::class,'viewmanuscript'])->where('id', '.+');
 // Route::get('update-manuscripts/{mid}/{status}', [adminPanelController::class, 'updateManuscript']);
 
 // admin panel 

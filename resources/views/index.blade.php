@@ -361,7 +361,7 @@
 
                     const statusField = document.createElement('div');
                     statusField.className = 'result-field';
-                    statusField.innerHTML = `<strong>Status:</strong> ${result.status === 0 ? 'Accecpted' : ''} ${result.status === 1 ? 'Draft' : ''} ${result.status === 2 ? 'Published' : ''} ${result.status === 3 ? 'Rejected': ''}  `;
+                    statusField.innerHTML = `<strong>Status:</strong> ${result.status === 0 ? 'Initial stage' : ''} ${result.status === 1 ? 'Review' : ''} ${result.status === 2 ? 'Awaiting Editorial Approval' : ''} ${result.status === 3 ? 'Re-review': ''}  ${result.status === 4 ? 'Final Verification of Content': ''} ${result.status === 5 ? 'Published ': ''} ${result.status === 6 ? 'Reject ': ''}  `;
                     resultContainer.appendChild(statusField);
 
                     const dateField = document.createElement('div');
@@ -371,8 +371,9 @@
 
                     const dateField2 = document.createElement('div');
                     dateField2.className = 'result-field';
-
-                    dateField2.innerHTML = `<strong> <a href="{{URL('view-manuscript/${result.muuid}')}}">View File</a></strong>`;
+                    let paths = result.muuid.replace(/\//g, '-')
+                    console.log(paths);
+                    dateField2.innerHTML = `<strong> <a href="{{URL('view-manuscript/${paths}')}}">View File</a></strong>`;
                     resultContainer.appendChild(dateField2);
                 } else {
                     const field = document.createElement('div');

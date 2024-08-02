@@ -97,7 +97,7 @@ class FormController extends Controller
         $file = time() . '.' . $request->file->extension();
 
         $manuscript = new manuscripts;
-        $manuscript->muuid = strip_tags('IJPSM/'.$year.'/'.$month.'/'.$count);
+        $manuscript->muuid = strip_tags('IJPSM/'.$year.'/'.$month.'/'.$count + 1);
         $manuscript->mode = strip_tags($request->mode);
         $manuscript->type = strip_tags($request->type);
         $manuscript->journal = $j_name->j_name;
