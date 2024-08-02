@@ -171,7 +171,7 @@ class adminPanelController extends Controller
             'title' => $request->title,
             'file' => $file
         ]);
-        $request->file->move(base_path('public_html/assets/conference'), $file);
+        $request->file->move(base_path('public/assets/conference'), $file);
         return redirect('add-conference')->with('message', 'Your request Submitted successfully');
     }
     function updateconference(Request $request, $id)
