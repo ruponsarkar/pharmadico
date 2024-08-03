@@ -275,7 +275,7 @@
                                             @foreach($indexing as $index)
 
                                             <a target="_blank" href="{{$index->link}}">
-                                                <img style="border: 1px solid #555;" src="{{url('assets/img/indexing/'.$index->img)}}"
+                                                <img style="border: 1px solid #555;" src="{{url('assets/indexing/img'.$index->img)}}"
                                                     alt="indexing" width="250" height=auto>
                                             </a> &nbsp; &nbsp; &nbsp;
                                             
