@@ -74,15 +74,17 @@ Route::get('add-conference', [adminPanelController::class,'addconference']);
 Route::get('view-manuscript/{id}', [IndexController::class,'viewmanuscript'])->where('id', '.+');
 // Route::get('update-manuscripts/{mid}/{status}', [adminPanelController::class, 'updateManuscript']);
 
+Route::post('submit_editor', [FormController::class, 'submit_editor']);
+Route::post('submit_reviewer', [FormController::class, 'submit_reviewer']);
 // admin panel 
-
 Route::group(['middleware'=>['AuthCheck']], function(){
     
     Route::get('login', [adminPanelController::class, 'login']);
     Route::get('admin_index', [adminPanelController::class, 'adminIndex']);
     Route::get('all-manuscript', [adminPanelController::class, 'allManuscript']);
     Route::get('receive-editors', [adminPanelController::class, 'allEditorsRequest']);
-    
+    Route::get('receive-reviewers' ,[adminPanelController::class, 'allReviewerRequest']);
+
     Route::get('journalForm', [adminPanelController::class, 'journalForm']);
     Route::post('addJournal', [adminPanelController::class, 'addJournal']);
     Route::get('indexing', [adminPanelController::class, 'indexing']);

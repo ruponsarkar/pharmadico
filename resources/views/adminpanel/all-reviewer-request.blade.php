@@ -13,7 +13,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title text-center"> All Editor Request </h3>
+            <h3 class="card-title text-center"> All Reviewer Request </h3>
           </div>
 
           <div class="card-body">
@@ -33,8 +33,12 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($editors as $data)
+
+                @foreach($reviewer as $data)
                 <tr>
+
+
+
                   <td style="text-align: center; color:red; font-weight:bold;"><a href="{{URL('assets/editors/cv/'.$data->cv)}}" target="_blank"> Check CV
                     </a></td>
 

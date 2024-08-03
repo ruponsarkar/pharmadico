@@ -52,8 +52,8 @@ class FormController extends Controller
         $editor->save();
 
 
-        $request->photo->move(base_path('public_html/assets/editors/img'), $photo);
-        $request->cv->move(base_path('public_html/assets/editors/cv'), $cv);
+        $request->photo->move(base_path('public/assets/editors/img'), $photo);
+        $request->cv->move(base_path('public/assets/editors/cv'), $cv);
 
 
         return redirect('Join_editor')->with('message', 'Your request Submitted successfully');
@@ -188,8 +188,8 @@ class FormController extends Controller
         $reviewer->save();
 
 
-        $request->photo->move(base_path('public_html/assets/reviewers/img'), $photo);
-        $request->cv->move(base_path('public_html/assets/reviewers/cv'), $cv);
+        $request->photo->move(base_path('public/assets/reviewers/img'), $photo);
+        $request->cv->move(base_path('public/assets/reviewers/cv'), $cv);
 
 
         return redirect('join_reviewer')->with('message', 'Your request Submitted successfully');

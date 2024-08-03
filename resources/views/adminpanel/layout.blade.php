@@ -101,14 +101,14 @@
                 </p>
               </a>
             </li>
-            {{-- <li class="nav-item">
+            <li class="nav-item">
               <a href="{{URL('receive-reviewers')}}" class="nav-link {{ request()->is('receive-reviewers') ? 'active' : ''}}">
             <i class="nav-icon fas fa-chalkboard-teacher"></i>
             <p>
               Reviewer Request Receive
             </p>
             </a>
-            </li> --}}
+            </li> 
 
             <li class="nav-item">
               <a href="{{URL('add-conference')}}" class="nav-link {{ request()->is('receive-reviewers') ? 'active' : ''}}">

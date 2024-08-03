@@ -97,6 +97,11 @@ class adminPanelController extends Controller
 
         return view('adminpanel.all-editors-request', ['editors' => $editors]);
     }
+    function allReviewerRequest(){
+        $reviewer = reviewer::orderBy('r_id', 'DESC')->get();
+        return view('adminpanel.all-reviewer-request', ['reviewer' => $reviewer]);
+    }
+
 
     function journalForm()
     {

@@ -223,6 +223,7 @@ class adminPanelController extends Controller
         $request->validate([
             'name'=>'required|max:200',
             'university'=>'max:300',
+            'designation'=>'max:300',
             'details'=>'max:300',
             'type'=>'required|max:10',
             'journal'=>'required|max:50',
@@ -236,6 +237,7 @@ class adminPanelController extends Controller
            
            $editor=new editor_data;
            $editor->name=strip_tags($request->name);
+           $editor->designation=strip_tags($request->designation);
            $editor->university=strip_tags($request->university);
            $editor->details=strip_tags($request->details);
            $editor->type=strip_tags($request->type);
@@ -247,17 +249,7 @@ class adminPanelController extends Controller
       
            $editor->save();
            $request->photo->move(base_path('public_html/assets/img/editor-img'), $photo);
-
-
-
-
-
-
            return redirect('addEditors')->with('message','Your request Submitted successfully');
-
-
-
-
     }
 
     function edit_editor(Request $request, $id){
