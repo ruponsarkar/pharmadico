@@ -195,6 +195,14 @@
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{URL('setPages')}}" class="nav-link {{ request()->is('setPages') ? 'active' : ''}}">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  News & Updation
+                </p>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

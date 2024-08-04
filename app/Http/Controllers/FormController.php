@@ -113,7 +113,7 @@ class FormController extends Controller
         $manuscript->save();
 
 
-        $request->file->move(base_path('public_html/assets/manuscript'), $file);
+        $request->file->move(base_path('public/assets/manuscript'), $file);
 
 
 

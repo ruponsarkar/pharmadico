@@ -116,15 +116,13 @@
             </div>
         </div>
 
-
-
         <div class="row  py-4">
 
             <div class="col-md-4">
                 <div class="card-c">
                     <div class="h-box">
                         <div class="h-box-text p-2">
-                            Open Access Policy
+                            News & Updation
                         </div>
                     </div>
                     <div class="row align-items-stretch">
