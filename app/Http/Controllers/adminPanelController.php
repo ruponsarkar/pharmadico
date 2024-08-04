@@ -15,11 +15,13 @@ use App\Models\articles;
 use App\Models\book;
 use App\Models\editor;
 use App\Models\home_asset;
+use App\Models\news;
 use App\Models\manuscript_status;
 use App\Models\conference;
 use Carbon;
 use Illuminate\Support\Facades\Hash;
 use DB;
+use Facade\FlareClient\View;
 
 class adminPanelController extends Controller
 {
@@ -870,9 +872,25 @@ class adminPanelController extends Controller
 
 
 
+    function newsUpdation(){
+        $news = news::get();
 
+        return view('adminpanel.news', ['news' => $news]);
+    }
 
+    function addnewsData (Request $request){
+        $request->validate([
+            'title' => 'required',
+            // 'journal' => 'required|max:50',
+        ]);
 
+        $news = new news;
+        $news->title = strip_tags($request->title);
+        // $news->j_id = strip_tags($request->journal);
+        $news->save();
+
+        return redirect('newsUpdation')->with('message', 'Added');
+    }
 
 
 }

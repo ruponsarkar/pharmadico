@@ -196,7 +196,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{URL('setPages')}}" class="nav-link {{ request()->is('setPages') ? 'active' : ''}}">
+              <a href="{{URL('newsUpdation')}}" class="nav-link {{ request()->is('setPages') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                   News & Updation

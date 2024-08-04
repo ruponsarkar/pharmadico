@@ -147,7 +147,10 @@ Route::group(['middleware'=>['AuthCheck']], function(){
 
     Route::get('addpages/{type}', [adminPanelController::class, 'addpages']);
     Route::post('savePageData', [adminPanelController::class, 'savePageData']);
-   
+    
+    
+    Route::get('newsUpdation', [adminPanelController::class, 'newsUpdation']);
+    Route::post('addnews', [adminPanelController::class, 'addnewsData']);
 
 });
 

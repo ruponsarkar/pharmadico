@@ -14,7 +14,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Add Volume</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Add News</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -34,24 +34,14 @@
 
 
 
-                                <form action="addVolume" method="post" enctype="multipart/form-data">
+                                <form action="addnews" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="one">
-                                        <label for="name">Volume Name</label>
-                                        <input type="text" name="name" id="" class="form-control">
-                                    </div>
-
-                                    <div class="one">
-                                        <label for="language">For journal</label>
-                                        <select name="journal" id="" class="form-select">
-                                            @foreach($journal as $data)
-                                            <option value="{{$data->j_id}}">{{$data->j_name}}</option>
-                                            @endforeach
-                                        </select>
+                                        <label for="name">news Name</label>
+                                        <input type="text" name="title" id="" class="form-control">
                                     </div>
 
                                     <div class="one" style="padding : 20px">
-
                                         <input class="btn btn-block btn-primary" type="submit" name="submit-volume" value="Save" id="">
                                     </div>
                                 </form>
@@ -68,7 +58,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title text-center"> All Volume </h3>
+                        <h3 class="card-title text-center"> All News </h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -76,7 +66,7 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>Sl No.</th>
-                                    <th>Volume Name</th>
+                                    <th>News Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -84,20 +74,18 @@
                                 @php
                                 $counter = 1;
                                 @endphp
-                                @foreach($volume as $data)
+                                @foreach($news as $data)
                                 <tr>
                                     <td>{{$counter++}}</td>
                                 <td>
                                 
                                     <div class="list-v">
-                                        <b> {{$data->name}} </b>
-
-                                        ({{$data->j_name}})
+                                        {{$data->title}}
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                <a href="{{ URL('add-issues/'.$data->id)}}">
-                                    <i class="fas fa-arrow-circle-right"></i>
+                                <a href="#">
+                                    <i class="fas fa-pencil"></i>edit
                                 </a>
                             </td>
                                 </tr>

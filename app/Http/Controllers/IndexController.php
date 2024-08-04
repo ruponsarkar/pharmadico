@@ -10,6 +10,7 @@ use App\Models\visitor;
 use App\Models\indexings;
 use App\Models\home_asset;
 use App\Models\manuscripts;
+use App\Models\news;
 use App\Models\manuscript_status;
 use DB;
 
@@ -21,7 +22,7 @@ class IndexController extends Controller
         $latestArticle = articles::where('status', 1)->limit(4)->orderBy("id", "desc")->get();
         $latestArticleThree = articles::where('status', 1)->limit(3)->orderBy("id", "desc")->get();
         $journals = journal::where('active', 1)->get();
-
+        $news = news::orderBy("id", "desc")->get();
         $indexings = indexings::where('active', 1)->get();
         
 
@@ -41,7 +42,7 @@ class IndexController extends Controller
 
         return view('index', ['latestArticle' => $latestArticle, 'latestArticleThree' => $latestArticleThree, 'journals'=>$journals, 
         'indexings'=>$indexings,
-        'countJournal'=>$countJournal, 'countArticle'=>$countArticle, 'countDownload'=>$countDownload, 'countVisitor'=>$countVisitor]);
+        'countJournal'=>$countJournal, 'countArticle'=>$countArticle, 'countDownload'=>$countDownload, 'countVisitor'=>$countVisitor,'news' =>$news]);
     }
    
     function search(Request $request)
