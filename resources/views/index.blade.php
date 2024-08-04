@@ -19,16 +19,23 @@
 
     .marquee-container {
         height: 200px;
-        /* Adjust as needed */
         overflow: hidden;
         position: relative;
+        margin-bottom: 20px;
+        width: 100%;
     }
 
     .marquee {
-        display: inline-block;
+        display: block;
         position: absolute;
         width: 100%;
         animation: marquee 10s linear infinite;
+        left: 0;
+        text-align: left;
+    }
+
+    .marquee-container:hover .marquee {
+        animation-play-state: paused;
     }
 
     @keyframes marquee {
@@ -154,13 +161,13 @@
                                     <br> Copyright and Licensing: All articles published in journals our have
                                     Attribution- Share Alike CC BY- NC: Creative Commons Attribution-Share Alike 4.0
                                     International License. License readers can share... -->
-                                    @foreach ($news as $data)
                                     <div class="marquee-container">
                                         <div class="marquee">
+                                            @foreach ($news as $data)
                                             <p>{{$data->title}}</p>
+                                            @endforeach
                                         </div>
                                     </div>
-                                    @endforeach
                                 </div>
                             </div>
                         </section>

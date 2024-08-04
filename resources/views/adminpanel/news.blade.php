@@ -32,17 +32,16 @@
                                     </ul>
                                 </div>
 
-
-
-                                <form action="addnews" method="post" enctype="multipart/form-data">
+                                <form action="addnews" method="post" enctype="multipart/form-data" id="newsForm">
                                     @csrf
                                     <div class="one">
-                                        <label for="name">news Name</label>
-                                        <input type="text" name="title" id="" class="form-control">
+                                        <label for="name">News Name</label>
+                                        <input type="text" name="title" id="newsTitle" class="form-control">
                                     </div>
 
                                     <div class="one" style="padding : 20px">
-                                        <input class="btn btn-block btn-primary" type="submit" name="submit-volume" value="Save" id="">
+                                        <input type="hidden" name="news_id" id="newsId">
+                                        <input class="btn btn-block btn-primary" type="submit" name="submit-volume" value="Save" id="submitBtn">
                                     </div>
                                 </form>
 
@@ -50,6 +49,7 @@
                         </div>
                     </div>
                 </div>
+
                 <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Add Volume</a>
 
             </div>
@@ -77,19 +77,17 @@
                                 @foreach($news as $data)
                                 <tr>
                                     <td>{{$counter++}}</td>
-                                <td>
-                                
-                                    <div class="list-v">
-                                        {{$data->title}}
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                <a href="#">
-                                    <i class="fas fa-pencil"></i>edit
-                                </a>
-                            </td>
+                                    <td>
+                                        <div class="list-v">
+                                            {{$data->title}}
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="#" class="edit-btn" data-id="{{$data->id}}" data-title="{{$data->title}}">
+                                            <i class="fas fa-pencil"></i> edit
+                                        </a>
+                                    </td>
                                 </tr>
-                                
                                 @endforeach
                             </tbody>
 
@@ -101,5 +99,35 @@
         </div>
     </div>
 </section>
+
+@endsection
+
+@section('script2')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const exampleModal = new bootstrap.Modal(document.getElementById('exampleModalToggle'));
+
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const newsId = this.getAttribute('data-id');
+                const newsTitle = this.getAttribute('data-title');
+
+                document.getElementById('newsId').value = newsId;
+                document.getElementById('newsTitle').value = newsTitle;
+                document.getElementById('exampleModalToggleLabel').textContent = 'Edit News';
+                document.getElementById('submitBtn').value = 'Update';
+
+                exampleModal.show();
+            });
+        });
+
+        document.querySelector('.btn-primary[data-bs-toggle="modal"]').addEventListener('click', function() {
+            document.getElementById('newsForm').reset();
+            document.getElementById('newsId').value = '';
+            document.getElementById('exampleModalToggleLabel').textContent = 'Add News';
+            document.getElementById('submitBtn').value = 'Save';
+        });
+    });
+</script>
 
 @endsection
