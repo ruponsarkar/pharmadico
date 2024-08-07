@@ -150,7 +150,7 @@ class adminPanelController extends Controller
         $journal->save();
 
 
-        $request->photo->move(base_path('public/assets/journals/img'), $photo);
+        $request->photo->move(base_path('public_html/assets/journals/img'), $photo);
 
 
         return redirect('journalForm')->with('message', 'Your request Submitted successfully');
@@ -179,7 +179,7 @@ class adminPanelController extends Controller
             'title' => $request->title,
             'file' => $file
         ]);
-        $request->file->move(base_path('public/assets/conference'), $file);
+        $request->file->move(base_path('public_html/assets/conference'), $file);
         return redirect('add-conference')->with('message', 'Your request Submitted successfully');
     }
     function updateconference(Request $request, $id)
@@ -252,7 +252,7 @@ class adminPanelController extends Controller
 
         $indexing->save();
 
-        $request->photo->move(base_path('public/assets/indexing/img'), $photo);
+        $request->photo->move(base_path('public_html/assets/indexing/img'), $photo);
 
         return redirect('indexing')->with('message', 'Your request Submitted successfully');
     }
@@ -354,7 +354,7 @@ class adminPanelController extends Controller
         $editor->ip_address = \Request::ip();
 
         $editor->save();
-        $request->photo->move(base_path('public/assets/img/editor-img'), $photo);
+        $request->photo->move(base_path('public_html/assets/img/editor-img'), $photo);
 
 
 
@@ -404,7 +404,7 @@ class adminPanelController extends Controller
         $editor->ip_address = \Request::ip();
 
         $editor->update();
-        //    $request->photo->move(base_path('public/assets/img/editor-img'), $photo);
+        //    $request->photo->move(base_path('public_html/assets/img/editor-img'), $photo);
 
 
         return redirect('addEditors')->with('message', 'Your request Submitted successfully');
@@ -580,7 +580,7 @@ class adminPanelController extends Controller
         $articles->ip_address = \Request::ip();
 
         $articles->save();
-        $request->file->move(base_path('public/assets/articles/'), $file);
+        $request->file->move(base_path('public_html/assets/articles/'), $file);
 
 
         return back()->with('message', 'Added');
@@ -635,7 +635,6 @@ class adminPanelController extends Controller
 
 
 
-
         $updateArticle->designation = strip_tags($request->designation);
         $updateArticle->published_date = $request->published_date;
         $updateArticle->googleScholar = $request->googleScholar;
@@ -644,13 +643,14 @@ class adminPanelController extends Controller
         $updateArticle->page = strip_tags($request->page);
         if ($request->file) {
             $updateArticle->file = strip_tags($file);
+        $updateArticle->fileOriginalName = $fileOriginalName;
         }
 
         $updateArticle->ip_address = \Request::ip();
 
         $updateArticle->update();
         if ($request->file) {
-            $request->file->move(base_path('public/assets/articles/'), $file);
+            $request->file->move(base_path('public_html/assets/articles/'), $file);
         }
         return back()->with('message', 'Your request Submitted successfully');
         // return dd($request->all());
@@ -717,7 +717,7 @@ class adminPanelController extends Controller
         $book->ip_address = \Request::ip();
 
         $book->save();
-        $request->photo->move(base_path('public/assets/img/books'), $photo);
+        $request->photo->move(base_path('public_html/assets/img/books'), $photo);
 
 
         return back()->with('message', 'Added');
@@ -728,7 +728,7 @@ class adminPanelController extends Controller
 
         $photo = time() . '.' . $request->photo->extension();
 
-        $request->photo->move(base_path('public/assets/journals/img'), $photo);
+        $request->photo->move(base_path('public_html/assets/journals/img'), $photo);
 
         $journal = journal::where('j_id', '=', $request->id)->update([
             'photo' => $photo,
@@ -782,7 +782,7 @@ class adminPanelController extends Controller
                 'img' => $photo
             ]);
 
-            $request->photo->move(base_path('public/assets/indexing/img'), $photo);
+            $request->photo->move(base_path('public_html/assets/indexing/img'), $photo);
 
             return redirect()->back()->with('message', 'Updated');
         }
@@ -812,7 +812,7 @@ class adminPanelController extends Controller
             $logo = home_asset::find($id)->update([
                 'logo' => $photo
             ]);
-            $request->logo->move(base_path('public/assets/homeAssets'), $photo);
+            $request->logo->move(base_path('public_html/assets/homeAssets'), $photo);
             return redirect()->back()->with('message', 'Updated');
         }
         if ($request->banner) {
@@ -822,7 +822,7 @@ class adminPanelController extends Controller
             $banner = home_asset::find($id)->update([
                 'banner' => $photo
             ]);
-            $request->banner->move(base_path('public/assets/homeAssets'), $photo);
+            $request->banner->move(base_path('public_html/assets/homeAssets'), $photo);
             return redirect()->back()->with('message', 'Updated');
         }
     }
