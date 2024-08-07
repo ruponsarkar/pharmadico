@@ -52,8 +52,8 @@ class FormController extends Controller
         $editor->save();
 
 
-        $request->photo->move(base_path('public/assets/editors/img'), $photo);
-        $request->cv->move(base_path('public/assets/editors/cv'), $cv);
+        $request->photo->move(base_path('public_html/assets/editors/img'), $photo);
+        $request->cv->move(base_path('public_html/assets/editors/cv'), $cv);
 
 
         return redirect('Join_editor')->with('message', 'Your request Submitted successfully');
@@ -113,7 +113,7 @@ class FormController extends Controller
         $manuscript->save();
 
 
-        $request->file->move(base_path('public/assets/manuscript'), $file);
+        $request->file->move(base_path('public_html/assets/manuscript'), $file);
 
 
 
@@ -131,7 +131,7 @@ class FormController extends Controller
 
         // for user 
         Mail::send('mails.acknowledge', $data, function ($message) use ($data) {
-            $message->from('submit@pharmedicopublishers.com');
+            $message->from('submit@pharmedicopublishers.com', 'IJPSM Journal');
             $message->to($data['email']);
             $message->subject('Submission Acknowledgement');
         });
@@ -139,7 +139,8 @@ class FormController extends Controller
         // for admin 
         Mail::send('mails.admin', $data, function ($message) use ($data) {
             $message->from('submit@pharmedicopublishers.com');
-            $message->to('ruponsarkar108@gmail.com');
+            // $message->to('ruponsarkar108@gmail.com');
+             $message->to('ijpsmeditor@gmail.com');
             $message->subject('New Manuscript Request');
         });
         
@@ -188,8 +189,8 @@ class FormController extends Controller
         $reviewer->save();
 
 
-        $request->photo->move(base_path('public/assets/reviewers/img'), $photo);
-        $request->cv->move(base_path('public/assets/reviewers/cv'), $cv);
+        $request->photo->move(base_path('public_html/assets/reviewers/img'), $photo);
+        $request->cv->move(base_path('public_html/assets/reviewers/cv'), $cv);
 
 
         return redirect('join_reviewer')->with('message', 'Your request Submitted successfully');
