@@ -139,22 +139,26 @@ body {
 
   <form action="updateEditors/{{$editors->id}}" method="post" enctype="multipart/form-data">
     @csrf
-    <div class="one">
+    <div class="one pt-3">
       <label for="jname">Editors Name</label>
       <input type="text" name="name" value="{{$editors->name}}" id="" class="form-control">
     </div>
 
-    <div class="one">
+    <div class="one pt-3">
+      <label for="abbr">Designation</label>
+      <input type="text" name="designation" value="{{$editors->designation}}" id="" class="form-control">
+    </div>
+    <div class="one pt-3">
       <label for="abbr">University Name</label>
       <input type="text" name="university" value="{{$editors->university}}" id="" class="form-control">
     </div>
 
-    <div class="one">
+    <div class="one pt-3">
       <label for="issn">Details (*Optional)</label>
       <input type="text" name="details" value="{{$editors->details}}" id="" class="form-control">
     </div>
 
-    <div class="one">
+    <div class="one pt-3">
       <label for="type">Type</label>
       <select name="type" id="" required class="form-select">
         <option value=""></option>
@@ -163,7 +167,7 @@ body {
       </select>
     </div>
 
-    <div class="one">
+    <div class="one pt-3">
       <label for="language">For journal</label>
       <select name="journal" id="" required class="form-select">
         <option value=""></option>

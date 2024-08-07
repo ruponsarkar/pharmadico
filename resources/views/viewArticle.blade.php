@@ -14,10 +14,12 @@
 
                     <hr />
 
+                    @if ($article->sr_no)
                     <div class="pb-2">
                         <strong>Sr No: </strong>
                         <span>{{ $article->sr_no }}</span>
                     </div>
+                    @endif
                     @if ($article->page)
                         <div class="pb-2">
                             <strong>Page No: </strong>

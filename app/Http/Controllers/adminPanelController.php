@@ -15,11 +15,13 @@ use App\Models\articles;
 use App\Models\book;
 use App\Models\editor;
 use App\Models\home_asset;
+use App\Models\news;
 use App\Models\manuscript_status;
 use App\Models\conference;
 use Carbon;
 use Illuminate\Support\Facades\Hash;
 use DB;
+use Facade\FlareClient\View;
 
 class adminPanelController extends Controller
 {
@@ -57,24 +59,24 @@ class adminPanelController extends Controller
         $exists = manuscript_status::where('muuid', $request->selectedID)->exists();
 
         // if ($exists) {
-            // $manuscriptStatus = new manuscript_status;
-            // $manuscriptStatus->muuid = $request->selectedID;
-            // $manuscriptStatus->status = $request->selectedStatus;
-            // $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
+        // $manuscriptStatus = new manuscript_status;
+        // $manuscriptStatus->muuid = $request->selectedID;
+        // $manuscriptStatus->status = $request->selectedStatus;
+        // $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
 
-            // $manuscriptStatus->update();
+        // $manuscriptStatus->update();
         //     $updateISExist = manuscript_status::where('muuid', $request->selectedID)->update([
         //         'muuid' => $request->selectedID,
         //         'status' => $request->selectedStatus,
         //         'date' => date('d-m-Y', strtotime(Carbon\Carbon::now()))
         //     ]);
         // } else {
-            $manuscriptStatus = new manuscript_status;
-            $manuscriptStatus->muuid = $request->selectedID;
-            $manuscriptStatus->status = $request->selectedStatus;
-            $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
+        $manuscriptStatus = new manuscript_status;
+        $manuscriptStatus->muuid = $request->selectedID;
+        $manuscriptStatus->status = $request->selectedStatus;
+        $manuscriptStatus->date = date('d-m-Y', strtotime(Carbon\Carbon::now()));
 
-            $manuscriptStatus->save();
+        $manuscriptStatus->save();
         // }
         // return response()->json(['success' => $getRowValue]);;
         // $updateManuStatus = manuscript_status::insert($request->selectedID,$getRowValue);
@@ -97,6 +99,12 @@ class adminPanelController extends Controller
 
         return view('adminpanel.all-editors-request', ['editors' => $editors]);
     }
+    function allReviewerRequest()
+    {
+        $reviewer = reviewer::orderBy('r_id', 'DESC')->get();
+        return view('adminpanel.all-reviewer-request', ['reviewer' => $reviewer]);
+    }
+
 
     function journalForm()
     {
@@ -149,7 +157,7 @@ class adminPanelController extends Controller
     }
     function conference()
     {
-        $confrence = conference::orderBy('id', 'DESC')->where('isActive' , 1)->get();
+        $confrence = conference::orderBy('id', 'DESC')->where('isActive', 1)->get();
 
         return view('conference', ['confrence' => $confrence]);
     }
@@ -197,10 +205,10 @@ class adminPanelController extends Controller
         $conference->file = $file;
         $conference->update();
         return redirect('add-conference')->with('message', 'Your request Submitted successfully');
-
     }
-    function deleteconference(Request $request, $id){
-          $journal = conference::where('id', $id)->update([
+    function deleteconference(Request $request, $id)
+    {
+        $journal = conference::where('id', $id)->update([
             'isActive' => 0
         ]);
         return redirect()->back()->with('message', 'Deleted');
@@ -335,6 +343,7 @@ class adminPanelController extends Controller
 
         $editor = new editor_data;
         $editor->name = strip_tags($request->name);
+        $editor->designation = strip_tags($request->designation);
         $editor->university = strip_tags($request->university);
         $editor->details = strip_tags($request->details);
         $editor->type = strip_tags($request->type);
@@ -383,6 +392,7 @@ class adminPanelController extends Controller
 
         $editor = editor_data::find($id);
         $editor->name = strip_tags($request->name);
+        $editor->designation = strip_tags($request->designation);
         $editor->university = strip_tags($request->university);
         $editor->details = strip_tags($request->details);
         $editor->type = strip_tags($request->type);
@@ -451,7 +461,8 @@ class adminPanelController extends Controller
 
         return view('adminpanel.add-issues', ['id' => $id, 'issues' => $issues]);
     }
-    function updateIssues(Request $request){
+    function updateIssues(Request $request)
+    {
         // return $request->all();
         // Validate the request data
         $request->validate([
@@ -460,20 +471,21 @@ class adminPanelController extends Controller
         ]);
 
         // try {
-            // Find the issue by ID and update the name
-            $issue = issue::find($request->id);
-            $issue->name = $request->name;
-            $issue->save();
+        // Find the issue by ID and update the name
+        $issue = issue::find($request->id);
+        $issue->name = $request->name;
+        $issue->save();
 
-            return redirect()->back()->with(['success' => true, 'message' => 'Issue updated successfully.']);
+        return redirect()->back()->with(['success' => true, 'message' => 'Issue updated successfully.']);
         // } catch (\Exception $e) {
-            // Log the error and return a response
-            // \Log::error('Error updating issue: ' . $e->getMessage());
+        // Log the error and return a response
+        // \Log::error('Error updating issue: ' . $e->getMessage());
 
         //     return response()->json(['success' => false, 'message' => 'Error updating issue.'], 500);
         // }
     }
-    function deleteissues(Request $request, $id){
+    function deleteissues(Request $request, $id)
+    {
         $indexing = issue::find($id)->update([
             'active' => 0
         ]);
@@ -485,7 +497,7 @@ class adminPanelController extends Controller
     {
 
         $issues = new issue;
-      
+
         $issues->name = $request->name;
         $issues->v_id = $id;
         $issues->ip_address = \Request::ip();
@@ -541,7 +553,7 @@ class adminPanelController extends Controller
 
         $articles = new articles;
         $articles->name = $request->name;
-        
+
         $articles->sr_no = $request->sr_no;
         $articles->cited_by = $request->cited_by;
         $articles->language = $request->language;
@@ -623,7 +635,6 @@ class adminPanelController extends Controller
 
 
 
-
         $updateArticle->designation = strip_tags($request->designation);
         $updateArticle->published_date = $request->published_date;
         $updateArticle->googleScholar = $request->googleScholar;
@@ -632,6 +643,7 @@ class adminPanelController extends Controller
         $updateArticle->page = strip_tags($request->page);
         if ($request->file) {
             $updateArticle->file = strip_tags($file);
+        $updateArticle->fileOriginalName = $fileOriginalName;
         }
 
         $updateArticle->ip_address = \Request::ip();
@@ -781,7 +793,7 @@ class adminPanelController extends Controller
 
     function DeleteIndexing($id)
     {
-        $indexing = indexings::find($id)->update([
+        $indexing = indexings::where('id', $id)->update([
             'active' => 0
         ]);
         return redirect()->back()->with('message', 'Deleted');
@@ -834,40 +846,71 @@ class adminPanelController extends Controller
                 }
 
                 $update = articles::where('id', $data->id)->update([
-                    'slug'=> $slug
+                    'slug' => $slug
                 ]);
-                $count = $count+1;
+                $count = $count + 1;
             }
         }
 
-        return $count .' data updated';
-
-
-
+        return $count . ' data updated';
     }
 
-    function savePageData(Request $request){
-        
+    function savePageData(Request $request)
+    {
+
         $save = DB::table('pages')->insert([
-            'type'=> $request->type,
-            'data'=> $request->data
+            'type' => $request->type,
+            'data' => $request->data
 
         ]);
         return redirect()->back()->with('message', 'Updated');
-
     }
 
-    function addpages($type){
+    function addpages($type)
+    {
 
         $data = DB::table('pages')->where('type', $type)->orderBy('id', 'desc')->first();
-        return view('adminpanel.pages.'.$type, ['type'=> $type, 'data'=> $data]);
+        return view('adminpanel.pages.' . $type, ['type' => $type, 'data' => $data]);
     }
 
 
 
+    function newsUpdation()
+    {
+        $news = news::get();
 
+        return view('adminpanel.news', ['news' => $news]);
+    }
 
+    function addnewsData(Request $request)
+    {
 
+        if ($request->news_id) {
+            
+            $request->validate([
+                'title' => 'required|string|max:255',
+            ]);
+    
+            $news = News::findOrFail($request->news_id);
+            $news->title = $request->title;
+            $news->save();
+    
+            return redirect()->back()->with('message', 'News updated successfully!');
+    
 
+        } else {
 
+            $request->validate([
+                'title' => 'required',
+                // 'journal' => 'required|max:50',
+            ]);
+
+            $news = new news;
+            $news->title = strip_tags($request->title);
+            // $news->j_id = strip_tags($request->journal);
+            $news->save();
+
+            return redirect('newsUpdation')->with('message', 'Added');
+        }
+    }
 }

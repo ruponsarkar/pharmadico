@@ -22,10 +22,10 @@
         <a href="/addpages/contact">Contact Us Page</a>        
         <a href="/addpages/PublicationEthicsandMalpracticeStatement">Publication Ethicsand Malpractice Statement</a>        
         <a href="/addpages/ManuscriptPreparationGuidelines">Manuscript Preparation Guidelines</a>        
-        <a href="/addpages/ResearchGuidelines">Research Guidelines</a>        
-        <a href="/addpages/APAStyle">APA Style (6th Edition)</a>        
-        <a href="/addpages/Writingagoodresearchpaper">Writing a good research paper</a>        
-        <a href="/addpages/GoogleLanguageTranslator">Google Language Translator</a>        
+        <a href="/addpages/MissionStatement">MissionStatement</a>        
+        <a href="/addpages/EthicalIssue">Ethica lIssue</a>        
+        <a href="/addpages/EditorialPolicy">Editorial Policy</a>        
+        <a href="/addpages/PublicationEthics">Publication Ethics</a>        
     </div>
 </div>
 <div class="container-form  p-1 p-md-3 p-lg-2">

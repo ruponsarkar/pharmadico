@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'APA Style (6th Edition)')
+@section('title', 'Publication Ethics')
 
 @section('content')
     <section>

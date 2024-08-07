@@ -97,21 +97,21 @@
               <a href="{{URL('receive-editors')}}" class="nav-link {{ request()->is('receive-editors') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-user-plus"></i>
                 <p>
-                  Editor Request Receive
+                  Editor Receive
                 </p>
               </a>
             </li>
-            {{-- <li class="nav-item">
+            <li class="nav-item">
               <a href="{{URL('receive-reviewers')}}" class="nav-link {{ request()->is('receive-reviewers') ? 'active' : ''}}">
             <i class="nav-icon fas fa-chalkboard-teacher"></i>
             <p>
-              Reviewer Request Receive
+              Reviewer Receive
             </p>
             </a>
-            </li> --}}
+            </li> 
 
             <li class="nav-item">
-              <a href="{{URL('add-conference')}}" class="nav-link {{ request()->is('receive-reviewers') ? 'active' : ''}}">
+              <a href="{{URL('add-conference')}}" class="nav-link {{ request()->is('add-conference') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-chalkboard-teacher"></i>
                 <p>
                   Conference Pro.
@@ -192,6 +192,14 @@
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                   Pages
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{URL('newsUpdation')}}" class="nav-link {{ request()->is('newsUpdation') ? 'active' : ''}}">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  News & Updation
                 </p>
               </a>
             </li>

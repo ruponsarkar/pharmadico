@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Writing a good research paper')
+@section('title', 'Editorial Policy')
 
 @section('content')
     <section>

@@ -9,6 +9,11 @@
 <div class="container-fluid">
 
     <div class="row manuscript-bg pt-3 pb-3">
+        @if(session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+        @endif
         <div class="col-md-6 offset-md-3 manuscript-form pb-3 border rounded border-dark">
             <div class="h3 fw-bold text-center p-3">Apply for Editorial board Member</div>
 
