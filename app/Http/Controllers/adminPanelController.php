@@ -343,6 +343,7 @@ class adminPanelController extends Controller
 
         $editor = new editor_data;
         $editor->name = strip_tags($request->name);
+        $editor->designation = strip_tags($request->designation);
         $editor->university = strip_tags($request->university);
         $editor->details = strip_tags($request->details);
         $editor->type = strip_tags($request->type);
@@ -391,6 +392,7 @@ class adminPanelController extends Controller
 
         $editor = editor_data::find($id);
         $editor->name = strip_tags($request->name);
+        $editor->designation = strip_tags($request->designation);
         $editor->university = strip_tags($request->university);
         $editor->details = strip_tags($request->details);
         $editor->type = strip_tags($request->type);
@@ -791,7 +793,7 @@ class adminPanelController extends Controller
 
     function DeleteIndexing($id)
     {
-        $indexing = indexings::find($id)->update([
+        $indexing = indexings::where('id', $id)->update([
             'active' => 0
         ]);
         return redirect()->back()->with('message', 'Deleted');

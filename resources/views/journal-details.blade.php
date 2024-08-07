@@ -173,11 +173,12 @@
 
                                             <div class="card-body text-center editorial-style">
                                                 <div class="card-title small">{{$data->name}}</div>
+                                                <p class="card-text fst-italic small">{{$data->designation}}</p>
                                                 <div class="card-text fst-italic small">{{$data->university}} </div>
                                                 <div class="card-text fst-italic small">{{$data->details}}</div>
 
-                                                <!--<p class="card-text small"> <b>Profile link: <a class="card-text small"-->
-                                                <!--            href="{{$data->profile}}" target="_blank">{{$data->profile}}</a></b> </p>-->
+                                                <p class="card-text small"> <b>Profile link: <a class="card-text small"
+                                                            href="{{$data->profile}}" target="_blank">{{$data->profile}}</a></b> </p>
                                             </div>
                                         </div>
                                     </div>
@@ -204,11 +205,12 @@
 
                                             <div class="card-body text-center editorial-style">
                                                 <div class="card-title small">{{$data->name}}</div>
+                                                <p class="card-text fst-italic small">{{$data->designation}}</p>
                                                 <p class="card-text fst-italic small">{{$data->university}}</p>
                                                 <p class="card-text fst-italic small">{{$data->details}} </p>
-                                                <!--<p class="card-text small"> <b>Profile link:-->
-                                                <!--        <a class="card-text small" href="{{$data->profile}}" target="_blank">{{$data->profile}}</a>-->
-                                                <!--    </b> </p>-->
+                                                <p class="card-text small"> <b>Profile link:
+                                                        <a class="card-text small" href="{{$data->profile}}" target="_blank">{{$data->profile}}</a>
+                                                    </b> </p>
                                             </div>
                                         </div>
                                     </div>
@@ -275,7 +277,7 @@
                                             @foreach($indexing as $index)
 
                                             <a target="_blank" href="{{$index->link}}">
-                                                <img style="border: 1px solid #555;" src="{{url('assets/indexing/img'.$index->img)}}"
+                                                <img style="border: 1px solid #555;" src="{{url('assets/indexing/img/'.$index->img)}}"
                                                     alt="indexing" width="250" height=auto>
                                             </a> &nbsp; &nbsp; &nbsp;
                                             

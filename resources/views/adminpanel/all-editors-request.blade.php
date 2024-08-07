@@ -53,7 +53,7 @@
                   <a class="confirmation" href="{{URL('delete-journals/'.$data->j_id)}}"><i class="fas fa-trash-alt text-danger"></i></a>
                 </td>
                 </tr>
-            ]@endforeach
+            @endforeach
               </tbody>
             </table>
           </div>

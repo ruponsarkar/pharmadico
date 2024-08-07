@@ -11,7 +11,7 @@
 
 @foreach($manuscript as $data)
 <br/>
-<a href="{{URL('/assets/manuscript')}}/{{$data->file}}"> HHH</a>
+<a href="{{URL('/assets/manuscript')}}/{{$data->file}}"> If not Download actomatically, click Here</a>
 
 <iframe src="{{URL('/assets/manuscript')}}/{{$data->file}}" width='1366px' height='623px' frameborder='0'></iframe>
 

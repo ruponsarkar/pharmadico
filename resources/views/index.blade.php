@@ -149,7 +149,7 @@
             <div class="col-md-4">
                 <div class="card-c">
                     <div class="h-box">
-                        <div class="h-box-text p-2">
+                        <div class="h-box-text p-2 text-center">
                             News & Updation
                         </div>
                     </div>
@@ -179,8 +179,8 @@
             <div class="col-md-4 d-flex align-items-center">
                 <div class="card-c">
                     <div class="h-box">
-                        <div class="h-box-text p-2">
-                            Resources
+                        <div class="h-box-text p-2 text-center">
+                            About Us
                         </div>
                     </div>
                     <div>
@@ -192,17 +192,17 @@
                                 <a role="button" href="ManuscriptPreparationGuidelines" class="btn effect01">Manuscript Preparation Guidelines</a>
                             </div>
                             <div class="col-sm-12 text-center p-1">
-                                <a role="button" href="ResearchGuidelines" class="btn effect01">Research Guidelines</a>
+                                <a role="button" href="MissionStatement" class="btn effect01">Mission Statement</a>
                             </div>
                             <div class="col-sm-12 text-center p-1">
-                                <a role="button" href="APAStyle" class="btn effect01">APA Style (6th Edition)</a>
+                                <a role="button" href="EthicalIssue" class="btn effect01">Ethical Issue</a>
                             </div>
                             <div class="col-sm-12 text-center p-1">
-                                <a role="button" href="Writingagoodresearchpaper" class="btn effect01">Writing a good research paper</a>
+                                <a role="button" href="EditorialPolicy" class="btn effect01">Editorial Policy</a>
                             </div>
-                            <div class="col-sm-12 text-center p-1">
+                            {{-- <div class="col-sm-12 text-center p-1">
                                 <a role="button" href="GoogleLanguageTranslator" class="btn effect01">Google Language Translator</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -210,7 +210,7 @@
             <div class="col-md-4 d-flex align-items-center">
                 <div class="card-c">
                     <div class="h-box">
-                        <div class="h-box-text p-2">
+                        <div class="h-box-text p-2  text-center">
                             Journal
                         </div>
                     </div>
@@ -378,10 +378,10 @@
                         muuidField.innerHTML = `<strong>MUUUID:</strong> ${result.muuid}`;
                         resultContainer.appendChild(muuidField);
 
-                        const statusField = document.createElement('div');
-                        statusField.className = 'result-field';
-                        statusField.innerHTML = `<strong>Status:</strong> ${result.status === 0 ? 'Initial stage' : ''} ${result.status === 1 ? 'Review' : ''} ${result.status === 2 ? 'Awaiting Editorial Approval' : ''} ${result.status === 3 ? 'Re-review': ''}  ${result.status === 4 ? 'Final Verification of Content': ''} ${result.status === 5 ? 'Published ': ''} ${result.status === 6 ? 'Reject ': ''}  `;
-                        resultContainer.appendChild(statusField);
+                        // const statusField = document.createElement('div');
+                        // statusField.className = 'result-field';
+                        // statusField.innerHTML = `<strong>Status:</strong> ${result.status === 0 ? 'Initial stage' : ''} ${result.status === 1 ? 'Review' : ''} ${result.status === 2 ? 'Awaiting Editorial Approval' : ''} ${result.status === 3 ? 'Re-review': ''}  ${result.status === 4 ? 'Final Verification of Content': ''} ${result.status === 5 ? 'Published ': ''} ${result.status === 6 ? 'Reject ': ''}  `;
+                        // resultContainer.appendChild(statusField);
 
                         const dateField = document.createElement('div');
                         dateField.className = 'result-field';
@@ -389,10 +389,10 @@
                         resultContainer.appendChild(dateField);
 
                         const dateField2 = document.createElement('div');
-                        dateField2.className = 'result-field';
+                        dateField2.className = 'result-field w-100 text-center';
                         let paths = result.muuid.replace(/\//g, '-')
                         console.log(paths);
-                        dateField2.innerHTML = `<strong> <a href="{{URL('view-manuscript/${paths}')}}">View File</a></strong>`;
+                        dateField2.innerHTML = `<strong> <a href="{{URL('view-manuscript/${paths}')}}">View Status</a></strong>`;
                         resultContainer.appendChild(dateField2);
                     } else {
                         const field = document.createElement('div');

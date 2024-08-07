@@ -180,6 +180,7 @@
                                 <!--<li><a href="editorsGuidlines">Editors Guidlines</a></li>-->
                                 <li><a href="{{ url('editorsGuidlines') }}">Editors Guidlines</a></li>
                                 <li><a href="{{ url('Join_editor') }}">Join as Editors</a></li>
+                                <li><a href="{{ url('PublicationEthics') }}">Publication Ethics</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="#"><span>For Reviewers</span> <i

@@ -51,7 +51,7 @@
                   <div class="form-group row p-1">
                     <label class="col-sm-4 col-form-label">Designation :</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" name="Designation" required="required" placeholder="Designation">
+                      <input type="text" class="form-control" name="designation" required="required" placeholder="Designation">
                     </div>
                   </div>
                   <div class="form-group row p-1">

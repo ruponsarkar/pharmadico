@@ -39,7 +39,7 @@
 
 
 
-                  <td style="text-align: center; color:red; font-weight:bold;"><a href="{{URL('assets/editors/cv/'.$data->cv)}}" target="_blank"> Check CV
+                  <td style="text-align: center; color:red; font-weight:bold;"><a href="{{URL('assets/reviewers/cv/'.$data->cv)}}" target="_blank"> Check CV
                     </a></td>
 
                   <td>{{$data->name}}</td>
@@ -50,14 +50,14 @@
                   <td>{{$data->affiliation}}</td>
                   <td>{{$data->publication}}</td>
                   <td>
-                    <center> <img src="{{URL('assets/editors/img/'.$data->photo)}}" alt="" width='100'> <br>Photo </center>
+                    <center> <img src="{{URL('assets/reviewers/img/'.$data->photo)}}" alt="" width='100'> <br>Photo </center>
                   </td>
                   <td>{{$data->date}}</td>
                   <td class="text-center"><a href="{{URL('update-journals/'.$data->j_id)}}"><i class="far fa-edit"></i></a>
                   <a class="confirmation" href="{{URL('delete-journals/'.$data->j_id)}}"><i class="fas fa-trash-alt text-danger"></i></a>
                 </td>
                 </tr>
-            ]@endforeach
+            @endforeach
               </tbody>
             </table>
           </div>

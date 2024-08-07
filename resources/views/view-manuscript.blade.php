@@ -58,12 +58,18 @@
                             <tr>
                                 <td scope="row">{{ $item->date }}</td>
                                 @if ($item->status === 0)
-                                    <td scope="row">Accepted</td>
+                                    <td scope="row">Initial stage</td>
                                 @elseif ($item->status === 1)
-                                    <td scope="row">Draft</td>
+                                    <td scope="row">Review</td>
                                 @elseif ($item->status === 2)
-                                    <td scope="row">Published</td>
+                                    <td scope="row">Awaiting Editorial Approval</td>
                                 @elseif ($item->status === 3)
+                                    <td scope="row">Re-review</td>
+                                @elseif ($item->status === 4)
+                                    <td scope="row">Final Verification of Content</td>
+                                @elseif ($item->status === 5)
+                                    <td scope="row">Published</td>
+                                    @else
                                     <td scope="row">Rejected</td>
                                 @endif
                             </tr>
