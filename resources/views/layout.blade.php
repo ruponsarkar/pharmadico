@@ -164,20 +164,26 @@
             <header id="header" class="header">
                 <nav id="navbar" class="navbar order-last order-lg-0 bg-nav-dark">
                     <ul>
-                        <li><a class="nav-link scrollto active" href="{{ url('/') }}">Home</a></li>
-                        <li><a class="nav-link scrollto" href="{{ url('journals') }}">Journals</a></li>
+                        <li><a class="nav-link scrollto " href="{{ url('/') }}">Home</a></li>
+                        <li><a class="nav-link scrollto"
+                                href="{{ url('journal-details/1/?tab=editorial_board') }}">Editorial Board</a></li>
+                        <li><a class="nav-link scrollto" href="{{ url('journal-details/1/?tab=archive') }}">Archive</a>
+                        </li>
+                        {{-- <li><a class="nav-link scrollto" href="{{ url('authorGuidlines') }}">Instructions to
+                                Authors</a></li> --}}
+                        
+                        {{-- <li><a class="nav-link scrollto" href="{{ url('journals') }}">Journals</a></li> --}}
                         <li class="dropdown"><a href="#"><span>For Authors</span> <i
                                     class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <!--<li><a href="authorGuidlines">Author Guidlines</a></li>-->
-                                <li><a href="{{ url('authorGuidlines') }}">Author Guidlines</a></li>
+                                <li><a href="{{ url('authorGuidlines') }}">Instructions to
+                                    Authors</a></li>
                                 <li><a href="#">Processing Fee</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="#"><span>For Editors</span> <i
                                     class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <!--<li><a href="editorsGuidlines">Editors Guidlines</a></li>-->
                                 <li><a href="{{ url('editorsGuidlines') }}">Editors Guidlines</a></li>
                                 <li><a href="{{ url('Join_editor') }}">Join as Editors</a></li>
                                 <li><a href="{{ url('PublicationEthics') }}">Publication Ethics</a></li>
@@ -190,9 +196,11 @@
                                 <li><a href="{{ url('join_reviewer') }}">Join as Reviewers</a></li>
                             </ul>
                         </li>
-                        <li><a class="nav-link " href="{{url('conference')}}">Conference Proceedings</a></li>
+                        <li><a class="nav-link scrollto" href="{{ url('manuscript') }}">Submit Manuscript </a>
+                        </li>
+                        <li><a class="nav-link " href="{{ url('conference') }}">Conference Proceedings</a></li>
                         <li><a class="nav-link scrollto " href="{{ url('contactUs') }}">Contact</a></li>
-                        <li><a class="nav-link scrollto " href="{{ url('about') }}">About Us</a></li>
+                        {{-- <li><a class="nav-link scrollto " href="{{ url('about') }}">About Us</a></li> --}}
 
 
                         <!--<li class="dropdown"><a href="#"><span>Others</span> <i class="bi bi-chevron-down"></i></a>-->
@@ -211,10 +219,10 @@
         @yield('content')
         {{-- </div> --}}
 
-        
 
 
-        <div class="manus" id="manus" data-aos="flip-down">
+
+        {{-- <div class="manus" id="manus" data-aos="flip-down">
             <div class="submit-container">
                 <div class="submit-item">
                     <a href="{{ url('manuscript') }}" class="btn effect02" target="_blank"><span>
@@ -222,7 +230,7 @@
                             Submit Manuscript </span></a>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
                 class="bi bi-arrow-up-short"></i></a>
@@ -286,7 +294,7 @@
                             <!--<p><i class="bi bi-geo-alt-fill"></i>-->
                             <!--    017 Uttar Nowabil, Ambari Hojai, Assam- &nbsp; &nbsp; &nbsp; &nbsp; India 782445<br>-->
 
-                            <strong>Principal Contact :</strong> Dilip Kumar Chanchal <br/>
+                            <strong>Principal Contact :</strong> Dilip Kumar Chanchal <br />
                             Director, Pharmedico
                             <br><br>
                             <i class="bi bi-envelope"></i>
