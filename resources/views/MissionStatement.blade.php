@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Google Language Translator')
+@section('title', 'Mission Statement')
 
 @section('content')
     <section>

@@ -97,10 +97,10 @@
           <label class="form-label" for="name">GoogleScholar link</label>
           <input type="text" name="googleScholar" id="googleScholar" value="{{$articles->googleScholar}}">
       </li>
-      <li>
+      {{-- <li>
         <label class="form-label" for="name">Keywords</label>
         <input type="text" name="keywords" id="" value="{{$articles->keywords}}">
-      </li>
+      </li> --}}
 
 
       <li>

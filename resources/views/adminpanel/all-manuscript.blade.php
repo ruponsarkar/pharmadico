@@ -46,13 +46,20 @@
                   <td>{{$data->type}}</td>
                   <td>{{$data->affiliation}}</td>
                   <td>{{ $data->date }}</td>
+
                   <td>
                     @if ($data->status === 0)
-                    <span class="btn btn-sm btn-success">Accepted</span>
+                    <span class="btn btn-sm btn-success">Initial stage</span>
                     @elseif ($data->status === 1)
-                    <span class="btn btn-sm btn-warning">Draft</span>
+                    <span class="btn btn-sm btn-warning">Review</span>
                     @elseif ($data->status === 2)
-                    <span class="btn btn-sm btn-primary">Published</span>
+                    <span class="btn btn-sm btn-primary">Awaiting Editorial Approval</span>
+                    @elseif ($data->status === 3)
+                    <span class="btn btn-sm btn-danger">Re-review</span>
+                    @elseif ($data->status === 4)
+                    <span class="btn btn-sm btn-danger">Final Verification of Content</span>
+                    @elseif ($data->status === 5)
+                    <span class="btn btn-sm btn-danger">Published</span>
                     @else
                     <span class="btn btn-sm btn-danger">Rejected</span>
                     @endif
@@ -90,9 +97,13 @@
           <input type="hidden" name="mid" id="mid" value="12345">
           <select class="form-select" aria-label="Default select example" id="statusSelect" required>
             <option selected disabled>Select status</option>
-            <option value="0">Accepted</option>
-            <option value="2">Published</option>
-            <option value="3">Rejected</option>
+            <option value="0">Initial stage</option>
+            <option value="1">Review</option>
+            <option value="2">Awaiting Editorial Approval</option>
+            <option value="3">Re-review</option>
+            <option value="4">Final Verification of Content</option>
+            <option value="5">Published</option>
+            <option value="6">Reject</option>
           </select>
           <button type="button" class="btn btn-primary mt-3" onclick="submitForm()">Submit</button>
         </form>
@@ -102,7 +113,7 @@
 </div>
 
 <script>
-  let selectedRow ,status,selectedRowID;
+  let selectedRow, status, selectedRowID;
   document.getElementById('tableManu').addEventListener('click', function(event) {
     if (event.target && event.target.classList.contains('update-status-btn')) {
       const row = event.target.closest('.manuscript-row');
@@ -127,7 +138,7 @@
       body: JSON.stringify({
         selectedID: selectedRow,
         selectedStatus: selectedStatus,
-        selectedRowID : selectedRowID
+        selectedRowID: selectedRowID
       })
     });
 

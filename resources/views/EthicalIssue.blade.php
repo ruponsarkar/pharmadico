@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Research Guidelines')
+@section('title', 'Ethical Issue')
 
 @section('content')
     <section>

@@ -10,6 +10,7 @@ use App\Models\visitor;
 use App\Models\indexings;
 use App\Models\home_asset;
 use App\Models\manuscripts;
+use App\Models\news;
 use App\Models\manuscript_status;
 use DB;
 
@@ -21,7 +22,7 @@ class IndexController extends Controller
         $latestArticle = articles::where('status', 1)->limit(4)->orderBy("id", "desc")->get();
         $latestArticleThree = articles::where('status', 1)->limit(3)->orderBy("id", "desc")->get();
         $journals = journal::where('active', 1)->get();
-
+        $news = news::orderBy("id", "desc")->get();
         $indexings = indexings::where('active', 1)->get();
         
 
@@ -41,19 +42,19 @@ class IndexController extends Controller
 
         return view('index', ['latestArticle' => $latestArticle, 'latestArticleThree' => $latestArticleThree, 'journals'=>$journals, 
         'indexings'=>$indexings,
-        'countJournal'=>$countJournal, 'countArticle'=>$countArticle, 'countDownload'=>$countDownload, 'countVisitor'=>$countVisitor]);
+        'countJournal'=>$countJournal, 'countArticle'=>$countArticle, 'countDownload'=>$countDownload, 'countVisitor'=>$countVisitor,'news' =>$news]);
     }
    
     function search(Request $request)
     {
         // return $request->all();
         $query = $request->input('query');
-
+        // return $query;
         if (!$query) {
             return response()->json(['error' => 'Query parameter is required'], 400);
         }
 
-        $results = manuscript_status::where('muuid', 'LIKE', "%{$query}%")->where('status' , 0)->first(); // Adjust the field 'name' based on your model
+        $results = manuscript_status::where('muuid', 'LIKE', "%{$query}%")->first(); // Adjust the field 'name' based on your model
 
         return response()->json($results);
     }
@@ -65,7 +66,10 @@ class IndexController extends Controller
     }
 
     function viewmanuscript(Request $request , $id){ 
-        $manuStatus = manuscript_status::where('muuid' , $id)->get();
+        $parts = explode('-', $id);
+        $originalFormat = implode('/', $parts);
+        // return $originalFormat;
+        $manuStatus = manuscript_status::where('muuid' , $originalFormat)->get();
 
         $getManufullDetails = manuscripts::where('muuid',   $manuStatus[0]->muuid)->first();
         return view('view-manuscript', ['manudata'=>$manuStatus, 'getManufullDetails'=>$getManufullDetails]);
@@ -130,21 +134,21 @@ class IndexController extends Controller
         $data = DB::table('pages')->where('type', 'ManuscriptPreparationGuidelines')->orderBy('id', 'desc')->first();
         return view('ManuscriptPreparationGuidelines',  ['data'=>$data]);
     }
-    function ResearchGuidelines(){
-        $data = DB::table('pages')->where('type', 'ResearchGuidelines')->orderBy('id', 'desc')->first();
-        return view('ResearchGuidelines',  ['data'=>$data]);
+    function MissionStatement(){
+        $data = DB::table('pages')->where('type', 'MissionStatement')->orderBy('id', 'desc')->first();
+        return view('MissionStatement',  ['data'=>$data]);
     }
-    function APAStyle(){
-        $data = DB::table('pages')->where('type', 'APAStyle')->orderBy('id', 'desc')->first();
-        return view('APAStyle',  ['data'=>$data]);
+    function EthicalIssue(){
+        $data = DB::table('pages')->where('type', 'EthicalIssue')->orderBy('id', 'desc')->first();
+        return view('EthicalIssue',  ['data'=>$data]);
     }
-    function Writingagoodresearchpaper(){
-        $data = DB::table('pages')->where('type', 'Writingagoodresearchpaper')->orderBy('id', 'desc')->first();
-        return view('Writingagoodresearchpaper',  ['data'=>$data]);
+    function EditorialPolicy(){
+        $data = DB::table('pages')->where('type', 'EditorialPolicy')->orderBy('id', 'desc')->first();
+        return view('EditorialPolicy',  ['data'=>$data]);
     }
-    function GoogleLanguageTranslator(){
-        $data = DB::table('pages')->where('type', 'GoogleLanguageTranslator')->orderBy('id', 'desc')->first();
-        return view('GoogleLanguageTranslator',  ['data'=>$data]);
+    function PublicationEthics(){
+        $data = DB::table('pages')->where('type', 'PublicationEthics')->orderBy('id', 'desc')->first();
+        return view('PublicationEthics',  ['data'=>$data]);
     }
     
     

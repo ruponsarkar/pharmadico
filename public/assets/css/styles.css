@@ -152,7 +152,8 @@ margin-left: 5px;
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-color: #49d1a4;
+color: #1d74bd;
+/* color: #49d1a4; */
 }
 
 .navbar .dropdown ul {
@@ -335,7 +336,8 @@ display: block;
 /*END*/
 
 .bg-nav-dark{
-  background-color: #393939;
+  background-color: #f6951e;
+  /* background-color: #393939; */
   border-color: #393939;
 }
 .navbar{

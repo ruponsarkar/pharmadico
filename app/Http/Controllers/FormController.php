@@ -97,7 +97,7 @@ class FormController extends Controller
         $file = time() . '.' . $request->file->extension();
 
         $manuscript = new manuscripts;
-        $manuscript->muuid = strip_tags('IJPSM/'.$year.'/'.$month.'/'.$count);
+        $manuscript->muuid = strip_tags('IJPSM/'.$year.'/'.$month.'/'.$count + 1);
         $manuscript->mode = strip_tags($request->mode);
         $manuscript->type = strip_tags($request->type);
         $manuscript->journal = $j_name->j_name;
@@ -131,7 +131,7 @@ class FormController extends Controller
 
         // for user 
         Mail::send('mails.acknowledge', $data, function ($message) use ($data) {
-            $message->from('submit@pharmedicopublishers.com');
+            $message->from('submit@pharmedicopublishers.com', 'IJPSM Journal');
             $message->to($data['email']);
             $message->subject('Submission Acknowledgement');
         });
@@ -139,7 +139,8 @@ class FormController extends Controller
         // for admin 
         Mail::send('mails.admin', $data, function ($message) use ($data) {
             $message->from('submit@pharmedicopublishers.com');
-            $message->to('ruponsarkar108@gmail.com');
+            // $message->to('ruponsarkar108@gmail.com');
+             $message->to('ijpsmeditor@gmail.com');
             $message->subject('New Manuscript Request');
         });
         

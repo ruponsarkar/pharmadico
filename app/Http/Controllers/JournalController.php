@@ -44,14 +44,14 @@ class JournalController extends Controller
         ->first();
 
 
-        $Chief_editors = editor_data::select(['image','name','university','details','profile'])
+        $Chief_editors = editor_data::select(['image','name', 'designation', 'university','details','profile'])
         ->where('type','=', 'chief')
         ->where('j_id', '=', $id)
         ->where('active', '=', 1)
         ->get();
 
 
-        $ass_editors = editor_data::select(['image','name','university','details','profile'])
+        $ass_editors = editor_data::select(['image','name','designation', 'university','details','profile'])
         ->where('type','=', 'ass')
         ->where('j_id', '=', $id)
         ->where('active', '=', 1)
@@ -61,6 +61,7 @@ class JournalController extends Controller
 
         $indexing = indexings::select(['link','img'])
         ->where('j_id', '=', $id)
+        ->where('active', 1)
         ->get();
 
         $volume = volumes::select(['id', 'name'])
@@ -137,6 +138,7 @@ class JournalController extends Controller
 
         $indexing = indexings::select(['link','img'])
         ->where('j_id', '=', $id)
+        ->where('active', 1)
         ->get();
 
         $volume = volumes::select(['id', 'name'])
@@ -162,10 +164,11 @@ class JournalController extends Controller
         ->where('j_id', $j_id->j_id)
         ->first();
 
-        $article = articles::select('id','name','aname','designation','doi','page','file','count', 'abstract', 'fileOriginalName', 'slug')
+        $article = articles::select('id','name','aname','designation','doi','page','file','count', 'abstract', 'fileOriginalName', 'slug', 'sr_no')
         ->where('i_id','=', $v_id->id)
         ->where('v_id','=', $j_id->id)
         ->where('status','=', 1)
+        ->orderBy('sr_no', 'asc')
         ->get();
 
 

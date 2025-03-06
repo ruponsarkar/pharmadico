@@ -50,7 +50,7 @@
                                                     <div class="swiper-slide">
                                                         <div class='card'>
                                                             <div class="d-flex justify-content-between">
-                                                                <div class='title'>{{$key+1}}. {{ Str::limit($data->name, 70) }}</div>
+                                                                <div class='title'>{{$data->sr_no}}. {{ Str::limit($data->name, 70) }}</div>
                                                                 <div class='small p-2'><i class="bi bi-download text-info"></i> {{ $data->count}}</div>
                                                             </div>
                     

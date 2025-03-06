@@ -13,7 +13,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title text-center"> All Editor Request </h3>
+            <h3 class="card-title text-center"> All Reviewer Request </h3>
           </div>
 
           <div class="card-body">
@@ -33,9 +33,13 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($editors as $data)
+
+                @foreach($reviewer as $data)
                 <tr>
-                  <td style="text-align: center; color:red; font-weight:bold;"><a href="{{URL('assets/editors/cv/'.$data->cv)}}" target="_blank"> Check CV
+
+
+
+                  <td style="text-align: center; color:red; font-weight:bold;"><a href="{{URL('assets/reviewers/cv/'.$data->cv)}}" target="_blank"> Check CV
                     </a></td>
 
                   <td>{{$data->name}}</td>
@@ -46,7 +50,7 @@
                   <td>{{$data->affiliation}}</td>
                   <td>{{$data->publication}}</td>
                   <td>
-                    <center> <img src="{{URL('assets/editors/img/'.$data->photo)}}" alt="" width='100'> <br>Photo </center>
+                    <center> <img src="{{URL('assets/reviewers/img/'.$data->photo)}}" alt="" width='100'> <br>Photo </center>
                   </td>
                   <td>{{$data->date}}</td>
                   <td class="text-center"><a href="{{URL('update-journals/'.$data->j_id)}}"><i class="far fa-edit"></i></a>

@@ -11,26 +11,28 @@
 
         <!-- ======= Specials Section ======= -->
         <section id="specials" class="specials">
-            <div class="container" data-aos="fade-up">
+            <div class="container" >
 
-                <div class="specials-title">
+                {{-- <div class="specials-title">
                     <p>{{$Journal_details->j_name}}</p>
-                </div>
+                
+                </div> --}}
+                
 
-                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                <div class="row" >
                     <div class="col-lg-3">
                         <ul class="nav nav-tabs flex-column">
                             <li class="nav-item">
                              <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Details</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-2">Aims And Scope</a>
+                                <a class="nav-link {{ request('tab') ? '' : 'active show' }}" data-bs-toggle="tab" href="#tab-2">Aims And Scope</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Editorial board</a>
+                                <a class="nav-link {{ request('tab') === 'editorial_board' ? 'active show' : '' }}" data-bs-toggle="tab" href="#tab-3">Editorial board</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Archives</a>
+                                <a class="nav-link {{ request('tab') === 'archive' ? 'active show' : '' }}" data-bs-toggle="tab" href="#tab-4">Archives</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Indexing</a>
@@ -38,12 +40,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#tab-6">Impact Factor</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="/authorGuidlines">Author Guidlines</a>
-                            </li>
-                            <li class="nav-item">
+                            </li> --}}
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="/about">Publisher Details</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                     <div class="col-lg-9 mt-4 mt-lg-0">
@@ -145,7 +147,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane active show" id="tab-2">
+                            <div class="tab-pane {{ request('tab') ? '' : 'active show' }}" id="tab-2">
                                 <div class="row border border-dark p-3">
                                     <div class="col-lg-12 details order-2 order-lg-1">
                                         <h3>Aim And Scope</h3>
@@ -155,7 +157,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane border border-dark text-center p-3" id="tab-3">
+                            
+                            <div class="tab-pane {{ request('tab') === 'editorial_board' ? 'active show' : '' }} border border-dark text-center p-3" id="tab-3">
                                 <div class="row">
                                     <div class="col-lg-12 details order-2 text-center order-lg-1 p-2">
                                         <h3>EDITOR-IN-CHIEF</h3>
@@ -173,11 +176,12 @@
 
                                             <div class="card-body text-center editorial-style">
                                                 <div class="card-title small">{{$data->name}}</div>
+                                                <p class="card-text fst-italic small">{{$data->designation}}</p>
                                                 <div class="card-text fst-italic small">{{$data->university}} </div>
                                                 <div class="card-text fst-italic small">{{$data->details}}</div>
 
-                                                <!--<p class="card-text small"> <b>Profile link: <a class="card-text small"-->
-                                                <!--            href="{{$data->profile}}" target="_blank">{{$data->profile}}</a></b> </p>-->
+                                                <p class="card-text small"> <b>Profile link: <a class="card-text small"
+                                                            href="{{$data->profile}}" target="_blank">{{$data->profile}}</a></b> </p>
                                             </div>
                                         </div>
                                     </div>
@@ -204,11 +208,12 @@
 
                                             <div class="card-body text-center editorial-style">
                                                 <div class="card-title small">{{$data->name}}</div>
+                                                <p class="card-text fst-italic small">{{$data->designation}}</p>
                                                 <p class="card-text fst-italic small">{{$data->university}}</p>
                                                 <p class="card-text fst-italic small">{{$data->details}} </p>
-                                                <!--<p class="card-text small"> <b>Profile link:-->
-                                                <!--        <a class="card-text small" href="{{$data->profile}}" target="_blank">{{$data->profile}}</a>-->
-                                                <!--    </b> </p>-->
+                                                <p class="card-text small"> <b>Profile link:
+                                                        <a class="card-text small" href="{{$data->profile}}" target="_blank">{{$data->profile}}</a>
+                                                    </b> </p>
                                             </div>
                                         </div>
                                     </div>
@@ -220,9 +225,9 @@
 
 
 
-                            <div class="tab-pane" id="tab-4">
-                                <div class="row border border-dark p-3">
-                                    <div class="col-lg-12 details order-2 order-lg-1">
+                            <div class="tab-pane {{ request('tab') === 'archive' ? 'active show' : '' }}" id="tab-4">
+                                <div class="row  p-3">
+                                    <div class="col-lg-12 details order-2 order-lg-1 border border-success rounded p-3" style="min-height: 50vh;">
                                         <h3>Archives</h3>
                                         <p>
                                             @foreach($volume as $data)
@@ -275,7 +280,7 @@
                                             @foreach($indexing as $index)
 
                                             <a target="_blank" href="{{$index->link}}">
-                                                <img style="border: 1px solid #555;" src="{{url('assets/img/indexing/'.$index->img)}}"
+                                                <img style="border: 1px solid #555;" src="{{url('assets/indexing/img/'.$index->img)}}"
                                                     alt="indexing" width="250" height=auto>
                                             </a> &nbsp; &nbsp; &nbsp;
                                             

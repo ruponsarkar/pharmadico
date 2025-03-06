@@ -52,10 +52,10 @@ Route::get('contactUs', [IndexController::class, 'contactUs']);
 Route::get('conference' , [adminPanelController::class,'conference']);
 Route::get('PublicationEthicsandMalpracticeStatement', [IndexController::class, 'PublicationEthicsandMalpracticeStatement']);
 Route::get('ManuscriptPreparationGuidelines', [IndexController::class, 'ManuscriptPreparationGuidelines']);
-Route::get('ResearchGuidelines', [IndexController::class, 'ResearchGuidelines']);
-Route::get('APAStyle', [IndexController::class, 'APAStyle']);
-Route::get('Writingagoodresearchpaper', [IndexController::class, 'Writingagoodresearchpaper']);
-Route::get('GoogleLanguageTranslator', [IndexController::class, 'GoogleLanguageTranslator']);
+Route::get('MissionStatement', [IndexController::class, 'MissionStatement']);
+Route::get('EthicalIssue', [IndexController::class, 'EthicalIssue']);
+Route::get('EditorialPolicy', [IndexController::class, 'EditorialPolicy']);
+Route::get('PublicationEthics', [IndexController::class, 'PublicationEthics']);
 
 
 Route::get('/Join_editor', function () {
@@ -71,18 +71,20 @@ Route::get('/dashboard', function () {
 });
 Route::get('all-manuscripts', [adminPanelController::class, 'allManuscript']);
 Route::get('add-conference', [adminPanelController::class,'addconference']);
-Route::get('view-manuscript/{id}', [IndexController::class,'viewmanuscript'])->where('id', '.+');;
+Route::get('view-manuscript/{id}', [IndexController::class,'viewmanuscript'])->where('id', '.+');
 // Route::get('update-manuscripts/{mid}/{status}', [adminPanelController::class, 'updateManuscript']);
 
+Route::post('submit_editor', [FormController::class, 'submit_editor']);
+Route::post('submit_reviewer', [FormController::class, 'submit_reviewer']);
 // admin panel 
-
 Route::group(['middleware'=>['AuthCheck']], function(){
     
     Route::get('login', [adminPanelController::class, 'login']);
     Route::get('admin_index', [adminPanelController::class, 'adminIndex']);
     Route::get('all-manuscript', [adminPanelController::class, 'allManuscript']);
     Route::get('receive-editors', [adminPanelController::class, 'allEditorsRequest']);
-    
+    Route::get('receive-reviewers' ,[adminPanelController::class, 'allReviewerRequest']);
+
     Route::get('journalForm', [adminPanelController::class, 'journalForm']);
     Route::post('addJournal', [adminPanelController::class, 'addJournal']);
     Route::get('indexing', [adminPanelController::class, 'indexing']);
@@ -145,7 +147,10 @@ Route::group(['middleware'=>['AuthCheck']], function(){
 
     Route::get('addpages/{type}', [adminPanelController::class, 'addpages']);
     Route::post('savePageData', [adminPanelController::class, 'savePageData']);
-   
+    
+    
+    Route::get('newsUpdation', [adminPanelController::class, 'newsUpdation']);
+    Route::post('addnews', [adminPanelController::class, 'addnewsData']);
 
 });
 
