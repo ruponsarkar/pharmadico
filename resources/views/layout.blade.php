@@ -53,6 +53,13 @@
                 /*max-width: 0 !important;*/
             }
         }
+
+        .logo3 {
+            height: 100px;
+            /* padding: 17px; */
+            border-radius: 18%;
+            margin: 15px;
+        }
     </style>
 </head>
 
@@ -151,6 +158,13 @@
             </div>
             <div class="col-md-3 d-flex align-items-center justify-content-center">
                 <div class="issn my-3">
+
+                    <div class="text-center">
+                        <a href="{{ url('/') }}" class=" me-auto me-lg-0"><img
+                                src="{{ url('assets/img/logo3.png') }}" alt="" class="logo3">
+                        </a>
+                    </div>
+
                     <strong>
                         ISSN: 2584-1610 (Online)
                     </strong>
@@ -167,17 +181,18 @@
                         <li><a class="nav-link scrollto " href="{{ url('/') }}">Home</a></li>
                         <li><a class="nav-link scrollto"
                                 href="{{ url('journal-details/1/?tab=editorial_board') }}">Editorial Board</a></li>
-                        <li><a class="nav-link scrollto" href="{{ url('journal-details/1/?tab=archive') }}">Archive</a>
+                        <li><a class="nav-link scrollto"
+                                href="{{ url('journal-details/1/?tab=archive') }}">Archive</a>
                         </li>
                         {{-- <li><a class="nav-link scrollto" href="{{ url('authorGuidlines') }}">Instructions to
                                 Authors</a></li> --}}
-                        
+
                         {{-- <li><a class="nav-link scrollto" href="{{ url('journals') }}">Journals</a></li> --}}
                         <li class="dropdown"><a href="#"><span>For Authors</span> <i
                                     class="bi bi-chevron-down"></i></a>
                             <ul>
                                 <li><a href="{{ url('authorGuidlines') }}">Instructions to
-                                    Authors</a></li>
+                                        Authors</a></li>
                                 <li><a href="#">Processing Fee</a></li>
                             </ul>
                         </li>
