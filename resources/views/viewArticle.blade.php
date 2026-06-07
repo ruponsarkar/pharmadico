@@ -1,5 +1,108 @@
 @extends('layout')
-@section('title', 'View Article')
+@php
+    $articleTitle = trim($article->name ?: 'View Article');
+    $journalTitle = trim($article->j_name ?: 'International Journal of Pharmaceutical Science and Medicine');
+    $metaTitle = $articleTitle . ' | ' . $journalTitle;
+    $metaDescription = \Illuminate\Support\Str::limit(
+        trim(strip_tags($article->abstract ?: 'Read this peer-reviewed article published by the International Journal of Pharmaceutical Science and Medicine.')),
+        160
+    );
+    $metaKeywords = trim($article->keywords ?: 'pharmaceutical science, medicine, journal article, research');
+    $metaImage = !empty($article->photo) ? url('assets/journals/img/' . $article->photo) : url('assets/img/logo3.png');
+    $canonicalUrl = url('article/' . $article->slug);
+    $pdfUrl = !empty($article->file) ? url('assets/articles/' . $article->file) : null;
+    $doi = trim((string) ($article->doi ?? ''));
+    $doiUrl = $doi !== '' ? (\Illuminate\Support\Str::startsWith($doi, ['http://', 'https://']) ? $doi : 'https://doi.org/' . ltrim($doi, '/')) : null;
+    $citationAuthors = collect(preg_split('/\s*,\s*/', (string) ($article->aname ?? ''), -1, PREG_SPLIT_NO_EMPTY));
+    $publishedTimestamp = !empty($article->published_date) ? strtotime($article->published_date) : false;
+    $publishedDateIso = $publishedTimestamp ? date('Y-m-d', $publishedTimestamp) : null;
+    $receivedTimestamp = !empty($article->received) ? strtotime($article->received) : false;
+    $receivedDateIso = $receivedTimestamp ? date('Y-m-d', $receivedTimestamp) : null;
+    $acceptedTimestamp = !empty($article->accepted) ? strtotime($article->accepted) : false;
+    $acceptedDateIso = $acceptedTimestamp ? date('Y-m-d', $acceptedTimestamp) : null;
+@endphp
+@section('title', $articleTitle)
+@section('meta_title', $metaTitle)
+@section('meta_description', $metaDescription)
+@section('meta_keywords', $metaKeywords)
+@section('meta_image', $metaImage)
+@section('canonical', $canonicalUrl)
+@section('meta_type', 'article')
+@section('citation_meta')
+    <meta name="citation_title" content="{{ $articleTitle }}">
+    <meta name="citation_journal_title" content="{{ $journalTitle }}">
+    <meta name="citation_public_url" content="{{ $canonicalUrl }}">
+    <meta name="citation_abstract_html_url" content="{{ $canonicalUrl }}">
+    @if ($publishedDateIso)
+        <meta name="citation_publication_date" content="{{ $publishedDateIso }}">
+        <meta name="citation_online_date" content="{{ $publishedDateIso }}">
+    @endif
+    @if (!empty($article->issn))
+        <meta name="citation_issn" content="{{ $article->issn }}">
+    @endif
+    @if (!empty($article->publisher))
+        <meta name="citation_publisher" content="{{ $article->publisher }}">
+    @endif
+    @if (!empty($article->keywords))
+        <meta name="citation_keywords" content="{{ $article->keywords }}">
+    @endif
+    @if (!empty($article->language))
+        <meta name="citation_language" content="{{ $article->language }}">
+    @endif
+    @if (!empty($article->page))
+        <meta name="citation_firstpage" content="{{ preg_replace('/[^0-9].*/', '', $article->page) }}">
+    @endif
+    @if ($doi !== '')
+        <meta name="citation_doi" content="{{ $doi }}">
+    @endif
+    @if ($pdfUrl)
+        <meta name="citation_pdf_url" content="{{ $pdfUrl }}">
+    @endif
+    @foreach ($citationAuthors as $citationAuthor)
+        <meta name="citation_author" content="{{ $citationAuthor }}">
+    @endforeach
+@endsection
+@section('structured_data')
+    <script type="application/ld+json">
+        {!! json_encode(
+            array_filter([
+                '@context' => 'https://schema.org',
+                '@type' => 'ScholarlyArticle',
+                'headline' => $articleTitle,
+                'name' => $articleTitle,
+                'description' => $metaDescription,
+                'url' => $canonicalUrl,
+                'sameAs' => $doiUrl,
+                'datePublished' => $publishedDateIso,
+                'dateReceived' => $receivedDateIso,
+                'dateAccepted' => $acceptedDateIso,
+                'inLanguage' => $article->language ?? null,
+                'keywords' => !empty($article->keywords) ? array_values(array_filter(array_map('trim', explode(',', $article->keywords)))) : null,
+                'identifier' => $doi !== '' ? $doi : null,
+                'image' => $metaImage,
+                'isAccessibleForFree' => true,
+                'license' => $article->licence ?? null,
+                'author' => $citationAuthors->map(fn ($author) => ['@type' => 'Person', 'name' => $author])->values()->all(),
+                'publisher' => !empty($article->publisher)
+                    ? [
+                        '@type' => 'Organization',
+                        'name' => $article->publisher,
+                    ]
+                    : null,
+                'isPartOf' => [
+                    '@type' => 'Periodical',
+                    'name' => $journalTitle,
+                    'issn' => $article->issn ?? null,
+                ],
+                'mainEntityOfPage' => [
+                    '@type' => 'WebPage',
+                    '@id' => $canonicalUrl,
+                ],
+            ], fn ($value) => !is_null($value) && $value !== '' && $value !== []),
+            JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+        ) !!}
+    </script>
+@endsection
 @section('content')
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <section>

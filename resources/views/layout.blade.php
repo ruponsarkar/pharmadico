@@ -2,22 +2,52 @@
 <html lang="en">
 
 <head>
+    @php
+        $defaultTitle = 'International Journal of Pharmaceutical Science and Medicine';
+        $pageTitle = trim($__env->yieldContent('meta_title', $__env->yieldContent('title', $defaultTitle)));
+        $metaTitle = $pageTitle !== '' ? $pageTitle : $defaultTitle;
+        $metaDescription = trim(
+            $__env->yieldContent(
+                'meta_description',
+                'International Journal of Pharmaceutical Science and Medicine publishes peer-reviewed pharmaceutical and medical research with open-access availability.'
+            ),
+        );
+        $metaKeywords = trim(
+            $__env->yieldContent(
+                'meta_keywords',
+                'pharmaceutical science, medicine, journal, research, open access, peer reviewed, IJPSM'
+            ),
+        );
+        $metaImage = trim($__env->yieldContent('meta_image', url('assets/img/logo3.png')));
+        $metaCanonical = trim($__env->yieldContent('canonical', url()->current()));
+        $metaRobots = trim($__env->yieldContent('meta_robots', 'index,follow'));
+        $metaType = trim($__env->yieldContent('meta_type', 'website'));
+    @endphp
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="{{ $metaRobots }}">
+    <meta name="author" content="PageUp Technologies">
+    <meta name="description" content="{{ $metaDescription }}">
+    <meta name="keywords" content="{{ $metaKeywords }}">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="{{ $metaCanonical }}">
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+    <link href="{{ url('assets/img/favicon.png') }}" rel="icon">
     <!--<link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon">-->
 
+    <meta property="og:type" content="{{ $metaType }}">
+    <meta property="og:site_name" content="International Journal of Pharmaceutical Science and Medicine">
+    <meta property="og:title" content="{{ $metaTitle }}">
+    <meta property="og:description" content="{{ $metaDescription }}">
+    <meta property="og:url" content="{{ $metaCanonical }}">
+    <meta property="og:image" content="{{ $metaImage }}">
+    <meta property="og:locale" content="en_US">
 
-    <meta property="og:type" content="" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
-
-    <meta name="author" content="PageUp Technologies" />
-
-    <meta name="description" content="" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $metaTitle }}">
+    <meta name="twitter:description" content="{{ $metaDescription }}">
+    <meta name="twitter:image" content="{{ $metaImage }}">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 
@@ -42,7 +72,10 @@
     <!-- CDN Link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
-    <title>@yield('title')</title>
+    @yield('citation_meta')
+    @yield('structured_data')
+
+    <title>{{ $metaTitle }}</title>
 
     <style>
         @media (max-width: 768px) {
