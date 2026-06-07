@@ -1,7 +1,7 @@
 html, body {
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
   position: relative;
-  height: 100%;
+  /* height: 100%; */
 }
 a{
   text-decoration: none;
@@ -951,7 +951,7 @@ font-size: 14px;
 }
 }
 
-p {
+/* p {
 margin-bottom: 1.3em;
 line-height: 1.618
 }
@@ -960,7 +960,7 @@ line-height: 1.618
 p {
   font-size: 1.3em
 }
-}
+} */
 
 a {
 color: #e03616;
@@ -1038,7 +1038,7 @@ animation-delay: 0.4s;
 /*margin: 0 auto 30px auto;*/
 color: arken(#545454, 15);
 border: 3px solid green;
-padding: 2rem;
+padding: 5px;
 text-align: center;
 font-size: 14px;
 transition: ease-in-out 0.3s;

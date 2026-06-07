@@ -66,7 +66,7 @@
 <body class="stripe-1">
     <div class=" bg-white">
         <!-- ======= Top Bar ======= -->
-        <div class="row">
+        <div class="row m-0">
             <div id="topbar">
                 <div class="container" style="display: flex; justify-content: space-between;">
                     <div class="contact-info d-flex">
@@ -133,7 +133,7 @@
         </div> --}}
 
         {{-- <div class="row" style="background-image:url({{url('assets/homeAssets/'.$banner)}}); background-size:cover; background-position: center; min-height:180px"> --}}
-        <div class="row">
+        <div class="row m-0">
             <div class="col-md-3 d-flex align-items-center justify-content-center">
                 <div class="">
                     <a href="{{ url('/') }}" class=" me-auto me-lg-0"><img
@@ -174,7 +174,7 @@
 
 
 
-        <div class="row">
+        <div class="row m-0">
             <header id="header" class="header">
                 <nav id="navbar" class="navbar order-last order-lg-0 bg-nav-dark">
                     <ul>
@@ -229,6 +229,8 @@
             </header>
 
         </div>
+
+
         <!-- navbar -->
         {{-- <div class="container"> --}}
         @yield('content')

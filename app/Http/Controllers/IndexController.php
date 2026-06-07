@@ -40,9 +40,24 @@ class IndexController extends Controller
          $countDownload = articles::sum('count');
          $countVisitor = visitor::sum('count');
 
-        return view('index', ['latestArticle' => $latestArticle, 'latestArticleThree' => $latestArticleThree, 'journals'=>$journals, 
+
+        $MissionStatement = DB::table('pages')->where('type', 'MissionStatement')->orderBy('id', 'desc')->first();
+        $EthicalIssue = DB::table('pages')->where('type', 'EthicalIssue')->orderBy('id', 'desc')->first();
+        $EditorialPolicy = DB::table('pages')->where('type', 'EditorialPolicy')->orderBy('id', 'desc')->first();
+        return view('index', [
+        'latestArticle' => $latestArticle, 
+        'latestArticleThree' => $latestArticleThree, 
+        'journals'=>$journals, 
         'indexings'=>$indexings,
-        'countJournal'=>$countJournal, 'countArticle'=>$countArticle, 'countDownload'=>$countDownload, 'countVisitor'=>$countVisitor,'news' =>$news]);
+        'countJournal'=>$countJournal, 
+        'countArticle'=>$countArticle, 
+        'countDownload'=>$countDownload, 
+        'countVisitor'=>$countVisitor,
+        'news' =>$news,
+        'MissionStatement'=>$MissionStatement,
+        'EthicalIssue'=>$EthicalIssue,
+        'EditorialPolicy'=>$EditorialPolicy
+    ]);
     }
    
     function search(Request $request)
