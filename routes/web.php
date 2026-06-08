@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\JournalController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\adminPanelController;
 use App\Http\Controllers\FormController;
 
@@ -22,6 +23,7 @@ use App\Http\Controllers\FormController;
 // });
 
 Route::get('/', [IndexController::class, 'index']);
+Route::get('sitemap.xml', [SitemapController::class, 'index']);
 
 Route::get('journals', [JournalController::class, 'journals']);
 
@@ -161,7 +163,6 @@ Route::group(['middleware'=>['AuthCheck']], function(){
  Route::get('logout', [adminPanelController::class, 'logout']);
 
 Route::get('makeSlug', [adminPanelController::class, 'makeSlug']);
-
 
 
 

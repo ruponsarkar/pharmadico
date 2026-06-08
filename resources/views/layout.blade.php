@@ -9,13 +9,13 @@
         $metaDescription = trim(
             $__env->yieldContent(
                 'meta_description',
-                'International Journal of Pharmaceutical Science and Medicine publishes peer-reviewed pharmaceutical and medical research with open-access availability.'
+                'International Journal of Pharmaceutical Science and Medicine publishes peer-reviewed pharmaceutical and medical research with open-access availability.',
             ),
         );
         $metaKeywords = trim(
             $__env->yieldContent(
                 'meta_keywords',
-                'pharmaceutical science, medicine, journal, research, open access, peer reviewed, IJPSM'
+                'pharmaceutical science, medicine, journal, research, open access, peer reviewed, IJPSM',
             ),
         );
         $metaImage = trim($__env->yieldContent('meta_image', url('assets/img/logo3.png')));
@@ -76,6 +76,19 @@
     @yield('structured_data')
 
     <title>{{ $metaTitle }}</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T7KZR82593"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-T7KZR82593');
+    </script>
 
     <style>
         @media (max-width: 768px) {
